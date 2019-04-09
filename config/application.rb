@@ -17,7 +17,7 @@ require 'rails/test_unit/railtie'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module NewRailsApi
+module Prizey
   class Application < Rails::Application
     config.load_defaults 5.2
     config.api_only = true

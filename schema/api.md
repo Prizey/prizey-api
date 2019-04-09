@@ -24,7 +24,7 @@ GET /errors/{error_id}
 #### Curl Example
 
 ```bash
-$ curl -n https://api.new-rails-api.com/errors/$ERROR_ID
+$ curl -n https://api.prizey.app/errors/$ERROR_ID
 ```
 
 

@@ -1,9 +1,9 @@
 {
   "description": "The API for a New Rails Api",
-  "id": "new-rails-api",
+  "id": "prizey",
   "links": [
     {
-      "href": "https://api.new-rails-api.com",
+      "href": "https://api.prizey.app",
       "rel": "self"
     }
   ],
