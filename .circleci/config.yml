@@ -33,6 +33,7 @@ jobs:
       - run:
           name: install dependencies
           command: |
+            gem install bundler
             bundle install --jobs=4 --retry=3 --path vendor/bundle
             sudo apt update
             sudo apt install postgresql-client
@@ -86,7 +87,7 @@ jobs:
       - run:
           name: Deploy to staging
           command: |
-            dpl --provider=heroku --app=prizey-staging --api-key=$HEROKU_API_KEY
+            dpl --provider=heroku --app=prizey-api-staging --api-key=$HEROKU_API_KEY
   deploy_production:
     docker:
       - image: circleci/ruby:2.5.1
@@ -100,7 +101,7 @@ jobs:
       - run:
           name: Deploy to production
           command: |
-            dpl --provider=heroku --app=prizey-production --api-key=$HEROKU_API_KEY
+            dpl --provider=heroku --app=prizey-api-production --api-key=$HEROKU_API_KEY
 workflows:
   version: 2
   test_and_deploy:
