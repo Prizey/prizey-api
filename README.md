@@ -1,7 +1,7 @@
 # Prizey API
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/f1939d029861799b00a7/maintainability)](https://codeclimate.com/repos/5c7eb4c98824ec558100ea9c/maintainability)
-[![CircleCI](https://circleci.com/gh/SeasonedSoftware/brazil-lab-api/tree/master.svg?style=svg)](https://circleci.com/gh/SeasonedSoftware/brazil-lab-api/tree/master)
+[![Maintainability](https://api.codeclimate.com/v1/badges/2c4bf28d85a3dab722ed/maintainability)](https://codeclimate.com/repos/5cacf7104719e67715007ce3/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/2c4bf28d85a3dab722ed/test_coverage)](https://codeclimate.com/repos/5cacf7104719e67715007ce3/test_coverage)
 
 ## Installing
 
