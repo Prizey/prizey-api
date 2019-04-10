@@ -1,0 +1,77 @@
+---
+"$schema": http://json-schema.org/draft-04/hyper-schema
+title: Prizey - Setting
+description: A setting is a set of information saved for a configuration
+stability: prototype
+type:
+- object
+definitions:
+  id:
+    description: unique setting identifier
+    readOnly: true
+    type:
+    - integer
+  easy_tickets:
+    description: the setting foth the easy tickets
+    type: integer
+  medium_tickets:
+    description: the setting foth the medium tickets
+    type: integer
+  hard_tickets:
+    description: the setting foth the hard tickets
+    type: integer
+  easy_carousel_speed:
+    description: the setting foth the easy carousel speed
+    type: integer
+  medium_carousel_speed:
+    description: the setting foth the medium carousel speed
+    type: integer
+  hard_carousel_speed:
+    description: the setting foth the hard carousel speed
+    type: integer
+
+  identity:
+    anyOf:
+    - $ref: "/schemata/setting#/definitions/id"
+links:
+- title: List
+  description: List of settings
+  href: "/settings"
+  method: GET
+  rel: instances
+  schema:
+    additionalProperties: false
+    properties: {}
+    type:
+    - object
+  targetSchema:
+    anyOf:
+      - type: array
+        items:
+          "$ref": "/schemata/setting"
+      - "$ref": "/schemata/error"
+properties:
+  id:
+    $ref: "/schemata/setting#/definitions/id"
+  easy_tickets:
+    $ref: "/schemata/setting#/definitions/easy_tickets"
+  medium_tickets:
+    $ref: "/schemata/setting#/definitions/medium_tickets"
+  hard_tickets:
+    $ref: "/schemata/setting#/definitions/hard_tickets"
+  easy_carousel_speed:
+    $ref: "/schemata/setting#/definitions/easy_carousel_speed"
+  medium_carousel_speed:
+    $ref: "/schemata/setting#/definitions/medium_carousel_speed"
+  hard_carousel_speed:
+    $ref: "/schemata/setting#/definitions/hard_carousel_speed"
+additionalProperties: false
+required:
+- id
+- easy_tickets
+- medium_tickets
+- hard_tickets
+- easy_carousel_speed
+- medium_carousel_speed
+- hard_carousel_speed
+id: schemata/setting

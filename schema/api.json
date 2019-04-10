@@ -6,7 +6,7 @@
   "definitions": {
     "error": {
       "$schema": "http://json-schema.org/draft-04/hyper-schema",
-      "title": "New Rails API - Error",
+      "title": "Prizey - Error",
       "description": "An error represents a failed action in the API",
       "stability": "prototype",
       "strictProperties": true,
@@ -57,11 +57,140 @@
           "$ref": "#/definitions/error/definitions/message"
         }
       }
+    },
+    "setting": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "Prizey - Setting",
+      "description": "A setting is a set of information saved for a configuration",
+      "stability": "prototype",
+      "type": [
+        "object"
+      ],
+      "definitions": {
+        "id": {
+          "description": "unique setting identifier",
+          "readOnly": true,
+          "type": [
+            "integer"
+          ]
+        },
+        "easy_tickets": {
+          "description": "the setting foth the easy tickets",
+          "type": [
+            "integer"
+          ]
+        },
+        "medium_tickets": {
+          "description": "the setting foth the medium tickets",
+          "type": [
+            "integer"
+          ]
+        },
+        "hard_tickets": {
+          "description": "the setting foth the hard tickets",
+          "type": [
+            "integer"
+          ]
+        },
+        "easy_carousel_speed": {
+          "description": "the setting foth the easy carousel speed",
+          "type": [
+            "integer"
+          ]
+        },
+        "medium_carousel_speed": {
+          "description": "the setting foth the medium carousel speed",
+          "type": [
+            "integer"
+          ]
+        },
+        "hard_carousel_speed": {
+          "description": "the setting foth the hard carousel speed",
+          "type": [
+            "integer"
+          ]
+        },
+        "identity": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/setting/definitions/id"
+            }
+          ]
+        }
+      },
+      "links": [
+        {
+          "title": "List",
+          "description": "List of settings",
+          "href": "/settings",
+          "method": "GET",
+          "rel": "instances",
+          "schema": {
+            "strictProperties": true,
+            "properties": {
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "targetSchema": {
+            "anyOf": [
+              {
+                "type": [
+                  "array"
+                ],
+                "items": {
+                  "$ref": "#/definitions/setting"
+                }
+              },
+              {
+                "$ref": "#/definitions/error"
+              }
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/setting/definitions/id"
+        },
+        "easy_tickets": {
+          "$ref": "#/definitions/setting/definitions/easy_tickets"
+        },
+        "medium_tickets": {
+          "$ref": "#/definitions/setting/definitions/medium_tickets"
+        },
+        "hard_tickets": {
+          "$ref": "#/definitions/setting/definitions/hard_tickets"
+        },
+        "easy_carousel_speed": {
+          "$ref": "#/definitions/setting/definitions/easy_carousel_speed"
+        },
+        "medium_carousel_speed": {
+          "$ref": "#/definitions/setting/definitions/medium_carousel_speed"
+        },
+        "hard_carousel_speed": {
+          "$ref": "#/definitions/setting/definitions/hard_carousel_speed"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "easy_tickets",
+        "medium_tickets",
+        "hard_tickets",
+        "easy_carousel_speed",
+        "medium_carousel_speed",
+        "hard_carousel_speed"
+      ]
     }
   },
   "properties": {
     "error": {
       "$ref": "#/definitions/error"
+    },
+    "setting": {
+      "$ref": "#/definitions/setting"
     }
   },
   "description": "The API for a New Rails Api",
