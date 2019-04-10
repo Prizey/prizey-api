@@ -3,5 +3,5 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :settings, only: %i[index]
+  resources :game_settings, only: %i[index]
 end

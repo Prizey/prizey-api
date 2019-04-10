@@ -42,37 +42,34 @@ HTTP/1.1 200 OK
 ```
 
 
-## <a name="resource-setting">Setting</a>
+## <a name="resource-game_setting">Game Setting</a>
 
 Stability: `prototype`
 
-A setting is a set of information saved for a configuration
+The game setting is a set of information for the game configuration
 
 ### Attributes
 
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
-| **easy_carousel_speed** | *integer* | the setting foth the easy carousel speed | `42` |
-| **easy_tickets** | *integer* | the setting foth the easy tickets | `42` |
-| **hard_carousel_speed** | *integer* | the setting foth the hard carousel speed | `42` |
-| **hard_tickets** | *integer* | the setting foth the hard tickets | `42` |
-| **id** | *integer* | unique setting identifier | `42` |
-| **medium_carousel_speed** | *integer* | the setting foth the medium carousel speed | `42` |
-| **medium_tickets** | *integer* | the setting foth the medium tickets | `42` |
+| **easy_carousel_speed** | *integer* | the easy carousel speed parameter of the game setting | `42` |
+| **hard_carousel_speed** | *integer* | the hard carousel speed parameter of the game setting | `42` |
+| **id** | *integer* | unique game setting identifier | `42` |
+| **medium_carousel_speed** | *integer* | the medium carousel speed parameter of the game setting | `42` |
 
-### <a name="link-GET-setting-/settings">Setting List</a>
+### <a name="link-GET-game_setting-/game_settings">Game Setting List</a>
 
-List of settings
+List of game settings
 
 ```
-GET /settings
+GET /game_settings
 ```
 
 
 #### Curl Example
 
 ```bash
-$ curl -n https://api.prizey.app/settings
+$ curl -n https://api.prizey.app/game_settings
  -G \
   -d 
 ```

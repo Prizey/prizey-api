@@ -2,39 +2,30 @@
 
 require 'rails_helper'
 
-describe 'GET /settings', type: :request do
+describe 'GET /game_settings', type: :request do
   context 'with correct request' do
     subject { response.body }
 
-    let(:settings) do
-      create_list(:setting, 3)
+    let(:game_settings) do
+      create_list(:game_setting, 3)
     end
 
     let(:expected_body) do
       [
         {
-          id: Setting.first.id,
-          easy_tickets: 1,
-          medium_tickets: 2,
-          hard_tickets: 3,
+          id: GameSetting.first.id,
           easy_carousel_speed: 1,
           medium_carousel_speed: 2,
           hard_carousel_speed: 3
         },
         {
-          id: Setting.second.id,
-          easy_tickets: 1,
-          medium_tickets: 2,
-          hard_tickets: 3,
+          id: GameSetting.second.id,
           easy_carousel_speed: 1,
           medium_carousel_speed: 2,
           hard_carousel_speed: 3
         },
         {
-          id: Setting.third.id,
-          easy_tickets: 1,
-          medium_tickets: 2,
-          hard_tickets: 3,
+          id: GameSetting.third.id,
           easy_carousel_speed: 1,
           medium_carousel_speed: 2,
           hard_carousel_speed: 3
@@ -43,8 +34,8 @@ describe 'GET /settings', type: :request do
     end
 
     before do
-      settings
-      get '/settings'
+      game_settings
+      get '/game_settings'
     end
 
     it { expect(response).to have_http_status(:ok) }
@@ -53,7 +44,7 @@ describe 'GET /settings', type: :request do
   end
 
   context 'with incorrect request' do
-    before { get '/settings', params: { foo: 'bar' }, headers: nil }
+    before { get '/game_settings', params: { foo: 'bar' }, headers: nil }
 
     it { expect(response).to have_http_status(:bad_request) }
   end
