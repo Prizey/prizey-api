@@ -1,0 +1,65 @@
+---
+"$schema": http://json-schema.org/draft-04/hyper-schema
+title: Prizey - Game Setting
+description: The game setting is a set of information for the game configuration
+stability: prototype
+type:
+- object
+definitions:
+  id:
+    description: unique game setting identifier
+    readOnly: true
+    type:
+    - integer
+  price_multiplier:
+    description: the number that multiplies the price velocity of the game setting
+    type: integer
+  easy_carousel_speed:
+    description: the easy carousel speed parameter of the game setting
+    type: integer
+  medium_carousel_speed:
+    description: the medium carousel speed parameter of the game setting
+    type: integer
+  hard_carousel_speed:
+    description: the hard carousel speed parameter of the game setting
+    type: integer
+
+  identity:
+    anyOf:
+    - $ref: "/schemata/game_setting#/definitions/id"
+links:
+- title: List
+  description: List of game settings
+  href: "/game_settings"
+  method: GET
+  rel: instances
+  schema:
+    additionalProperties: false
+    properties: {}
+    type:
+    - object
+  targetSchema:
+    anyOf:
+      - type: array
+        items:
+          "$ref": "/schemata/game_setting"
+      - "$ref": "/schemata/error"
+properties:
+  id:
+    $ref: "/schemata/game_setting#/definitions/id"
+  price_multiplier:
+    $ref: "/schemata/game_setting#/definitions/price_multiplier"
+  easy_carousel_speed:
+    $ref: "/schemata/game_setting#/definitions/easy_carousel_speed"
+  medium_carousel_speed:
+    $ref: "/schemata/game_setting#/definitions/medium_carousel_speed"
+  hard_carousel_speed:
+    $ref: "/schemata/game_setting#/definitions/hard_carousel_speed"
+additionalProperties: false
+required:
+- id
+- price_multiplier
+- easy_carousel_speed
+- medium_carousel_speed
+- hard_carousel_speed
+id: schemata/game_setting
