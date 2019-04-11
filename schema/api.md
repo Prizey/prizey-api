@@ -56,6 +56,7 @@ The game setting is a set of information for the game configuration
 | **hard_carousel_speed** | *integer* | the hard carousel speed parameter of the game setting | `42` |
 | **id** | *integer* | unique game setting identifier | `42` |
 | **medium_carousel_speed** | *integer* | the medium carousel speed parameter of the game setting | `42` |
+| **price_multiplier** | *integer* | the number that multiplies the price velocity of the game setting | `42` |
 
 ### <a name="link-GET-game_setting-/game_settings">Game Setting List</a>
 

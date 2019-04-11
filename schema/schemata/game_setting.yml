@@ -11,6 +11,9 @@ definitions:
     readOnly: true
     type:
     - integer
+  price_multiplier:
+    description: the number that multiplies the price velocity of the game setting
+    type: integer
   easy_carousel_speed:
     description: the easy carousel speed parameter of the game setting
     type: integer
@@ -44,6 +47,8 @@ links:
 properties:
   id:
     $ref: "/schemata/game_setting#/definitions/id"
+  price_multiplier:
+    $ref: "/schemata/game_setting#/definitions/price_multiplier"
   easy_carousel_speed:
     $ref: "/schemata/game_setting#/definitions/easy_carousel_speed"
   medium_carousel_speed:
@@ -53,6 +58,7 @@ properties:
 additionalProperties: false
 required:
 - id
+- price_multiplier
 - easy_carousel_speed
 - medium_carousel_speed
 - hard_carousel_speed

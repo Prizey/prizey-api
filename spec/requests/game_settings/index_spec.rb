@@ -14,18 +14,21 @@ describe 'GET /game_settings', type: :request do
       [
         {
           id: GameSetting.first.id,
+          price_multiplier: 1,
           easy_carousel_speed: 1,
           medium_carousel_speed: 2,
           hard_carousel_speed: 3
         },
         {
           id: GameSetting.second.id,
+          price_multiplier: 1,
           easy_carousel_speed: 1,
           medium_carousel_speed: 2,
           hard_carousel_speed: 3
         },
         {
           id: GameSetting.third.id,
+          price_multiplier: 1,
           easy_carousel_speed: 1,
           medium_carousel_speed: 2,
           hard_carousel_speed: 3
