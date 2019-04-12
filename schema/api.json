@@ -211,7 +211,7 @@
         "identity": {
           "anyOf": [
             {
-              "$ref": "#/definitions/product/definitions/identifier"
+              "$ref": "#/definitions/product/definitions/id"
             }
           ]
         }
@@ -220,7 +220,7 @@
         {
           "title": "List",
           "description": "List of products",
-          "href": "/products/{(%23%2Fdefinitions%2Fproduct%2Fdefinitions%2Fidentity)}",
+          "href": "/products/{(%23%2Fdefinitions%2Fproduct%2Fdefinitions%2Fidentifier)}",
           "method": "GET",
           "rel": "instances",
           "schema": {

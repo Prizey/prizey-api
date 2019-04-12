@@ -44,7 +44,7 @@ RSpec.describe 'GET /products/:identifier', type: :request do
     it { expect(JSON.parse(response.body)).to eq(results) }
   end
 
-  describe 'when identifier is found but have no products' do
+  describe 'when the identifier is found but has no products' do
     let(:collection) do
       ShopifyAPI::CustomCollection.new(id: 123, handle: 'easy')
     end

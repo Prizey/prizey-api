@@ -29,11 +29,11 @@ definitions:
     type: string
   identity:
     anyOf:
-    - $ref: "/schemata/product#/definitions/identifier"
+    - $ref: "/schemata/product#/definitions/id"
 links:
 - title: List
   description: List of products
-  href: "/products/{(%2Fschemata%2Fproduct%23%2Fdefinitions%2Fidentity)}"
+  href: "/products/{(%2Fschemata%2Fproduct%23%2Fdefinitions%2Fidentifier)}"
   method: GET
   rel: instances
   schema:
