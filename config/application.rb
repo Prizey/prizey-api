@@ -21,9 +21,5 @@ module Prizey
   class Application < Rails::Application
     config.load_defaults 5.2
     config.api_only = true
-    config.time_zone = 'Brasilia'
-    config.i18n.default_locale = 'pt-BR'
-    config.i18n.available_locales = ['pt-BR', :en]
-    config.action_cable.mount_path = '/cable'
   end
 end
