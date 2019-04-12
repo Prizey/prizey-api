@@ -1,0 +1,121 @@
+---
+"$schema": http://json-schema.org/draft-04/hyper-schema
+title: DownToShop - User
+description: A user is a person registered in the platform
+stability: prototype
+type:
+- object
+definitions:
+  id:
+    description: unique identifier of the user
+    readOnly: true
+    type:
+    - integer
+  email:
+    description: the email of the user
+    format: email
+    type:
+    - string
+  fullname:
+    description: the fullname of the user
+    type:
+    - string
+    - "null"
+  address:
+    description: the address of the user
+    type:
+    - string
+    - "null"
+  city:
+    description: the city of the user
+    type:
+    - string
+    - "null"
+  state_province_region:
+    description: the state province region of the user
+    type:
+    - string
+    - "null"
+  zipcode:
+    description: the postal code or zip of the user
+    type:
+    - string
+    - "null"
+  clothing_size:
+    description: the clothing size of the user
+    type:
+    - string
+    - "null"
+  shoe_size:
+    description: the shoe size of the user
+    type:
+    - string
+    - "null"
+  identity:
+    anyOf:
+    - "$ref": "/schemata/user#/definitions/id"
+links:
+- title: Update
+  description: Update existing user.
+  href: "/auth"
+  method: PUT
+  rel: self
+  schema:
+    additionalProperties: false
+    properties:
+      fullname:
+        "$ref": "/schemata/user#/definitions/fullname"
+      address:
+        "$ref": "/schemata/user#/definitions/address"
+      city:
+        "$ref": "/schemata/user#/definitions/city"
+      state_province_region:
+        "$ref": "/schemata/user#/definitions/state_province_region"
+      zipcode:
+        "$ref": "/schemata/user#/definitions/zipcode"
+      clothing_size:
+        "$ref": "/schemata/user#/definitions/clothing_size"
+      shoe_size:
+        "$ref": "/schemata/user#/definitions/shoe_size"
+    type:
+    - object
+  targetSchema:
+    anyOf:
+    - type:
+      - object
+      properties:
+        status:
+          description: response status
+          type:
+          - string
+        data:
+          "$ref": "/schemata/user"
+    - "$ref": "/schemata/error"
+properties:
+  id:
+    "$ref": "/schemata/user#/definitions/id"
+  email:
+    "$ref": "/schemata/user#/definitions/email"
+  fullname:
+    "$ref": "/schemata/user#/definitions/fullname"
+  address:
+    "$ref": "/schemata/user#/definitions/address"
+  city:
+    "$ref": "/schemata/user#/definitions/city"
+  state_province_region:
+    "$ref": "/schemata/user#/definitions/state_province_region"
+  zipcode:
+    "$ref": "/schemata/user#/definitions/zipcode"
+  clothing_size:
+    "$ref": "/schemata/user#/definitions/clothing_size"
+  shoe_size:
+    "$ref": "/schemata/user#/definitions/shoe_size"
+required:
+- id
+- email
+- fullname
+- zipcode
+- clothing_size
+- shoe_size
+additionalProperties: false
+id: schemata/user
