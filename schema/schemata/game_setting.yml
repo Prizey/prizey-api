@@ -23,7 +23,6 @@ definitions:
   hard_carousel_speed:
     description: the hard carousel speed parameter of the game setting
     type: integer
-
   identity:
     anyOf:
     - $ref: "/schemata/game_setting#/definitions/id"

@@ -87,3 +87,72 @@ null
 ```
 
 
+## <a name="resource-user">User</a>
+
+Stability: `prototype`
+
+A user is a person registered in the platform
+
+### Attributes
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **address** | *nullable string* | the address of the user | `null` |
+| **city** | *nullable string* | the city of the user | `null` |
+| **clothing_size** | *nullable string* | the clothing size of the user | `null` |
+| **email** | *email* | the email of the user | `"username@example.com"` |
+| **fullname** | *nullable string* | the fullname of the user | `null` |
+| **id** | *integer* | unique identifier of the user | `42` |
+| **postal_code_zip** | *nullable string* | the postal code zip of the user | `null` |
+| **shoe_size** | *nullable string* | the shoe size of the user | `null` |
+| **state_province_region** | *nullable string* | the state province region of the user | `null` |
+
+### <a name="link-PUT-user-/auth">User Update</a>
+
+Update existing user.
+
+```
+PUT /auth
+```
+
+#### Optional Parameters
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **address** | *nullable string* | the address of the user | `null` |
+| **city** | *nullable string* | the city of the user | `null` |
+| **clothing_size** | *nullable string* | the clothing size of the user | `null` |
+| **fullname** | *nullable string* | the fullname of the user | `null` |
+| **postal_code_zip** | *nullable string* | the postal code zip of the user | `null` |
+| **shoe_size** | *nullable string* | the shoe size of the user | `null` |
+| **state_province_region** | *nullable string* | the state province region of the user | `null` |
+
+
+#### Curl Example
+
+```bash
+$ curl -n -X PUT https://api.prizey.app/auth \
+  -d '{
+  "fullname": "example",
+  "address": "example",
+  "city": "example",
+  "state_province_region": "example",
+  "postal_code_zip": "example",
+  "clothing_size": "example",
+  "shoe_size": "example"
+}' \
+  -H "Content-Type: application/json"
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+null
+```
+
+
