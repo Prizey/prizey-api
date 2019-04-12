@@ -20,7 +20,7 @@ describe 'PUT /auth', type: :request do
         address: 'Some Address',
         city: 'Some City',
         state_province_region: 'Some State',
-        postal_code_zip: 'Some Postal Code or Zip',
+        zipcode: 'Some Zipcode',
         clothing_size: 'Some Clothing Size',
         shoe_size: 'Some Shoe Size'
       }
@@ -30,34 +30,19 @@ describe 'PUT /auth', type: :request do
 
     it { expect(response).to have_http_status(:ok) }
 
-    it 'updates the user fullname' do
-      expect(reloaded_user.fullname).to eq('John Connor')
-    end
+    it { expect(reloaded_user.fullname).to eq('John Connor') }
 
-    it 'updates the user address' do
-      expect(reloaded_user.address).to eq('Some Address')
-    end
+    it { expect(reloaded_user.address).to eq('Some Address') }
 
-    it 'updates the user city' do
-      expect(reloaded_user.city).to eq('Some City')
-    end
+    it { expect(reloaded_user.city).to eq('Some City') }
 
-    it 'updates the user state province region' do
-      expect(reloaded_user.state_province_region)
-        .to eq('Some State')
-    end
+    it { expect(reloaded_user.state_province_region).to eq('Some State') }
 
-    it 'updates the user postal code or zip' do
-      expect(reloaded_user.postal_code_zip).to eq('Some Postal Code or Zip')
-    end
+    it { expect(reloaded_user.zipcode).to eq('Some Zipcode') }
 
-    it 'updates the user clothing size' do
-      expect(reloaded_user.clothing_size).to eq('Some Clothing Size')
-    end
+    it { expect(reloaded_user.clothing_size).to eq('Some Clothing Size') }
 
-    it 'updates the user shoe size' do
-      expect(reloaded_user.shoe_size).to eq('Some Shoe Size')
-    end
+    it { expect(reloaded_user.shoe_size).to eq('Some Shoe Size') }
 
     it 'returns the updated user' do
       expect(response.body).to eq({

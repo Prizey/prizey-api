@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2019_04_12_132036) do
     t.string "address"
     t.string "city"
     t.string "state_province_region"
-    t.string "postal_code_zip"
+    t.string "zipcode"
     t.string "clothing_size"
     t.string "shoe_size"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

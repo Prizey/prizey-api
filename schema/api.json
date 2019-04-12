@@ -314,8 +314,8 @@
             "null"
           ]
         },
-        "postal_code_zip": {
-          "description": "the postal code zip of the user",
+        "zipcode": {
+          "description": "the postal code or zip of the user",
           "type": [
             "string",
             "null"
@@ -365,8 +365,8 @@
               "state_province_region": {
                 "$ref": "#/definitions/user/definitions/state_province_region"
               },
-              "postal_code_zip": {
-                "$ref": "#/definitions/user/definitions/postal_code_zip"
+              "zipcode": {
+                "$ref": "#/definitions/user/definitions/zipcode"
               },
               "clothing_size": {
                 "$ref": "#/definitions/user/definitions/clothing_size"
@@ -423,8 +423,8 @@
         "state_province_region": {
           "$ref": "#/definitions/user/definitions/state_province_region"
         },
-        "postal_code_zip": {
-          "$ref": "#/definitions/user/definitions/postal_code_zip"
+        "zipcode": {
+          "$ref": "#/definitions/user/definitions/zipcode"
         },
         "clothing_size": {
           "$ref": "#/definitions/user/definitions/clothing_size"
@@ -437,7 +437,7 @@
         "id",
         "email",
         "fullname",
-        "postal_code_zip",
+        "zipcode",
         "clothing_size",
         "shoe_size"
       ],

@@ -36,8 +36,8 @@ definitions:
     type:
     - string
     - "null"
-  postal_code_zip:
-    description: the postal code zip of the user
+  zipcode:
+    description: the postal code or zip of the user
     type:
     - string
     - "null"
@@ -71,8 +71,8 @@ links:
         "$ref": "/schemata/user#/definitions/city"
       state_province_region:
         "$ref": "/schemata/user#/definitions/state_province_region"
-      postal_code_zip:
-        "$ref": "/schemata/user#/definitions/postal_code_zip"
+      zipcode:
+        "$ref": "/schemata/user#/definitions/zipcode"
       clothing_size:
         "$ref": "/schemata/user#/definitions/clothing_size"
       shoe_size:
@@ -104,8 +104,8 @@ properties:
     "$ref": "/schemata/user#/definitions/city"
   state_province_region:
     "$ref": "/schemata/user#/definitions/state_province_region"
-  postal_code_zip:
-    "$ref": "/schemata/user#/definitions/postal_code_zip"
+  zipcode:
+    "$ref": "/schemata/user#/definitions/zipcode"
   clothing_size:
     "$ref": "/schemata/user#/definitions/clothing_size"
   shoe_size:
@@ -114,7 +114,7 @@ required:
 - id
 - email
 - fullname
-- postal_code_zip
+- zipcode
 - clothing_size
 - shoe_size
 additionalProperties: false

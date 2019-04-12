@@ -147,9 +147,9 @@ A user is a person registered in the platform
 | **email** | *email* | the email of the user | `"username@example.com"` |
 | **fullname** | *nullable string* | the fullname of the user | `null` |
 | **id** | *integer* | unique identifier of the user | `42` |
-| **postal_code_zip** | *nullable string* | the postal code zip of the user | `null` |
 | **shoe_size** | *nullable string* | the shoe size of the user | `null` |
 | **state_province_region** | *nullable string* | the state province region of the user | `null` |
+| **zipcode** | *nullable string* | the postal code or zip of the user | `null` |
 
 ### <a name="link-PUT-user-/auth">User Update</a>
 
@@ -167,9 +167,9 @@ PUT /auth
 | **city** | *nullable string* | the city of the user | `null` |
 | **clothing_size** | *nullable string* | the clothing size of the user | `null` |
 | **fullname** | *nullable string* | the fullname of the user | `null` |
-| **postal_code_zip** | *nullable string* | the postal code zip of the user | `null` |
 | **shoe_size** | *nullable string* | the shoe size of the user | `null` |
 | **state_province_region** | *nullable string* | the state province region of the user | `null` |
+| **zipcode** | *nullable string* | the postal code or zip of the user | `null` |
 
 
 #### Curl Example
@@ -181,7 +181,7 @@ $ curl -n -X PUT https://api.prizey.app/auth \
   "address": "example",
   "city": "example",
   "state_province_region": "example",
-  "postal_code_zip": "example",
+  "zipcode": "example",
   "clothing_size": "example",
   "shoe_size": "example"
 }' \

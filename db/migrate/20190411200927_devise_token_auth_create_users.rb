@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[5.2]
-  # rubocop:disable Metrics/AbcSize
-  # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/BlockLength
   def change
     create_table(:users) do |t|
       ## Required
@@ -40,10 +39,14 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[5.2]
       # t.datetime :locked_at
 
       ## User Info
-      t.string :name
-      t.string :nickname
-      t.string :image
       t.string :email
+      t.string :fullname
+      t.string :address
+      t.string :city
+      t.string :state_province_region
+      t.string :zipcode
+      t.string :clothing_size
+      t.string :shoe_size
 
       ## Tokens
       t.json :tokens
@@ -57,6 +60,5 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[5.2]
     add_index :users, :confirmation_token,   unique: true
     # add_index :users, :unlock_token,       unique: true
   end
-  # rubocop:enable Metrics/MethodLength
-  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Metrics/BlockLength
 end

@@ -18,7 +18,7 @@ class ApplicationController < ActionController::API
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(
       :account_update,
-      keys: %i[fullname address city state_province_region postal_code_zip
+      keys: %i[fullname address city state_province_region zipcode
                clothing_size shoe_size]
     )
   end

@@ -14,7 +14,7 @@ class User < ApplicationRecord
       address: address,
       city: city,
       state_province_region: state_province_region,
-      postal_code_zip: postal_code_zip,
+      zipcode: zipcode,
       clothing_size: clothing_size,
       shoe_size: shoe_size
     }

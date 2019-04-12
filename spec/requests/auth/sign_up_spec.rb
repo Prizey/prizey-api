@@ -22,7 +22,7 @@ describe 'POST /auth - Sign Up', type: :request do
       address: nil,
       city: nil,
       state_province_region: nil,
-      postal_code_zip: nil,
+      zipcode: nil,
       clothing_size: nil,
       shoe_size: nil
     }
