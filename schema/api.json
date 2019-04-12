@@ -163,6 +163,105 @@
         "medium_carousel_speed",
         "hard_carousel_speed"
       ]
+    },
+    "product": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "Prizey - Product",
+      "description": "A product is a shopify product",
+      "stability": "prototype",
+      "type": [
+        "object"
+      ],
+      "definitions": {
+        "identifier": {
+          "description": "shopify URL handler",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "id": {
+          "description": "the product id",
+          "readOnly": true,
+          "type": [
+            "integer"
+          ]
+        },
+        "title": {
+          "description": "the product title",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "image": {
+          "description": "the product image",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "price": {
+          "description": "the product price",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "identity": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/product/definitions/id"
+            }
+          ]
+        }
+      },
+      "links": [
+        {
+          "title": "List",
+          "description": "List of products",
+          "href": "/products/{(%23%2Fdefinitions%2Fproduct%2Fdefinitions%2Fidentifier)}",
+          "method": "GET",
+          "rel": "instances",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "targetSchema": {
+            "anyOf": [
+              {
+                "type": [
+                  "array"
+                ],
+                "items": {
+                  "$ref": "#/definitions/product"
+                }
+              },
+              {
+                "$ref": "#/definitions/error"
+              }
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/product/definitions/id"
+        },
+        "title": {
+          "$ref": "#/definitions/product/definitions/title"
+        },
+        "image": {
+          "$ref": "#/definitions/product/definitions/image"
+        },
+        "price": {
+          "$ref": "#/definitions/product/definitions/price"
+        }
+      }
     }
   },
   "properties": {
@@ -171,6 +270,9 @@
     },
     "game_setting": {
       "$ref": "#/definitions/game_setting"
+    },
+    "product": {
+      "$ref": "#/definitions/product"
     }
   },
   "description": "The API for a New Rails Api",
