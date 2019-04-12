@@ -87,6 +87,50 @@ null
 ```
 
 
+## <a name="resource-product">Product</a>
+
+Stability: `prototype`
+
+A product is a shopify product
+
+### Attributes
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **id** | *integer* | the product id | `42` |
+| **image** | *string* | the product image | `"example"` |
+| **price** | *string* | the product price | `"example"` |
+| **title** | *string* | the product title | `"example"` |
+
+### <a name="link-GET-product-/products/{(%23%2Fdefinitions%2Fproduct%2Fdefinitions%2Fidentifier)}">Product List</a>
+
+List of products
+
+```
+GET /products/{product_identifier}
+```
+
+
+#### Curl Example
+
+```bash
+$ curl -n https://api.prizey.app/products/$PRODUCT_IDENTIFIER
+ -G \
+  -d 
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+null
+```
+
+
 ## <a name="resource-user">User</a>
 
 Stability: `prototype`

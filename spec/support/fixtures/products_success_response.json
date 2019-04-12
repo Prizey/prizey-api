@@ -1,0 +1,83 @@
+[
+  {
+    "id": 123,
+    "title": "Red Sock",
+    "body_html": "test",
+    "vendor": "Prizeyapp",
+    "product_type": "",
+    "created_at": "2019-04-07T14:49:09-04:00",
+    "handle": "red-sock",
+    "updated_at": "2019-04-09T17:17:21-04:00",
+    "published_at": "2019-04-07T14:48:41-04:00",
+    "template_suffix": null,
+    "tags": "",
+    "published_scope": "web",
+    "admin_graphql_api_id": "gid://shopify/Product/123",
+    "variants": [
+      {
+        "id": 22396004925500,
+        "title": "Default Title",
+        "price": "8.00",
+        "sku": "",
+        "position": 1,
+        "inventory_policy": "deny",
+        "compare_at_price": null,
+        "fulfillment_service": "manual",
+        "inventory_management": "shopify",
+        "option1": "Default Title",
+        "option2": null,
+        "option3": null,
+        "created_at": "2019-04-07T14:49:09-04:00",
+        "updated_at": "2019-04-07T14:49:09-04:00",
+        "taxable": true,
+        "barcode": "",
+        "grams": 0,
+        "image_id": null,
+        "weight": 0.0,
+        "weight_unit": "lb",
+        "inventory_item_id": 23143301742652,
+        "inventory_quantity": 0,
+        "old_inventory_quantity": 0,
+        "requires_shipping": true,
+        "admin_graphql_api_id": "gid://shopify/ProductVariant/22396004925500"
+      }
+    ],
+    "options": [
+      {
+        "id": 3459033235516,
+        "product_id": 123,
+        "name": "Title",
+        "position": 1,
+        "values": [
+          "Default Title"
+        ]
+      }
+    ],
+    "images": [
+      {
+        "id": 123,
+        "position": 1,
+        "created_at": "2019-04-07T14:49:12-04:00",
+        "updated_at": "2019-04-07T14:49:12-04:00",
+        "alt": null,
+        "width": 800,
+        "height": 800,
+        "src": "https://cdn.shopify.com/products/REDSOCKS.png?v=15546629",
+        "variant_ids": [],
+        "admin_graphql_api_id": "gid://shopify/ProductImage/123"
+      }
+    ],
+    "image": {
+      "id": 123,
+      "position": 1,
+      "created_at": "2019-04-07T14:49:12-04:00",
+      "updated_at": "2019-04-07T14:49:12-04:00",
+      "alt": null,
+      "width": 800,
+      "height": 800,
+      "src": "https://cdn.shopify.com/products/REDSOCKS.png?v=15546629",
+      "variant_ids": [],
+      "admin_graphql_api_id": "gid://shopify/ProductImage/123"
+    }
+  }
+]
