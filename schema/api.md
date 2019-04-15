@@ -142,6 +142,7 @@ A user is a person registered in the platform
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **address** | *nullable string* | the address of the user | `null` |
+| **blocked** | *boolean* | the block status of the user | `true` |
 | **city** | *nullable string* | the city of the user | `null` |
 | **clothing_size** | *nullable string* | the clothing size of the user | `null` |
 | **email** | *email* | the email of the user | `"username@example.com"` |
@@ -164,6 +165,7 @@ PUT /auth
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **address** | *nullable string* | the address of the user | `null` |
+| **blocked** | *boolean* | the block status of the user | `true` |
 | **city** | *nullable string* | the city of the user | `null` |
 | **clothing_size** | *nullable string* | the clothing size of the user | `null` |
 | **fullname** | *nullable string* | the fullname of the user | `null` |
@@ -183,7 +185,8 @@ $ curl -n -X PUT https://api.prizey.app/auth \
   "state_province_region": "example",
   "zipcode": "example",
   "clothing_size": "example",
-  "shoe_size": "example"
+  "shoe_size": "example",
+  "blocked": true
 }' \
   -H "Content-Type: application/json"
 ```

@@ -335,6 +335,13 @@
             "null"
           ]
         },
+        "blocked": {
+          "description": "the block status of the user",
+          "type": [
+            "boolean"
+          ],
+          "default": false
+        },
         "identity": {
           "anyOf": [
             {
@@ -373,6 +380,9 @@
               },
               "shoe_size": {
                 "$ref": "#/definitions/user/definitions/shoe_size"
+              },
+              "blocked": {
+                "$ref": "#/definitions/user/definitions/blocked"
               }
             },
             "type": [
@@ -431,6 +441,9 @@
         },
         "shoe_size": {
           "$ref": "#/definitions/user/definitions/shoe_size"
+        },
+        "blocked": {
+          "$ref": "#/definitions/user/definitions/blocked"
         }
       },
       "required": [
@@ -439,7 +452,8 @@
         "fullname",
         "zipcode",
         "clothing_size",
-        "shoe_size"
+        "shoe_size",
+        "blocked"
       ],
       "additionalProperties": false
     }

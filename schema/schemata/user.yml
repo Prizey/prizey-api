@@ -51,6 +51,11 @@ definitions:
     type:
     - string
     - "null"
+  blocked:
+    description: the block status of the user
+    type:
+    - boolean
+    default: false
   identity:
     anyOf:
     - "$ref": "/schemata/user#/definitions/id"
@@ -77,6 +82,8 @@ links:
         "$ref": "/schemata/user#/definitions/clothing_size"
       shoe_size:
         "$ref": "/schemata/user#/definitions/shoe_size"
+      blocked:
+        "$ref": "/schemata/user#/definitions/blocked"
     type:
     - object
   targetSchema:
@@ -110,6 +117,8 @@ properties:
     "$ref": "/schemata/user#/definitions/clothing_size"
   shoe_size:
     "$ref": "/schemata/user#/definitions/shoe_size"
+  blocked:
+    "$ref": "/schemata/user#/definitions/blocked"
 required:
 - id
 - email
@@ -117,5 +126,6 @@ required:
 - zipcode
 - clothing_size
 - shoe_size
+- blocked
 additionalProperties: false
 id: schemata/user
