@@ -16,7 +16,8 @@ class User < ApplicationRecord
       state_province_region: state_province_region,
       zipcode: zipcode,
       clothing_size: clothing_size,
-      shoe_size: shoe_size
+      shoe_size: shoe_size,
+      blocked: blocked
     }
   end
   # rubocop:enable Metrics/MethodLength
