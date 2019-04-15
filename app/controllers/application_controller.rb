@@ -3,6 +3,7 @@
 class ApplicationController < ActionController::API
   include DeviseTokenAuth::Concerns::SetUserByToken
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :check_user_block_status
 
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
@@ -21,5 +22,9 @@ class ApplicationController < ActionController::API
       keys: %i[fullname address city state_province_region zipcode
                clothing_size shoe_size]
     )
+  end
+
+  def check_user_block_status
+    return render status: :not_authorized unless current_user.blocked == false
   end
 end
