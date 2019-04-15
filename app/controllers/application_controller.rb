@@ -25,6 +25,6 @@ class ApplicationController < ActionController::API
   end
 
   def check_user_block_status
-    return render status: :not_authorized unless current_user.blocked == false
+    render status: :unauthorized unless current_user.blocked == false
   end
 end
