@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 describe 'PUT /auth', type: :request do
+  include_context 'with current_user'
+
   let(:params) { {} }
 
   before { put '/auth', params: params.to_json }

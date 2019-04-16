@@ -56,6 +56,10 @@ definitions:
     type:
     - boolean
     default: false
+  tickets:
+    description: the amount of tickets user has
+    type:
+    - integer
   identity:
     anyOf:
     - "$ref": "/schemata/user#/definitions/id"
@@ -119,6 +123,8 @@ properties:
     "$ref": "/schemata/user#/definitions/shoe_size"
   blocked:
     "$ref": "/schemata/user#/definitions/blocked"
+  tickets:
+    "$ref": "/schemata/user#/definitions/tickets"
 required:
 - email
 - fullname

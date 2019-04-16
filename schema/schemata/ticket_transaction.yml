@@ -1,0 +1,78 @@
+---
+"$schema": http://json-schema.org/draft-04/hyper-schema
+title: Prizey - ticket transaction
+description: The ticket transaction is a set of information for the game configuration
+stability: prototype
+type:
+- object
+definitions:
+  id:
+    description: unique ticket transaction identifier
+    readOnly: true
+    type:
+    - integer
+  user:
+    description: the owner of the ticket transaction
+    type:
+    - object
+    targetSchema:
+      anyOf:
+      - "$ref": "/schemata/user"
+  amount:
+    description: the amount of tickets
+    type:
+    - integer
+  created_at:
+    description: when the ticket transaction was created
+    format: date-time
+    type:
+    - string
+  identity:
+    anyOf:
+    - $ref: "/schemata/ticket_transaction#/definitions/id"
+links:
+- title: List
+  description: List of tick transactions
+  href: "/ticket_transactions"
+  method: GET
+  rel: instances
+  schema:
+    additionalProperties: false
+    properties: {}
+    type:
+    - object
+  targetSchema:
+    anyOf:
+      - type: array
+        items:
+          "$ref": "/schemata/ticket_transaction"
+      - "$ref": "/schemata/error"
+- title: Create
+  description: Create a new ticket_transaction
+  href: "/ticket_transactions"
+  method: POST
+  rel: create
+  schema:
+    strictProperties: true
+    properties:
+      amount:
+        "$ref": "/schemata/ticket_transaction#/definitions/amount"
+    type:
+    - object
+  targetSchema:
+    anyOf:
+    - "$ref": "/schemata/ticket_transaction"
+    - "$ref": "/schemata/error"
+properties:
+  id:
+    $ref: "/schemata/ticket_transaction#/definitions/id"
+  user:
+    $ref: "/schemata/ticket_transaction#/definitions/user"
+  amount:
+    $ref: "/schemata/ticket_transaction#/definitions/amount"
+  created_at:
+    $ref: "/schemata/ticket_transaction#/definitions/created_at"
+additionalProperties: false
+required:
+- amount
+id: schemata/ticket_transaction
