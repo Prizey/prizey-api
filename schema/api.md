@@ -149,6 +149,7 @@ A user is a person registered in the platform
 | **id** | *integer* | unique identifier of the user | `42` |
 | **shoe_size** | *nullable string* | the shoe size of the user | `null` |
 | **state_province_region** | *nullable string* | the state province region of the user | `null` |
+| **tickets** | *integer* | the amount of tickets user has | `42` |
 | **zipcode** | *nullable string* | the postal code or zip of the user | `null` |
 
 ### <a name="link-PUT-user-/auth">User Update</a>

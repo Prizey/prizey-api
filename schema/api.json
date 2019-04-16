@@ -335,6 +335,12 @@
             "null"
           ]
         },
+        "tickets": {
+          "description": "the amount of tickets user has",
+          "type": [
+            "integer"
+          ]
+        },
         "identity": {
           "anyOf": [
             {
@@ -431,6 +437,9 @@
         },
         "shoe_size": {
           "$ref": "#/definitions/user/definitions/shoe_size"
+        },
+        "tickets": {
+          "$ref": "#/definitions/user/definitions/tickets"
         }
       },
       "required": [

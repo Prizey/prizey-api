@@ -51,6 +51,10 @@ definitions:
     type:
     - string
     - "null"
+  tickets:
+    description: the amount of tickets user has
+    type:
+    - integer
   identity:
     anyOf:
     - "$ref": "/schemata/user#/definitions/id"
@@ -110,6 +114,8 @@ properties:
     "$ref": "/schemata/user#/definitions/clothing_size"
   shoe_size:
     "$ref": "/schemata/user#/definitions/shoe_size"
+  tickets:
+    "$ref": "/schemata/user#/definitions/tickets"
 required:
 - id
 - email
