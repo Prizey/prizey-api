@@ -25,6 +25,10 @@ class ApplicationController < ActionController::API
   end
 
   def check_user_block_status
-    render status: :unauthorized unless current_user.blocked == false
+    json = {
+      id: 'unauthorized',
+      message: 'Your account is currently blocked, please, contact support.'
+    }
+    render status: :unauthorized, json: json if current_user&.blocked?
   end
 end
