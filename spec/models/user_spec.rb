@@ -29,23 +29,24 @@ RSpec.describe User, type: :model do
 
   describe '#tickets' do
     let(:user) { create(:user) }
-    
+
     context 'when there is not ticket_transactions' do
       it { expect(user.tickets).to eq(0) }
     end
-    
+
     context 'when amount is positive' do
       before do
         create_list(:ticket_transaction, 2, user: user, amount: 10)
       end
+
       it { expect(user.tickets).to eq(20) }
     end
-    
+
     context 'when amount is negative' do
       before do
         create_list(:ticket_transaction, 2, user: user, amount: -10)
       end
-      
+
       it { expect(user.tickets).to eq(-20) }
     end
   end

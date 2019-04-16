@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2019_04_15_213101) do
   end
 
   create_table "ticket_transactions", force: :cascade do |t|
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.integer "amount", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
