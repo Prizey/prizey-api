@@ -24,7 +24,8 @@ describe 'POST /auth - Sign Up', type: :request do
       state_province_region: nil,
       zipcode: nil,
       clothing_size: nil,
-      shoe_size: nil
+      shoe_size: nil,
+      tickets: 0
     }
   end
 
@@ -36,7 +37,7 @@ describe 'POST /auth - Sign Up', type: :request do
     let(:params) { user }
 
     it { expect(response).to have_http_status(:ok) }
-    it { expect(User.count).to eq(2) }
+    it { expect(User.count).to eq(1) }
 
     it 'returns the created user' do
       expect(response.body).to eq({

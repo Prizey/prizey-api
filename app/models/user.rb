@@ -5,6 +5,8 @@ class User < ApplicationRecord
     :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
 
+  has_many :ticket_transactions, dependent: :restrict_with_exception
+
   # rubocop:disable Metrics/MethodLength
   def as_json(_options = {})
     {
@@ -16,8 +18,13 @@ class User < ApplicationRecord
       state_province_region: state_province_region,
       zipcode: zipcode,
       clothing_size: clothing_size,
-      shoe_size: shoe_size
+      shoe_size: shoe_size,
+      tickets: tickets
     }
   end
   # rubocop:enable Metrics/MethodLength
+
+  def tickets
+    ticket_transactions.sum(:amount)
+  end
 end

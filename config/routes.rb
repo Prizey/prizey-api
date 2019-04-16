@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resource :products, only: [] do
     get '/:identifier', to: 'products#index'
   end
+  resources :ticket_transactions, only: %i[index create]
 end
