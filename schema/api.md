@@ -131,6 +131,86 @@ null
 ```
 
 
+## <a name="resource-ticket_transaction">ticket transaction</a>
+
+Stability: `prototype`
+
+The ticket transaction is a set of information for the game configuration
+
+### Attributes
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **amount** | *integer* | the amount of tickets | `42` |
+| **created_at** | *date-time* | when the ticket transaction were created | `"2015-01-01T12:00:00Z"` |
+| **id** | *integer* | unique ticket transaction identifier | `42` |
+| **user** | *object* | the owner of the ticket transaction |  |
+
+### <a name="link-GET-ticket_transaction-/ticket_transactions">ticket transaction List</a>
+
+List of tick transactions
+
+```
+GET /ticket_transactions
+```
+
+
+#### Curl Example
+
+```bash
+$ curl -n https://api.prizey.app/ticket_transactions
+ -G \
+  -d 
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+null
+```
+
+### <a name="link-POST-ticket_transaction-/ticket_transactions">ticket transaction Create</a>
+
+Create a new ticket_transaction
+
+```
+POST /ticket_transactions
+```
+
+#### Optional Parameters
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **amount** | *integer* | the amount of tickets | `42` |
+
+
+#### Curl Example
+
+```bash
+$ curl -n -X POST https://api.prizey.app/ticket_transactions \
+  -d '{
+  "amount": 42
+}' \
+  -H "Content-Type: application/json"
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 201 Created
+```
+
+```json
+null
+```
+
+
 ## <a name="resource-user">User</a>
 
 Stability: `prototype`
