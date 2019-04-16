@@ -447,13 +447,11 @@
         }
       },
       "required": [
-        "id",
         "email",
         "fullname",
         "zipcode",
         "clothing_size",
-        "shoe_size",
-        "blocked"
+        "shoe_size"
       ],
       "additionalProperties": false
     }

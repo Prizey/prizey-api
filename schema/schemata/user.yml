@@ -120,12 +120,10 @@ properties:
   blocked:
     "$ref": "/schemata/user#/definitions/blocked"
 required:
-- id
 - email
 - fullname
 - zipcode
 - clothing_size
 - shoe_size
-- blocked
 additionalProperties: false
 id: schemata/user
