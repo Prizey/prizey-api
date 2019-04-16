@@ -19,8 +19,12 @@ class User < ApplicationRecord
       zipcode: zipcode,
       clothing_size: clothing_size,
       shoe_size: shoe_size,
-      tickets: ticket_transactions.sum(:amount)
+      tickets: tickets
     }
   end
   # rubocop:enable Metrics/MethodLength
+
+  def tickets
+    ticket_transactions.sum(:amount)
+  end
 end

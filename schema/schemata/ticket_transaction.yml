@@ -23,7 +23,7 @@ definitions:
     type:
     - integer
   created_at:
-    description: when the ticket transaction were created
+    description: when the ticket transaction was created
     format: date-time
     type:
     - string
