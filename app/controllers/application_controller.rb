@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::API
   include DeviseTokenAuth::Concerns::SetUserByToken
+  include UserBlockedStatus
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :check_user_block_status
 
@@ -22,13 +23,5 @@ class ApplicationController < ActionController::API
       keys: %i[fullname address city state_province_region zipcode
                clothing_size shoe_size]
     )
-  end
-
-  def check_user_block_status
-    json = {
-      id: 'unauthorized',
-      message: 'Your account is currently blocked, please, contact support.'
-    }
-    render status: :unauthorized, json: json if current_user&.blocked?
   end
 end
