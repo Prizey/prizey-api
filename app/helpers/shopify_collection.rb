@@ -18,7 +18,7 @@ class ShopifyCollection
 
   def self.serialize_products(products)
     JSON.parse(products.to_json).map do |product|
-      { id: product['id'],
+      { id: product['variants'][0]['id'],
         title: product['title'],
         image: product['image']['src'],
         price: product['variants'][0]['price'] }

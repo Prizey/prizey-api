@@ -15,7 +15,7 @@
     "admin_graphql_api_id": "gid://shopify/Product/123",
     "variants": [
       {
-        "id": 22396004925500,
+        "id": 123,
         "title": "Default Title",
         "price": "8.00",
         "sku": "",
@@ -39,7 +39,7 @@
         "inventory_quantity": 0,
         "old_inventory_quantity": 0,
         "requires_shipping": true,
-        "admin_graphql_api_id": "gid://shopify/ProductVariant/22396004925500"
+        "admin_graphql_api_id": "gid://shopify/ProductVariant/123"
       }
     ],
     "options": [

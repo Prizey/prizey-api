@@ -90,6 +90,56 @@ null
 ```
 
 
+## <a name="resource-order">order</a>
+
+Stability: `prototype`
+
+An order is a shopify order
+
+### Attributes
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **id** | *integer* | The status (error, success) of the order | `42` |
+| **message** | *string* | the message when order fail to create | `"example"` |
+
+### <a name="link-POST-order-/orders">order Create</a>
+
+Create Shopify Order
+
+```
+POST /orders
+```
+
+#### Optional Parameters
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **product_id** | *string* | the product/variant ID to use on Shopify Order | `"example"` |
+
+
+#### Curl Example
+
+```bash
+$ curl -n -X POST https://api.prizey.app/orders \
+  -d '{
+  "product_id": "example"
+}' \
+  -H "Content-Type: application/json"
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+null
+```
+
+
 ## <a name="resource-product">Product</a>
 
 Stability: `prototype`

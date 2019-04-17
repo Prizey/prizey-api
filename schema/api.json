@@ -189,6 +189,82 @@
         "hard_ticket_amount"
       ]
     },
+    "order": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "Prizey - order",
+      "description": "An order is a shopify order",
+      "stability": "prototype",
+      "type": [
+        "object"
+      ],
+      "definitions": {
+        "id": {
+          "description": "The status (error, success) of the order",
+          "readOnly": true,
+          "type": [
+            "integer"
+          ]
+        },
+        "message": {
+          "description": "the message when order fail to create",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "product_id": {
+          "description": "the product/variant ID to use on Shopify Order",
+          "type": [
+            "string"
+          ]
+        },
+        "identity": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/order/definitions/id"
+            }
+          ]
+        }
+      },
+      "links": [
+        {
+          "title": "Create",
+          "description": "Create Shopify Order",
+          "href": "/orders",
+          "method": "POST",
+          "rel": "instances",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "product_id": {
+                "$ref": "#/definitions/order/definitions/product_id"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "targetSchema": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/order"
+              },
+              {
+                "$ref": "#/definitions/error"
+              }
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/order/definitions/id"
+        },
+        "message": {
+          "$ref": "#/definitions/order/definitions/message"
+        }
+      }
+    },
     "product": {
       "$schema": "http://json-schema.org/draft-04/hyper-schema",
       "title": "Prizey - Product",
@@ -625,6 +701,9 @@
     },
     "game_setting": {
       "$ref": "#/definitions/game_setting"
+    },
+    "order": {
+      "$ref": "#/definitions/order"
     },
     "product": {
       "$ref": "#/definitions/product"
