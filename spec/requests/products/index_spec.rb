@@ -83,6 +83,26 @@ RSpec.describe 'GET /products/:identifier', type: :request do
     it { expect(JSON.parse(response.body)['id']).to eq('not_found') }
   end
 
+  describe 'when current user is blocked' do
+    include_context 'with current_user'
+
+    let(:msg_error) do
+      {
+        id: 'unauthorized',
+        message: 'Your account is currently blocked, please, contact support.'
+      }.to_json
+    end
+
+    before do
+      current_user.blocked = true
+      get '/products/easy'
+    end
+
+    it { expect(response).to have_http_status(:unauthorized) }
+    it { expect(response.has_header?('access-token')).to eq(false) }
+    it { expect(response.body).to eq(msg_error) }
+  end
+
   def api_url
     'https://prizeyapp.myshopify.com/admin/api/2019-04'
   end
