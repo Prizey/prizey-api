@@ -3,52 +3,85 @@
 require 'rails_helper'
 
 describe 'GET /game_settings', type: :request do
-  context 'with correct request' do
-    subject { response.body }
+  let(:game_settings) do
+    create_list(:game_setting, 3)
+  end
 
-    let(:game_settings) do
-      create_list(:game_setting, 3)
+  describe 'when user is logged in' do
+    include_context 'with current_user'
+
+    context 'with correct request' do
+      subject { response.body }
+
+      let(:expected_body) do
+        [
+          {
+            id: GameSetting.first.id,
+            price_multiplier: 1,
+            easy_carousel_speed: 1,
+            medium_carousel_speed: 2,
+            hard_carousel_speed: 3
+          },
+          {
+            id: GameSetting.second.id,
+            price_multiplier: 1,
+            easy_carousel_speed: 1,
+            medium_carousel_speed: 2,
+            hard_carousel_speed: 3
+          },
+          {
+            id: GameSetting.third.id,
+            price_multiplier: 1,
+            easy_carousel_speed: 1,
+            medium_carousel_speed: 2,
+            hard_carousel_speed: 3
+          }
+        ].to_json
+      end
+
+      before do
+        game_settings
+        get '/game_settings'
+      end
+
+      it { expect(response).to have_http_status(:ok) }
+      it { expect(response.body).to eq(expected_body) }
+      it { is_expected.to eq(expected_body) }
     end
 
-    let(:expected_body) do
-      [
-        {
-          id: GameSetting.first.id,
-          price_multiplier: 1,
-          easy_carousel_speed: 1,
-          medium_carousel_speed: 2,
-          hard_carousel_speed: 3
-        },
-        {
-          id: GameSetting.second.id,
-          price_multiplier: 1,
-          easy_carousel_speed: 1,
-          medium_carousel_speed: 2,
-          hard_carousel_speed: 3
-        },
-        {
-          id: GameSetting.third.id,
-          price_multiplier: 1,
-          easy_carousel_speed: 1,
-          medium_carousel_speed: 2,
-          hard_carousel_speed: 3
-        }
-      ].to_json
+    context 'with incorrect request' do
+      before { get '/game_settings', params: { foo: 'bar' }, headers: nil }
+
+      it { expect(response).to have_http_status(:bad_request) }
     end
 
+    context 'with blocked user' do
+      include_context 'with current_user'
+
+      let(:msg_error) do
+        {
+          id: 'unauthorized',
+          message: 'Your account is currently blocked, please, contact support.'
+        }.to_json
+      end
+
+      before do
+        current_user.blocked = true
+        get '/game_settings'
+      end
+
+      it { expect(response).to have_http_status(:unauthorized) }
+      it { expect(response.has_header?('access-token')).to eq(false) }
+      it { expect(response.body).to eq(msg_error) }
+    end
+  end
+
+  describe 'when user is logged out' do
     before do
       game_settings
       get '/game_settings'
     end
 
-    it { expect(response).to have_http_status(:ok) }
-    it { expect(response.body).to eq(expected_body) }
-    it { is_expected.to eq(expected_body) }
-  end
-
-  context 'with incorrect request' do
-    before { get '/game_settings', params: { foo: 'bar' }, headers: nil }
-
-    it { expect(response).to have_http_status(:bad_request) }
+    it { expect(response).to have_http_status(:unauthorized) }
   end
 end
