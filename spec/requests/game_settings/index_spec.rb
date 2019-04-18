@@ -7,33 +7,13 @@ describe 'GET /game_settings', type: :request do
     subject { response.body }
 
     let(:game_settings) do
-      create_list(:game_setting, 3)
+      create(:game_setting)
     end
 
     let(:expected_body) do
       [
         {
           id: GameSetting.first.id,
-          price_multiplier: 1,
-          easy_carousel_speed: 1,
-          medium_carousel_speed: 2,
-          hard_carousel_speed: 3,
-          easy_ticket_amount: 1,
-          medium_ticket_amount: 2,
-          hard_ticket_amount: 3
-        },
-        {
-          id: GameSetting.second.id,
-          price_multiplier: 1,
-          easy_carousel_speed: 1,
-          medium_carousel_speed: 2,
-          hard_carousel_speed: 3,
-          easy_ticket_amount: 1,
-          medium_ticket_amount: 2,
-          hard_ticket_amount: 3
-        },
-        {
-          id: GameSetting.third.id,
           price_multiplier: 1,
           easy_carousel_speed: 1,
           medium_carousel_speed: 2,
