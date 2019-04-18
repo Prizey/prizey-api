@@ -13,7 +13,7 @@ definitions:
     - integer
   price_multiplier:
     description: the number that multiplies the price velocity of the game setting
-    type: integer
+    type: number
   easy_carousel_speed:
     description: the easy carousel speed parameter of the game setting
     type: integer
