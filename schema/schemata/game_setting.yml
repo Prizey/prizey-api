@@ -36,22 +36,20 @@ definitions:
     anyOf:
     - $ref: "/schemata/game_setting#/definitions/id"
 links:
-- title: List
-  description: List of game settings
-  href: "/game_settings"
+- title: Info
+  description: Info for the existing game setting
+  href: "/game_setting"
   method: GET
-  rel: instances
+  rel: self
   schema:
-    additionalProperties: false
+    strictProperties: true
     properties: {}
     type:
     - object
   targetSchema:
     anyOf:
-      - type: array
-        items:
-          "$ref": "/schemata/game_setting"
-      - "$ref": "/schemata/error"
+      - $ref: "/schemata/game_setting"
+      - $ref: "/schemata/error"
 properties:
   id:
     $ref: "/schemata/game_setting#/definitions/id"

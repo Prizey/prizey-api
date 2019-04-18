@@ -126,13 +126,13 @@
       },
       "links": [
         {
-          "title": "List",
-          "description": "List of game settings",
-          "href": "/game_settings",
+          "title": "Info",
+          "description": "Info for the existing game setting",
+          "href": "/game_setting",
           "method": "GET",
-          "rel": "instances",
+          "rel": "self",
           "schema": {
-            "additionalProperties": false,
+            "strictProperties": true,
             "properties": {
             },
             "type": [
@@ -142,12 +142,7 @@
           "targetSchema": {
             "anyOf": [
               {
-                "type": [
-                  "array"
-                ],
-                "items": {
-                  "$ref": "#/definitions/game_setting"
-                }
+                "$ref": "#/definitions/game_setting"
               },
               {
                 "$ref": "#/definitions/error"

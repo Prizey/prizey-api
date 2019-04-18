@@ -61,19 +61,19 @@ The game setting is a set of information for the game configuration
 | **medium_ticket_amount** | *integer* | the number of tickets for the medium play setting | `42` |
 | **price_multiplier** | *integer* | the number that multiplies the price velocity of the game setting | `42` |
 
-### <a name="link-GET-game_setting-/game_settings">Game Setting List</a>
+### <a name="link-GET-game_setting-/game_setting">Game Setting Info</a>
 
-List of game settings
+Info for the existing game setting
 
 ```
-GET /game_settings
+GET /game_setting
 ```
 
 
 #### Curl Example
 
 ```bash
-$ curl -n https://api.prizey.app/game_settings
+$ curl -n https://api.prizey.app/game_setting
  -G \
   -d 
 ```
