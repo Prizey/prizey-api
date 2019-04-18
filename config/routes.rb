@@ -5,7 +5,8 @@ Rails.application.routes.draw do
     passwords: 'auth/passwords'
   }
 
-  resources :game_settings, only: %i[index]
+  resource :game_setting
+
   resource :products, only: [] do
     get '/:identifier', to: 'products#index'
   end
