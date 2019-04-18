@@ -98,6 +98,24 @@
             "integer"
           ]
         },
+        "easy_ticket_amount": {
+          "description": "the number of tickets for the easy play setting",
+          "type": [
+            "integer"
+          ]
+        },
+        "medium_ticket_amount": {
+          "description": "the number of tickets for the medium play setting",
+          "type": [
+            "integer"
+          ]
+        },
+        "hard_ticket_amount": {
+          "description": "the number of tickets for the hard play setting",
+          "type": [
+            "integer"
+          ]
+        },
         "identity": {
           "anyOf": [
             {
@@ -153,6 +171,15 @@
         },
         "hard_carousel_speed": {
           "$ref": "#/definitions/game_setting/definitions/hard_carousel_speed"
+        },
+        "easy_ticket_amount": {
+          "$ref": "#/definitions/game_setting/definitions/easy_ticket_amount"
+        },
+        "medium_ticket_amount": {
+          "$ref": "#/definitions/game_setting/definitions/medium_ticket_amount"
+        },
+        "hard_ticket_amount": {
+          "$ref": "#/definitions/game_setting/definitions/hard_ticket_amount"
         }
       },
       "additionalProperties": false,
@@ -161,7 +188,10 @@
         "price_multiplier",
         "easy_carousel_speed",
         "medium_carousel_speed",
-        "hard_carousel_speed"
+        "hard_carousel_speed",
+        "easy_ticket_amount",
+        "medium_ticket_amount",
+        "hard_ticket_amount"
       ]
     },
     "product": {
@@ -299,7 +329,7 @@
           ]
         },
         "created_at": {
-          "description": "when the ticket transaction were created",
+          "description": "when the ticket transaction was created",
           "format": "date-time",
           "type": [
             "string"

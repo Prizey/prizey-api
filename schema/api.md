@@ -53,9 +53,12 @@ The game setting is a set of information for the game configuration
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **easy_carousel_speed** | *integer* | the easy carousel speed parameter of the game setting | `42` |
+| **easy_ticket_amount** | *integer* | the number of tickets for the easy play setting | `42` |
 | **hard_carousel_speed** | *integer* | the hard carousel speed parameter of the game setting | `42` |
+| **hard_ticket_amount** | *integer* | the number of tickets for the hard play setting | `42` |
 | **id** | *integer* | unique game setting identifier | `42` |
 | **medium_carousel_speed** | *integer* | the medium carousel speed parameter of the game setting | `42` |
+| **medium_ticket_amount** | *integer* | the number of tickets for the medium play setting | `42` |
 | **price_multiplier** | *integer* | the number that multiplies the price velocity of the game setting | `42` |
 
 ### <a name="link-GET-game_setting-/game_settings">Game Setting List</a>
@@ -142,7 +145,7 @@ The ticket transaction is a set of information for the game configuration
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **amount** | *integer* | the amount of tickets | `42` |
-| **created_at** | *date-time* | when the ticket transaction were created | `"2015-01-01T12:00:00Z"` |
+| **created_at** | *date-time* | when the ticket transaction was created | `"2015-01-01T12:00:00Z"` |
 | **id** | *integer* | unique ticket transaction identifier | `42` |
 | **user** | *object* | the owner of the ticket transaction |  |
 

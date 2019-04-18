@@ -23,6 +23,15 @@ definitions:
   hard_carousel_speed:
     description: the hard carousel speed parameter of the game setting
     type: integer
+  easy_ticket_amount:
+    description: the number of tickets for the easy play setting
+    type: integer
+  medium_ticket_amount:
+    description: the number of tickets for the medium play setting
+    type: integer
+  hard_ticket_amount:
+    description: the number of tickets for the hard play setting
+    type: integer
   identity:
     anyOf:
     - $ref: "/schemata/game_setting#/definitions/id"
@@ -54,6 +63,12 @@ properties:
     $ref: "/schemata/game_setting#/definitions/medium_carousel_speed"
   hard_carousel_speed:
     $ref: "/schemata/game_setting#/definitions/hard_carousel_speed"
+  easy_ticket_amount:
+    $ref: "/schemata/game_setting#/definitions/easy_ticket_amount"
+  medium_ticket_amount:
+    $ref: "/schemata/game_setting#/definitions/medium_ticket_amount"
+  hard_ticket_amount:
+    $ref: "/schemata/game_setting#/definitions/hard_ticket_amount"
 additionalProperties: false
 required:
 - id
@@ -61,4 +76,7 @@ required:
 - easy_carousel_speed
 - medium_carousel_speed
 - hard_carousel_speed
+- easy_ticket_amount
+- medium_ticket_amount
+- hard_ticket_amount
 id: schemata/game_setting
