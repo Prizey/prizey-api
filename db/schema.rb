@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_15_213101) do
+ActiveRecord::Schema.define(version: 2019_04_18_165929) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,9 @@ ActiveRecord::Schema.define(version: 2019_04_15_213101) do
     t.integer "hard_carousel_speed", default: 3, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "easy_ticket_amount", default: 1, null: false
+    t.integer "medium_ticket_amount", default: 2, null: false
+    t.integer "hard_ticket_amount", default: 3, null: false
   end
 
   create_table "ticket_transactions", force: :cascade do |t|
@@ -57,6 +60,7 @@ ActiveRecord::Schema.define(version: 2019_04_15_213101) do
     t.string "zipcode"
     t.string "clothing_size"
     t.string "shoe_size"
+    t.boolean "blocked", default: false
     t.json "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
