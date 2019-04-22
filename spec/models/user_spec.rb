@@ -17,6 +17,7 @@ RSpec.describe User, type: :model do
         zipcode: user.zipcode,
         clothing_size: user.clothing_size,
         shoe_size: user.shoe_size,
+        blocked: user.blocked,
         tickets: 20
       }
     end

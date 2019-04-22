@@ -25,6 +25,7 @@ describe 'POST /auth - Sign Up', type: :request do
       zipcode: nil,
       clothing_size: nil,
       shoe_size: nil,
+      blocked: false,
       tickets: 0
     }
   end

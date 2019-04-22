@@ -489,6 +489,13 @@
             "null"
           ]
         },
+        "blocked": {
+          "description": "the block status of the user",
+          "type": [
+            "boolean"
+          ],
+          "default": false
+        },
         "tickets": {
           "description": "the amount of tickets user has",
           "type": [
@@ -533,6 +540,9 @@
               },
               "shoe_size": {
                 "$ref": "#/definitions/user/definitions/shoe_size"
+              },
+              "blocked": {
+                "$ref": "#/definitions/user/definitions/blocked"
               }
             },
             "type": [
@@ -592,12 +602,14 @@
         "shoe_size": {
           "$ref": "#/definitions/user/definitions/shoe_size"
         },
+        "blocked": {
+          "$ref": "#/definitions/user/definitions/blocked"
+        },
         "tickets": {
           "$ref": "#/definitions/user/definitions/tickets"
         }
       },
       "required": [
-        "id",
         "email",
         "fullname",
         "zipcode",

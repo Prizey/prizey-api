@@ -19,6 +19,7 @@ class User < ApplicationRecord
       zipcode: zipcode,
       clothing_size: clothing_size,
       shoe_size: shoe_size,
+      blocked: blocked,
       tickets: tickets
     }
   end

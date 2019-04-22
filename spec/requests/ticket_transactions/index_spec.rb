@@ -28,6 +28,24 @@ describe 'GET /ticket_transactions', type: :request do
       it { expect(response).to have_http_status(:ok) }
       it { expect(JSON.parse(response.body)).to eq([]) }
     end
+
+    context 'with blocked user' do
+      let(:msg_error) do
+        {
+          id: 'unauthorized',
+          message: 'Your account is currently blocked, please, contact support.'
+        }.to_json
+      end
+
+      before do
+        current_user.blocked = true
+        get '/ticket_transactions'
+      end
+
+      it { expect(response).to have_http_status(:unauthorized) }
+      it { expect(response.has_header?('access-token')).to eq(false) }
+      it { expect(response.body).to eq(msg_error) }
+    end
   end
 
   describe 'when user is logged out' do
