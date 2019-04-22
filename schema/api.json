@@ -77,7 +77,7 @@
         "price_multiplier": {
           "description": "the number that multiplies the price velocity of the game setting",
           "type": [
-            "integer"
+            "number"
           ]
         },
         "easy_carousel_speed": {

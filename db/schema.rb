@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_18_165929) do
+ActiveRecord::Schema.define(version: 2019_04_18_213220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "game_settings", force: :cascade do |t|
-    t.integer "price_multiplier", default: 1, null: false
+    t.float "price_multiplier", default: 1.0, null: false
     t.integer "easy_carousel_speed", default: 1, null: false
     t.integer "medium_carousel_speed", default: 2, null: false
     t.integer "hard_carousel_speed", default: 3, null: false

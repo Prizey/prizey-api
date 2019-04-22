@@ -17,7 +17,7 @@ RSpec.describe GameSetting, type: :model do
     let(:json) do
       {
         id: game_setting.id,
-        price_multiplier: 1,
+        price_multiplier: 0.5,
         easy_carousel_speed: 1,
         medium_carousel_speed: 2,
         hard_carousel_speed: 3,
