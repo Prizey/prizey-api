@@ -5,13 +5,13 @@ FactoryBot.define do
     sequence :email do |n|
       "user_#{n}@example.com"
     end
-    fullname 'foobar'
-    address 'foobar'
+    fullname 'foo bar'
+    address 'foo bar'
     city 'foobar'
     state_province_region 'foobar'
     zipcode 'foobar'
-    clothing_size 'foobar'
-    shoe_size 'foobar'
+    clothing_size 'M'
+    shoe_size '40'
     password '123123123'
   end
 end

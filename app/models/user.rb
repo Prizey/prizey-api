@@ -28,4 +28,12 @@ class User < ApplicationRecord
   def tickets
     ticket_transactions.sum(:amount)
   end
+
+  def first_name
+    fullname.split(' ').first
+  end
+
+  def last_name
+    fullname.split(' ').last
+  end
 end

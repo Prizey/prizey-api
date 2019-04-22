@@ -2,11 +2,9 @@
 
 RSpec.shared_context 'with current_user' do
   let!(:current_user) do
-    user = User.create!(
+    create(:user,
       email: 'current.user@email.com',
-      password: 'foobar123'
-    )
-    user
+      password: 'foobar123')
   end
 end
 

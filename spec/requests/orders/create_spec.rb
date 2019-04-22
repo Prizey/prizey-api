@@ -4,29 +4,69 @@ require 'rails_helper'
 
 describe 'POST /orders', type: :request do
   before do
-    stub_request(:post, 'https://prizeyapp.myshopify.com/admin/api/2019-04/draft_orders.json')
+    stub_request(:post, 'https://prizeyapp.myshopify.com/admin/api/2019-04/orders.json')
       .with(
         body: {
-          draft_order: {
+          order: {
             line_items: [{ variant_id: '123', quantity: 1 }],
-            customer: { id: nil },
-            use_customer_default_address: true,
+            email: 'current.user@email.com',
+            shipping_address: {
+              address1: 'foo bar',
+              city: 'foobar',
+              country: 'United States',
+              first_name: 'foo',
+              last_name: 'bar',
+              province: 'foobar',
+              zip: 'foobar',
+              name: 'foo bar'
+            },
+            billing_address: {
+              address1: 'foo bar',
+              city: 'foobar',
+              country: 'United States',
+              first_name: 'foo',
+              last_name: 'bar',
+              province: 'foobar',
+              zip: 'foobar',
+              name: 'foo bar'
+            },
+            note: 'Shoe size: 40, clothing size: M',
             financial_status: 'paid'
           }
         }.to_json
-      ).to_return(status: 200, body: { status: 'open' }.to_json, headers: {})
+      ).to_return(status: 200, body: { confirmed: true }.to_json, headers: {})
 
-    stub_request(:post, 'https://prizeyapp.myshopify.com/admin/api/2019-04/draft_orders.json')
+    stub_request(:post, 'https://prizeyapp.myshopify.com/admin/api/2019-04/orders.json')
       .with(
         body: {
-          draft_order: {
+          order: {
             line_items: [{ variant_id: 'bar', quantity: 1 }],
-            customer: { id: nil },
-            use_customer_default_address: true,
+            email: 'current.user@email.com',
+            shipping_address: {
+              address1: 'foo bar',
+              city: 'foobar',
+              country: 'United States',
+              first_name: 'foo',
+              last_name: 'bar',
+              province: 'foobar',
+              zip: 'foobar',
+              name: 'foo bar'
+            },
+            billing_address: {
+              address1: 'foo bar',
+              city: 'foobar',
+              country: 'United States',
+              first_name: 'foo',
+              last_name: 'bar',
+              province: 'foobar',
+              zip: 'foobar',
+              name: 'foo bar'
+            },
+            note: 'Shoe size: 40, clothing size: M',
             financial_status: 'paid'
           }
         }.to_json
-      ).to_return(status: 200, body: { status: 'fail' }.to_json, headers: {})
+      ).to_return(status: 200, body: { confirmed: false }.to_json, headers: {})
   end
 
   describe 'when user is logged in' do
