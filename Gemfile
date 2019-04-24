@@ -18,6 +18,7 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'rails', '~> 5.2.2'
 gem 'rails-i18n', '~> 5.1.3'
 gem 'shopify_api', '~> 7.0.0'
+gem 'stripe', '~> 4.15.0'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
