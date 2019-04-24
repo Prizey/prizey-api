@@ -1,0 +1,37 @@
+---
+"$schema": http://json-schema.org/draft-04/hyper-schema
+title: Prizey - Success
+description: An success represents a success basic action on API
+stability: prototype
+strictProperties: true
+type:
+- object
+definitions:
+  id:
+    description: unique identifier of success
+    readOnly: true
+    pattern: "^\\w+$"
+    type:
+    - string
+  message:
+    description: message of success
+    readOnly: true
+    type:
+    - string
+  identity:
+    anyOf:
+    - "$ref": "/schemata/success#/definitions/id"
+links:
+- description: Info for existing success.
+  href: "/successs/{(%2Fschemata%2Fsuccess%23%2Fdefinitions%2Fidentity)}"
+  method: GET
+  rel: self
+  targetSchema:
+    "$ref": "/schemata/success"
+  title: Info
+properties:
+  id:
+    "$ref": "/schemata/success#/definitions/id"
+  message:
+    "$ref": "/schemata/success#/definitions/message"
+id: schemata/success

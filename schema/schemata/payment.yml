@@ -1,0 +1,48 @@
+---
+"$schema": http://json-schema.org/draft-04/hyper-schema
+title: Prizey - payments
+description: Payments are made to Stripe transparent checkout API
+stability: prototype
+type:
+- object
+definitions:
+  ticket_choice:
+    description: identifier for the amount of tickets selected
+    type:
+    - string
+  credit_card_token:
+    description: credit card payment token from Stripe.js
+    type:
+    - string
+  identity:
+    anyOf:
+    - $ref: "/schemata/payment#/definitions/ticket_choice"
+links:
+- title: Create
+  description: Create a new payment
+  href: "/payments"
+  method: POST
+  rel: create
+  schema:
+    strictProperties: true
+    properties:
+      ticket_choice:
+        "$ref": "/schemata/payment#/definitions/ticket_choice"
+      credit_card_token:
+        "$ref": "/schemata/payment#/definitions/credit_card_token"
+    type:
+    - object
+  targetSchema:
+    anyOf:
+    - "$ref": "/schemata/success"
+    - "$ref": "/schemata/error"
+properties:
+  ticket_choice:
+    $ref: "/schemata/payment#/definitions/ticket_choice"
+  credit_card_token:
+    $ref: "/schemata/payment#/definitions/credit_card_token"
+additionalProperties: false
+required:
+- ticket_choice
+- credit_card_token
+id: schemata/payment

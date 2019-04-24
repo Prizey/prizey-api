@@ -140,6 +140,58 @@ null
 ```
 
 
+## <a name="resource-payment">payments</a>
+
+Stability: `prototype`
+
+Payments are made to Stripe transparent checkout API
+
+### Attributes
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **credit_card_token** | *string* | credit card payment token from Stripe.js | `"example"` |
+| **ticket_choice** | *string* | identifier for the amount of tickets selected | `"example"` |
+
+### <a name="link-POST-payment-/payments">payments Create</a>
+
+Create a new payment
+
+```
+POST /payments
+```
+
+#### Optional Parameters
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **credit_card_token** | *string* | credit card payment token from Stripe.js | `"example"` |
+| **ticket_choice** | *string* | identifier for the amount of tickets selected | `"example"` |
+
+
+#### Curl Example
+
+```bash
+$ curl -n -X POST https://api.prizey.app/payments \
+  -d '{
+  "ticket_choice": "example",
+  "credit_card_token": "example"
+}' \
+  -H "Content-Type: application/json"
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 201 Created
+```
+
+```json
+null
+```
+
+
 ## <a name="resource-product">Product</a>
 
 Stability: `prototype`
@@ -225,6 +277,49 @@ HTTP/1.1 200 OK
 
 ```json
 null
+```
+
+
+## <a name="resource-success">Success</a>
+
+Stability: `prototype`
+
+An success represents a success basic action on API
+
+### Attributes
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **id** | *string* | unique identifier of success<br/> **pattern:** `^\w+$` | `"example"` |
+| **message** | *string* | message of success | `"example"` |
+
+### <a name="link-GET-success-/successs/{(%23%2Fdefinitions%2Fsuccess%2Fdefinitions%2Fidentity)}">Success Info</a>
+
+Info for existing success.
+
+```
+GET /successs/{success_id}
+```
+
+
+#### Curl Example
+
+```bash
+$ curl -n https://api.prizey.app/successs/$SUCCESS_ID
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+{
+  "id": "example",
+  "message": "example"
+}
 ```
 
 

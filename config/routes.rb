@@ -15,4 +15,7 @@ Rails.application.routes.draw do
   resource :orders, only: [] do
     post '/', to: 'orders#create'
   end
+  resource :payments, only: [] do
+    post '/', to: 'payments#create'
+  end
 end
