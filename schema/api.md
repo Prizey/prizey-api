@@ -152,7 +152,7 @@ A product is a shopify product
 | ------- | ------- | ------- | ------- |
 | **id** | *integer* | the product id | `42` |
 | **image** | *string* | the product image | `"example"` |
-| **price** | *string* | the product price | `"example"` |
+| **price** | *number* | the product price | `42.0` |
 | **title** | *string* | the product title | `"example"` |
 
 ### <a name="link-GET-product-/products/{(%23%2Fdefinitions%2Fproduct%2Fdefinitions%2Fidentifier)}">Product List</a>

@@ -27,7 +27,7 @@ RSpec.describe 'GET /products/:identifier', type: :request do
           'id' => 123,
           'title' => 'Red Sock',
           'image' => 'https://cdn.shopify.com/products/REDSOCKS.png?v=15546629',
-          'price' => '8.00'
+          'price' => 8.0
         }]
       end
 

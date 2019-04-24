@@ -21,7 +21,7 @@ class ShopifyCollection
       { id: product['variants'][0]['id'],
         title: product['title'],
         image: product['image']['src'],
-        price: product['variants'][0]['price'] }
+        price: product['variants'][0]['price'].to_f }
     end
   end
 end
