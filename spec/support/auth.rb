@@ -2,6 +2,7 @@
 
 RSpec.shared_context 'with current_user' do
   let!(:current_user) do
+    stub_stripe_customer
     create(:user,
       email: 'current.user@email.com',
       password: 'foobar123')
@@ -43,6 +44,13 @@ module JsonRequests
     end
   end
 
+  def stub_stripe_customer(email = 'current.user@email.com')
+    # byebug
+    stub_request(:post, 'https://api.stripe.com/v1/customers')
+      .with(body: { 'email' => email })
+      .to_return(status: 200, body: { id: 'us_123' }.to_json, headers: {})
+  end
+
   private
 
   def json_headers
@@ -60,5 +68,7 @@ module JsonRequests
 end
 
 RSpec.configure do |config|
-  config.include JsonRequests, type: :request
+  %i[model request].each do |type|
+    config.include JsonRequests, type: type
+  end
 end

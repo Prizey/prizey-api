@@ -7,16 +7,19 @@ RSpec.describe TicketTransaction, type: :model do
   it { is_expected.to belong_to :user }
 
   describe '#as_json' do
-    let(:ticket_transaction) { create(:ticket_transaction) }
+    let(:user) { create(:user) }
+    let(:ticket_transaction) { create(:ticket_transaction, user: user) }
 
     let(:json) do
       {
         id: ticket_transaction.id,
-        user: ticket_transaction.user.as_json,
+        user: user.as_json,
         amount: ticket_transaction.amount,
         created_at: ticket_transaction.created_at
       }
     end
+
+    before { stub_stripe_customer('user_1@example.com') }
 
     it { expect(ticket_transaction.as_json).to eq(json) }
   end

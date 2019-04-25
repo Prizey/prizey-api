@@ -7,7 +7,8 @@ describe 'POST /payments', type: :request do
     { 'amount' => '1000',
       'currency' => 'usd',
       'source' => 'some_invalid_token',
-      'description' => '10 Tickets for User current.user@email.com' }
+      'customer' => current_user.stripe_customer_id,
+      'description' => "10 Tickets for User #{current_user.email}" }
   end
 
   let(:stripe_success_response_body) do
@@ -32,6 +33,7 @@ describe 'POST /payments', type: :request do
     include_context 'with current_user'
 
     describe 'with correct params for payment' do
+      # rubocop:disable RSpec/NestedGroups
       context 'when easy amount is selected' do
         before do
           success_stripe_request('1000', '10')
@@ -67,6 +69,7 @@ describe 'POST /payments', type: :request do
         it { expect(response).to have_http_status(:created) }
         it { expect(JSON.parse(response.body)['id']).to eq('success') }
       end
+      # rubocop:enable RSpec/NestedGroups
     end
 
     context 'with incorrect params for payment' do
@@ -132,6 +135,7 @@ describe 'POST /payments', type: :request do
     { 'amount' => amount,
       'currency' => 'usd',
       'source' => 'abc123',
+      'customer' => 'us_123',
       'description' => "#{tickets} Tickets for User current.user@email.com" }
   end
 end

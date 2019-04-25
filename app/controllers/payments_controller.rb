@@ -27,6 +27,7 @@ class PaymentsController < ApplicationController
       amount: options[:amount],
       currency: 'usd',
       source: params[:credit_card_token],
+      customer: current_user.stripe_customer_id,
       description: "#{options[:tickets]} Tickets for User #{current_user.email}"
     )
   end

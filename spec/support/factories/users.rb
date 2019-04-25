@@ -13,6 +13,6 @@ FactoryBot.define do
     clothing_size 'M'
     shoe_size '40'
     password '123123123'
-    stripe_customer_id '123abc'
+    stripe_customer_id 'us_123'
   end
 end
