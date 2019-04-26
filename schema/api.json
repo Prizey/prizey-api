@@ -306,7 +306,7 @@
           "description": "the product price",
           "readOnly": true,
           "type": [
-            "string"
+            "number"
           ]
         },
         "identity": {
