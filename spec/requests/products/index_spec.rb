@@ -27,8 +27,20 @@ RSpec.describe 'GET /products/:identifier', type: :request do
           'id' => 123,
           'title' => 'Red Sock',
           'image' => 'https://cdn.shopify.com/products/REDSOCKS.png?v=15546629',
-          'price' => 8.0
-        }]
+          'price' => 7.9
+        },
+         {
+           'id' => 456,
+           'title' => 'Yellow Sock',
+           'image' => 'https://cdn.shopify.com/products/YELLOWSOCKS.png?v=15546629',
+           'price' => 8.0
+         },
+         {
+           'id' => 789,
+           'title' => 'Blue Sock',
+           'image' => 'https://cdn.shopify.com/products/BLUESOCKS.png?v=15546629',
+           'price' => 9.9
+         }]
       end
 
       before do
@@ -46,6 +58,7 @@ RSpec.describe 'GET /products/:identifier', type: :request do
 
       it { expect(response).to have_http_status(:ok) }
       it { expect(JSON.parse(response.body)).to eq(results) }
+      it { expect(JSON.parse(response.body)).not_to eq(results.reverse) }
     end
 
     context 'with the identifier found but without products' do
