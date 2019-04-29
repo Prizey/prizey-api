@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_18_213220) do
+ActiveRecord::Schema.define(version: 2019_04_29_170031) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,14 @@ ActiveRecord::Schema.define(version: 2019_04_18_213220) do
     t.integer "easy_ticket_amount", default: 1, null: false
     t.integer "medium_ticket_amount", default: 2, null: false
     t.integer "hard_ticket_amount", default: 3, null: false
+  end
+
+  create_table "purchase_options", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.decimal "price", precision: 10, scale: 2, default: "0.0"
+    t.integer "ticket_amount", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "ticket_transactions", force: :cascade do |t|
@@ -60,10 +68,11 @@ ActiveRecord::Schema.define(version: 2019_04_18_213220) do
     t.string "zipcode"
     t.string "clothing_size"
     t.string "shoe_size"
-    t.boolean "blocked", default: false
     t.json "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "blocked", default: false
+    t.string "stripe_customer_id", default: ""
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
