@@ -2,8 +2,8 @@
 
 class PaymentsController < ApplicationController
   def create
-    if stripe_payment(purchase_options)['status'] == 'succeeded'
-      add_tickets_to_user(purchase_options)
+    if stripe_payment(purchase_option)['status'] == 'succeeded'
+      add_tickets_to_user(purchase_option)
       render json: success_json, status: :created
     else
       render json: error_json, status: :unprocessable_entity
@@ -12,29 +12,24 @@ class PaymentsController < ApplicationController
 
   private
 
-  def purchase_options
-    if params[:ticket_choice] == 'easy'
-      { amount: 1000, tickets: 10 }
-    elsif params[:ticket_choice] == 'medium'
-      { amount: 2500, tickets: 25 }
-    elsif params[:ticket_choice] == 'hard'
-      { amount: 5000, tickets: 50 }
-    end
+  def purchase_option
+    PurchaseOption.find(params[:purchase_option_id])
   end
 
   def stripe_payment(options)
     Stripe::Charge.create(
-      amount: options[:amount],
+      amount: options.price,
       currency: 'usd',
       source: params[:credit_card_token],
       customer: current_user.stripe_customer_id,
-      description: "#{options[:tickets]} Tickets for User #{current_user.email}"
+      description: "#{options.ticket_amount} Tickets for User " \
+        "#{current_user.email}"
     )
   end
 
   def add_tickets_to_user(options)
     current_user.ticket_transactions.create(
-      amount: options[:tickets]
+      amount: options.ticket_amount
     )
   end
 

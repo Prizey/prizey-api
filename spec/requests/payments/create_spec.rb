@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe 'POST /payments', type: :request do
   let(:stripe_error_body) do
-    { 'amount' => '1000',
+    { 'amount' => '10.0',
       'currency' => 'usd',
       'source' => 'some_invalid_token',
       'customer' => current_user.stripe_customer_id,
@@ -29,16 +29,22 @@ describe 'POST /payments', type: :request do
     ).to_return(status: 200, body: stripe_failed_response_body, headers: {})
   end
 
+  let(:pack_1) { create(:purchase_option, :pack_1) }
+  let(:pack_2) { create(:purchase_option, :pack_2) }
+  let(:pack_3) { create(:purchase_option, :pack_3) }
+
   describe 'when user is logged in' do
     include_context 'with current_user'
 
     describe 'with correct params for payment' do
       # rubocop:disable RSpec/NestedGroups
-      context 'when easy amount is selected' do
+      context 'when pack_1 is selected' do
         before do
-          success_stripe_request('1000', '10')
+          pack_1
+          success_stripe_request('10.0', '10')
           post '/payments', params: {
-            ticket_choice: 'easy', credit_card_token: 'abc123'
+            purchase_option_id: PurchaseOption.find_by(name: 'pack_1').id.to_s,
+            credit_card_token: 'abc123'
           }.to_json
         end
 
@@ -46,11 +52,13 @@ describe 'POST /payments', type: :request do
         it { expect(JSON.parse(response.body)['id']).to eq('success') }
       end
 
-      context 'when medium amount is selected' do
+      context 'when pack_2 is selected' do
         before do
-          success_stripe_request('2500', '25')
+          pack_2
+          success_stripe_request('25.0', '25')
           post '/payments', params: {
-            ticket_choice: 'medium', credit_card_token: 'abc123'
+            purchase_option_id: PurchaseOption.find_by(name: 'pack_2').id.to_s,
+            credit_card_token: 'abc123'
           }.to_json
         end
 
@@ -58,11 +66,13 @@ describe 'POST /payments', type: :request do
         it { expect(JSON.parse(response.body)['id']).to eq('success') }
       end
 
-      context 'when hard amount is selected' do
+      context 'when pack_3 is selected' do
         before do
-          success_stripe_request('5000', '50')
+          pack_3
+          success_stripe_request('50.0', '50')
           post '/payments', params: {
-            ticket_choice: 'hard', credit_card_token: 'abc123'
+            purchase_option_id: PurchaseOption.find_by(name: 'pack_3').id.to_s,
+            credit_card_token: 'abc123'
           }.to_json
         end
 
@@ -74,9 +84,11 @@ describe 'POST /payments', type: :request do
 
     context 'with incorrect params for payment' do
       before do
+        pack_1
         failed_stripe_request
         post '/payments', params: {
-          ticket_choice: 'easy', credit_card_token: 'some_invalid_token'
+          purchase_option_id: PurchaseOption.find_by(name: 'pack_1').id.to_s,
+          credit_card_token: 'some_invalid_token'
         }.to_json
       end
 
@@ -93,10 +105,12 @@ describe 'POST /payments', type: :request do
       end
 
       before do
-        success_stripe_request('1000', '10')
+        pack_1
+        success_stripe_request('10.0', '10')
         current_user.blocked = true
         post '/payments', params: {
-          ticket_choice: 'easy', credit_card_token: 'abc'
+          purchase_option_id: PurchaseOption.find_by(name: 'pack_1').id.to_s,
+          credit_card_token: 'abc'
         }.to_json
       end
 
@@ -109,9 +123,11 @@ describe 'POST /payments', type: :request do
   describe 'when user is logged out' do
     context 'with correct params' do
       before do
-        success_stripe_request('1000', '10')
+        pack_1
+        success_stripe_request('10.0', '10')
         post '/payments', params: {
-          ticket_choice: 'easy', credit_card_token: 'abc'
+          purchase_option_id: PurchaseOption.find_by(name: 'pack_1').id.to_s,
+          credit_card_token: 'abc'
         }.to_json
       end
 

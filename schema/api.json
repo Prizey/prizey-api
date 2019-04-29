@@ -274,8 +274,8 @@
         "object"
       ],
       "definitions": {
-        "ticket_choice": {
-          "description": "identifier for the amount of tickets selected",
+        "purchase_option_id": {
+          "description": "identifier for the purchase option recorded on database",
           "type": [
             "string"
           ]
@@ -289,7 +289,7 @@
         "identity": {
           "anyOf": [
             {
-              "$ref": "#/definitions/payment/definitions/ticket_choice"
+              "$ref": "#/definitions/payment/definitions/purchase_option_id"
             }
           ]
         }
@@ -304,8 +304,8 @@
           "schema": {
             "strictProperties": true,
             "properties": {
-              "ticket_choice": {
-                "$ref": "#/definitions/payment/definitions/ticket_choice"
+              "purchase_option_id": {
+                "$ref": "#/definitions/payment/definitions/purchase_option_id"
               },
               "credit_card_token": {
                 "$ref": "#/definitions/payment/definitions/credit_card_token"
@@ -328,8 +328,8 @@
         }
       ],
       "properties": {
-        "ticket_choice": {
-          "$ref": "#/definitions/payment/definitions/ticket_choice"
+        "purchase_option_id": {
+          "$ref": "#/definitions/payment/definitions/purchase_option_id"
         },
         "credit_card_token": {
           "$ref": "#/definitions/payment/definitions/credit_card_token"
@@ -337,7 +337,7 @@
       },
       "additionalProperties": false,
       "required": [
-        "ticket_choice",
+        "purchase_option_id",
         "credit_card_token"
       ]
     },
@@ -542,7 +542,7 @@
     "success": {
       "$schema": "http://json-schema.org/draft-04/hyper-schema",
       "title": "Prizey - Success",
-      "description": "An success represents a success basic action on API",
+      "description": "A success represents a basic success action",
       "stability": "prototype",
       "strictProperties": true,
       "type": [
@@ -550,7 +550,7 @@
       ],
       "definitions": {
         "id": {
-          "description": "unique identifier of success",
+          "description": "unique identifier of the success",
           "readOnly": true,
           "pattern": "^\\w+$",
           "type": [
