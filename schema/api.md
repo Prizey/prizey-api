@@ -184,6 +184,50 @@ null
 ```
 
 
+## <a name="resource-purchase_option">purchase_option</a>
+
+Stability: `prototype`
+
+A Purchase Options is used to choose how many tickets to buy
+
+### Attributes
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **id** | *integer* | the Purchase Option id | `42` |
+| **name** | *string* | the Purchase Option name | `"example"` |
+| **price** | *string* | the Purchase Option price | `"example"` |
+| **ticket_amount** | *number* | how many tickets you receive with this option | `42.0` |
+
+### <a name="link-GET-purchase_option-/purchase_options/{(%23%2Fdefinitions%2Fpurchase_option%2Fdefinitions%2Fidentifier)}">purchase_option List</a>
+
+List of purchase options
+
+```
+GET /purchase_options/{purchase_option_identifier}
+```
+
+
+#### Curl Example
+
+```bash
+$ curl -n https://api.prizey.app/purchase_options/$PURCHASE_OPTION_IDENTIFIER
+ -G \
+  -d 
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+null
+```
+
+
 ## <a name="resource-ticket_transaction">ticket transaction</a>
 
 Stability: `prototype`
