@@ -1,14 +1,14 @@
 ---
 "$schema": http://json-schema.org/draft-04/hyper-schema
 title: Prizey - Success
-description: An success represents a success basic action on API
+description: A success represents a basic success action
 stability: prototype
 strictProperties: true
 type:
 - object
 definitions:
   id:
-    description: unique identifier of success
+    description: unique identifier of the success
     readOnly: true
     pattern: "^\\w+$"
     type:

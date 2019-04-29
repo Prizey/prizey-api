@@ -39,7 +39,7 @@ class PaymentsController < ApplicationController
   end
 
   def success_json
-    { id: 'success', message: 'Your payment was successfully' }
+    { id: 'success', message: 'Your payment was successful' }
   end
 
   def error_json
