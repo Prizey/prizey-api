@@ -151,7 +151,7 @@ Payments are made to Stripe transparent checkout API
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **credit_card_token** | *string* | credit card payment token from Stripe.js | `"example"` |
-| **ticket_choice** | *string* | identifier for the amount of tickets selected | `"example"` |
+| **purchase_option_id** | *string* | identifier for the purchase option recorded on database | `"example"` |
 
 ### <a name="link-POST-payment-/payments">payments Create</a>
 
@@ -166,7 +166,7 @@ POST /payments
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **credit_card_token** | *string* | credit card payment token from Stripe.js | `"example"` |
-| **ticket_choice** | *string* | identifier for the amount of tickets selected | `"example"` |
+| **purchase_option_id** | *string* | identifier for the purchase option recorded on database | `"example"` |
 
 
 #### Curl Example
@@ -174,7 +174,7 @@ POST /payments
 ```bash
 $ curl -n -X POST https://api.prizey.app/payments \
   -d '{
-  "ticket_choice": "example",
+  "purchase_option_id": "example",
   "credit_card_token": "example"
 }' \
   -H "Content-Type: application/json"
@@ -284,13 +284,13 @@ null
 
 Stability: `prototype`
 
-An success represents a success basic action on API
+A success represents a basic success action
 
 ### Attributes
 
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
-| **id** | *string* | unique identifier of success<br/> **pattern:** `^\w+$` | `"example"` |
+| **id** | *string* | unique identifier of the success<br/> **pattern:** `^\w+$` | `"example"` |
 | **message** | *string* | message of success | `"example"` |
 
 ### <a name="link-GET-success-/successs/{(%23%2Fdefinitions%2Fsuccess%2Fdefinitions%2Fidentity)}">Success Info</a>
