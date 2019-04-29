@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     get '/:identifier', to: 'products#index'
   end
   resources :ticket_transactions, only: %i[index create]
+  resources :purchase_options, only: %i[index]
   resource :orders, only: [] do
     post '/', to: 'orders#create'
   end

@@ -1,0 +1,59 @@
+---
+"$schema": http://json-schema.org/draft-04/hyper-schema
+title: Prizey - purchase_option
+description: A Purchase Options is used to choose how many tickets to buy
+stability: prototype
+type:
+- object
+definitions:
+  identifier:
+    description: the Purchase option identifier
+    readOnly: true
+    type:
+    - string
+  id:
+    description: the Purchase Option id
+    readOnly: true
+    type: integer
+  name:
+    description: the Purchase Option name
+    readOnly: true
+    type: string
+  price:
+    description: the Purchase Option price
+    readOnly: true
+    type: string
+  ticket_amount:
+    description: how many tickets you receive with this option
+    readOnly: true
+    type: number
+  identity:
+    anyOf:
+    - $ref: "/schemata/purchase_option#/definitions/id"
+links:
+- title: List
+  description: List of purchase options
+  href: "/purchase_options/{(%2Fschemata%2Fpurchase_option%23%2Fdefinitions%2Fidentifier)}"
+  method: GET
+  rel: instances
+  schema:
+    additionalProperties: false
+    properties: {}
+    type:
+    - object
+  targetSchema:
+    anyOf:
+      - type: array
+        items:
+          "$ref": "/schemata/purchase_option"
+      - "$ref": "/schemata/error"
+properties:
+  id:
+    $ref: "/schemata/purchase_option#/definitions/id"
+  name:
+    $ref: "/schemata/purchase_option#/definitions/name"
+  price:
+    $ref: "/schemata/purchase_option#/definitions/price"
+  ticket_amount:
+    $ref: "/schemata/purchase_option#/definitions/ticket_amount"
+id: schemata/purchase_option
