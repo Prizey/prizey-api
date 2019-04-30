@@ -32,6 +32,7 @@ describe 'POST /auth - Sign Up', type: :request do
 
   context 'with valid email' do
     before do
+      stub_stripe_customer(user[:email])
       post '/auth', params: params.to_json
     end
 
@@ -50,6 +51,7 @@ describe 'POST /auth - Sign Up', type: :request do
 
   context 'when the email is already taken' do
     before do
+      stub_stripe_customer(user[:email])
       User.create!(user)
       post '/auth', params: params.to_json
     end

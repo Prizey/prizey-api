@@ -5,6 +5,8 @@ class User < ApplicationRecord
     :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
 
+  after_create :create_stripe_customer
+
   has_many :ticket_transactions, dependent: :restrict_with_exception
 
   # rubocop:disable Metrics/MethodLength
@@ -35,5 +37,12 @@ class User < ApplicationRecord
 
   def last_name
     fullname.split(' ').last
+  end
+
+  private
+
+  def create_stripe_customer
+    customer = Stripe::Customer.create(email: email)
+    update(stripe_customer_id: customer['id'])
   end
 end
