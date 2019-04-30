@@ -24,24 +24,9 @@ RSpec.describe TicketTransaction, type: :model do
   describe '#update_user_balance' do
     let(:user) { create(:user) }
 
-    context 'when user does have enough tickets' do
-      before do
-        user.ticket_transactions.create(amount: 5)
-      end
-
-      it do
-        expect(user.balance).to eq(5)
-      end
-    end
-
-    context "when user doesn't have enough tickets" do
-      before do
-        user.ticket_transactions.create(amount: -10)
-      end
-
-      it do
-        expect(user.balance).to eq(0)
-      end
+    it do
+      expect { TicketTransaction.create(user: user, amount: 10) }
+        .to change(user, :balance).by(10)
     end
   end
 end
