@@ -20,4 +20,28 @@ RSpec.describe TicketTransaction, type: :model do
 
     it { expect(ticket_transaction.as_json).to eq(json) }
   end
+
+  describe '#update_user_balance' do
+    let(:user) { create(:user) }
+
+    context 'when user does have enough tickets' do
+      before do
+        user.ticket_transactions.create(amount: 5)
+      end
+
+      it do
+        expect(user.balance).to eq(5)
+      end
+    end
+
+    context "when user doesn't have enough tickets" do
+      before do
+        user.ticket_transactions.create(amount: -10)
+      end
+
+      it do
+        expect(user.balance).to eq(0)
+      end
+    end
+  end
 end
