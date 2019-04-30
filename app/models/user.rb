@@ -6,6 +6,7 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
 
   after_create :create_stripe_customer
+  after_save :update_stripe_infos
 
   has_many :ticket_transactions, dependent: :restrict_with_exception
 
@@ -44,5 +45,18 @@ class User < ApplicationRecord
   def create_stripe_customer
     customer = Stripe::Customer.create(email: email)
     update(stripe_customer_id: customer['id'])
+  end
+
+  def update_stripe_infos
+    Stripe::Customer.update(
+      stripe_customer_id,
+      address: {
+        line1: address,
+        city: city,
+        country: 'USA',
+        postal_code: zipcode,
+        state: state_province_region
+      }
+    )
   end
 end
