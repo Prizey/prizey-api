@@ -23,4 +23,13 @@ RSpec.describe TicketTransaction, type: :model do
 
     it { expect(ticket_transaction.as_json).to eq(json) }
   end
+
+  describe '#update_user_balance' do
+    let(:user) { create(:user) }
+
+    it do
+      expect { TicketTransaction.create(user: user, amount: 10) }
+        .to change(user, :balance).by(10)
+    end
+  end
 end

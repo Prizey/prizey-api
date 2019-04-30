@@ -38,7 +38,7 @@ describe 'POST /payments', type: :request do
 
     describe 'with correct params for payment' do
       # rubocop:disable RSpec/NestedGroups
-      context 'when easy amount is selected' do
+      context 'when pack_1 is selected' do
         before do
           pack_1
           success_stripe_request('10.0', '10')
@@ -52,7 +52,7 @@ describe 'POST /payments', type: :request do
         it { expect(JSON.parse(response.body)['id']).to eq('success') }
       end
 
-      context 'when medium amount is selected' do
+      context 'when pack_2 is selected' do
         before do
           pack_2
           success_stripe_request('25.0', '25')
@@ -66,7 +66,7 @@ describe 'POST /payments', type: :request do
         it { expect(JSON.parse(response.body)['id']).to eq('success') }
       end
 
-      context 'when hard amount is selected' do
+      context 'when pack_3 is selected' do
         before do
           pack_3
           success_stripe_request('50.0', '50')
