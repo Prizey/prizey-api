@@ -19,6 +19,6 @@ class TicketTransaction < ApplicationRecord
   private
 
   def update_user_balance
-    user.update(balance: user.tickets) if user.tickets >= 0
+    user.update(balance: user.tickets)
   end
 end
