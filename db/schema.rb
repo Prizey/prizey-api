@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 2019_04_29_170031) do
     t.datetime "updated_at", null: false
     t.boolean "blocked", default: false
     t.string "stripe_customer_id", default: ""
+    t.integer "balance", default: 0
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
