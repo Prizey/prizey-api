@@ -45,7 +45,6 @@ module JsonRequests
   end
 
   def stub_stripe_customer(email = 'current.user@email.com')
-    # byebug
     stub_request(:post, 'https://api.stripe.com/v1/customers')
       .with(body: { 'email' => email })
       .to_return(status: 200, body: { id: 'us_123' }.to_json, headers: {})

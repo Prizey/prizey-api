@@ -25,7 +25,9 @@ RSpec.describe TicketTransaction, type: :model do
   end
 
   describe '#update_user_balance' do
-    let(:user) { create(:user) }
+    let(:user) { create(:user, email: 'foo@bar.com') }
+
+    before { stub_stripe_customer('foo@bar.com') }
 
     it do
       expect { TicketTransaction.create(user: user, amount: 10) }
