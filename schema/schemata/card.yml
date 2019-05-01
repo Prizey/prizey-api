@@ -1,0 +1,58 @@
+---
+"$schema": http://json-schema.org/draft-04/hyper-schema
+title: Prizey - cards
+description: cards are made to Stripe transparent checkout API
+stability: prototype
+type:
+- object
+definitions:
+  id:
+    description: identifier for the credit card on stripe
+    type:
+    - string
+  last4:
+    description: credit card last 4 digits
+    type:
+    - string
+  brand:
+    description: credit card brand
+    type:
+    - string
+  identity:
+    anyOf:
+    - $ref: "/schemata/card#/definitions/id"
+links:
+- title: List
+  description: List a new card
+  href: "/cards"
+  method: GET
+  rel: list
+  schema:
+    additionalProperties: false
+    properties:
+      id:
+        "$ref": "/schemata/card#/definitions/id"
+      last4:
+        "$ref": "/schemata/card#/definitions/last4"
+      brand:
+        "$ref": "/schemata/card#/definitions/brand"
+    type:
+    - object
+  targetSchema:
+    anyOf:
+    - type: array
+        items:
+          "$ref": "/schemata/card"
+    - "$ref": "/schemata/error"
+properties:
+  id:
+    $ref: "/schemata/card#/definitions/id"
+  last4:
+    $ref: "/schemata/card#/definitions/last4"
+  brand:
+    $ref: "/schemata/card#/definitions/brand"
+additionalProperties: false
+required:
+- last4
+- brand
+id: schemata/card
