@@ -14,6 +14,10 @@ definitions:
     description: credit card payment token from Stripe.js
     type:
     - string
+  credit_card_source:
+    description: credit card from user's card list
+    type:
+    - string
   identity:
     anyOf:
     - $ref: "/schemata/payment#/definitions/purchase_option_id"
@@ -24,12 +28,14 @@ links:
   method: POST
   rel: create
   schema:
-    strictProperties: true
+    additionalProperties: false
     properties:
       purchase_option_id:
         "$ref": "/schemata/payment#/definitions/purchase_option_id"
       credit_card_token:
         "$ref": "/schemata/payment#/definitions/credit_card_token"
+      credit_card_source:
+        "$ref": "/schemata/payment#/definitions/credit_card_source"
     type:
     - object
   targetSchema:
@@ -41,8 +47,11 @@ properties:
     $ref: "/schemata/payment#/definitions/purchase_option_id"
   credit_card_token:
     $ref: "/schemata/payment#/definitions/credit_card_token"
+  credit_card_source:
+    $ref: "/schemata/payment#/definitions/credit_card_source"
 additionalProperties: false
 required:
 - purchase_option_id
 - credit_card_token
+- credit_card_source
 id: schemata/payment

@@ -286,6 +286,12 @@
             "string"
           ]
         },
+        "credit_card_source": {
+          "description": "credit card from user's card list",
+          "type": [
+            "string"
+          ]
+        },
         "identity": {
           "anyOf": [
             {
@@ -302,13 +308,16 @@
           "method": "POST",
           "rel": "create",
           "schema": {
-            "strictProperties": true,
+            "additionalProperties": false,
             "properties": {
               "purchase_option_id": {
                 "$ref": "#/definitions/payment/definitions/purchase_option_id"
               },
               "credit_card_token": {
                 "$ref": "#/definitions/payment/definitions/credit_card_token"
+              },
+              "credit_card_source": {
+                "$ref": "#/definitions/payment/definitions/credit_card_source"
               }
             },
             "type": [
@@ -333,12 +342,16 @@
         },
         "credit_card_token": {
           "$ref": "#/definitions/payment/definitions/credit_card_token"
+        },
+        "credit_card_source": {
+          "$ref": "#/definitions/payment/definitions/credit_card_source"
         }
       },
       "additionalProperties": false,
       "required": [
         "purchase_option_id",
-        "credit_card_token"
+        "credit_card_token",
+        "credit_card_source"
       ]
     },
     "product": {

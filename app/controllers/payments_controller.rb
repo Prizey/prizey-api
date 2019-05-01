@@ -2,6 +2,8 @@
 
 class PaymentsController < ApplicationController
   def create
+    add_new_customer_card(params[:credit_card_token])
+
     if stripe_payment(purchase_option)['status'] == 'succeeded'
       add_tickets_to_user(purchase_option)
       render json: success_json, status: :created
@@ -16,12 +18,22 @@ class PaymentsController < ApplicationController
     PurchaseOption.find(params[:purchase_option_id])
   end
 
+  def add_new_customer_card(token)
+    return if token.blank?
+    Stripe::Customer.create_source(
+      current_user.stripe_customer_id,
+      source: token
+    )
+  end
+
   def stripe_payment(options)
+    card = params[:credit_card_token].presence || params[:credit_card_source]
+
     Stripe::Charge.create(
       amount: options.price,
       currency: 'usd',
-      source: params[:credit_card_token],
       customer: current_user.stripe_customer_id,
+      source: card,
       description: "#{options.ticket_amount} Tickets for User " \
         "#{current_user.email}"
     )
