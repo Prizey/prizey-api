@@ -9,5 +9,6 @@ FactoryBot.define do
     easy_ticket_amount 1
     medium_ticket_amount 2
     hard_ticket_amount 3
+    game_blocked false
   end
 end
