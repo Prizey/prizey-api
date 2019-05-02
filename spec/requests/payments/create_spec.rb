@@ -36,11 +36,12 @@ describe 'POST /payments', type: :request do
   describe 'when user is logged in' do
     include_context 'with current_user'
 
-    describe 'with correct params for payment' do
+    describe 'with a new credit card' do
       # rubocop:disable RSpec/NestedGroups
       context 'when pack_1 is selected' do
         before do
           pack_1
+          stub_new_credit_card('abc123')
           success_stripe_request('10.0', '10')
           post '/payments', params: {
             purchase_option_id: PurchaseOption.find_by(name: 'pack_1').id.to_s,
@@ -55,6 +56,7 @@ describe 'POST /payments', type: :request do
       context 'when pack_2 is selected' do
         before do
           pack_2
+          stub_new_credit_card('abc123')
           success_stripe_request('25.0', '25')
           post '/payments', params: {
             purchase_option_id: PurchaseOption.find_by(name: 'pack_2').id.to_s,
@@ -69,6 +71,7 @@ describe 'POST /payments', type: :request do
       context 'when pack_3 is selected' do
         before do
           pack_3
+          stub_new_credit_card('abc123')
           success_stripe_request('50.0', '50')
           post '/payments', params: {
             purchase_option_id: PurchaseOption.find_by(name: 'pack_3').id.to_s,
@@ -82,9 +85,24 @@ describe 'POST /payments', type: :request do
       # rubocop:enable RSpec/NestedGroups
     end
 
+    context 'with an already created card' do
+      before do
+        pack_3
+        success_stripe_request('50.0', '50')
+        post '/payments', params: {
+          purchase_option_id: PurchaseOption.find_by(name: 'pack_3').id.to_s,
+          credit_card_source: 'abc123'
+        }.to_json
+      end
+
+      it { expect(response).to have_http_status(:created) }
+      it { expect(JSON.parse(response.body)['id']).to eq('success') }
+    end
+
     context 'with incorrect params for payment' do
       before do
         pack_1
+        stub_new_credit_card('some_invalid_token')
         failed_stripe_request
         post '/payments', params: {
           purchase_option_id: PurchaseOption.find_by(name: 'pack_1').id.to_s,
@@ -145,6 +163,12 @@ describe 'POST /payments', type: :request do
     stub_request(:post, 'https://api.stripe.com/v1/charges').with(
       body: stripe_success_body(amount, tickets)
     ).to_return(status: 200, body: stripe_success_response_body, headers: {})
+  end
+
+  def stub_new_credit_card(token)
+    stub_request(:post, 'https://api.stripe.com/v1/customers/us_123/sources').with(
+      body: { 'source' => token }
+    ).to_return(status: 200, body: { id: 'abc123' }.to_json, headers: {})
   end
 
   def stripe_success_body(amount, tickets)

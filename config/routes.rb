@@ -18,4 +18,7 @@ Rails.application.routes.draw do
   resource :payments, only: [] do
     post '/', to: 'payments#create'
   end
+  resource :cards, only: [] do
+    get '/', to: 'cards#index'
+  end
 end
