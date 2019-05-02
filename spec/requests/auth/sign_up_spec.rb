@@ -73,6 +73,15 @@ describe 'POST /auth - Sign Up', type: :request do
     end
   end
 
+  context 'when the game is under maintenance' do
+    before do
+      create(:game_setting, game_blocked: true)
+      post '/auth', params: {}.to_json
+    end
+
+    it { expect(response).to have_http_status(:service_unavailable) }
+  end
+
   def message_error
     {
       email: ['has already been taken'],

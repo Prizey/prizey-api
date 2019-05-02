@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::API
   include DeviseTokenAuth::Concerns::SetUserByToken
+  before_action :check_game_status
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!, unless: :devise_controller?
   before_action :check_user_block_status, unless: :devise_controller?
@@ -29,6 +30,14 @@ class ApplicationController < ActionController::API
       id: 'unauthorized',
       message: 'Your account is currently blocked, please, contact support.'
     }
-    render status: :unauthorized, json: json if current_user&.blocked?
+    render json: json, status: :unauthorized if current_user&.blocked?
+  end
+
+  def check_game_status
+    return unless GameSetting&.first&.game_blocked?
+    json = {
+      id: 'Service Unavailable', message: 'The game is closed to maintanance'
+    }
+    render json: json, status: :service_unavailable
   end
 end
