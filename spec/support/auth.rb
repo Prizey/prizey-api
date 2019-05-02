@@ -44,11 +44,43 @@ module JsonRequests
     end
   end
 
+  # rubocop: disable Metrics/AbcSize, Metrics/MethodLength
   def stub_stripe_customer(email = 'current.user@email.com')
-    stub_request(:post, 'https://api.stripe.com/v1/customers')
-      .with(body: { 'email' => email })
+    url = 'https://api.stripe.com/v1/customers'
+    url2 = 'https://api.stripe.com/v1/customers/us_123'
+
+    stub_request(:post, url).with(body: { 'email' => email })
       .to_return(status: 200, body: { id: 'us_123' }.to_json, headers: {})
+
+    stub_request(:post, url2).with(
+      body: {
+        'address' => {
+          'line1' => 'Some Address',
+          'city' => 'Some City',
+          'country' => 'USA',
+          'postal_code' => 'Some Zipcode',
+          'state' => 'Some State'
+        }
+      }
+    )
+      .to_return(status: 200, body: { id: 'us_123' }.to_json, headers: {})
+    stub_request(:post, url2).with(
+      body: {
+        'address' => {
+          'line1' => 'foo bar',
+          'city' => 'foobar',
+          'country' => 'USA',
+          'postal_code' => 'foobar',
+          'state' => 'foobar'
+        }
+      }
+    )
+      .to_return(status: 200, body: { id: 'us_123' }.to_json, headers: {})
+    stub_request(:post, url2).with(
+      body: { 'address' => { 'country' => 'USA' } }
+    ).to_return(status: 200, body: { id: 'us_123' }.to_json, headers: {})
   end
+  # rubocop: enable Metrics/AbcSize, Metrics/MethodLength
 
   private
 
