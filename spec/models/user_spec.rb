@@ -54,6 +54,6 @@ RSpec.describe User, type: :model do
   end
 
   context 'when updating user infos' do
-    it { allow(user).to receive(:update_stripe_infos) }
+    it { allow(user).to receive(:update_stripe_info) }
   end
 end
