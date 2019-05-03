@@ -53,7 +53,46 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context 'when updating user infos' do
-    it { allow(user).to receive(:update_stripe_info) }
+  describe '#update_stripe_info' do
+    context 'when calling stripe to update info' do
+      before do
+        stub_request(:post, 'https://api.stripe.com/v1/customers/us_123')
+          .with(
+            body: {
+              'address' => {
+                'line1' => 'updated address',
+                'city' => 'foobar',
+                'country' => 'USA',
+                'postal_code' => 'foobar',
+                'state' => 'foobar'
+              },
+              'name' => 'foo bar'
+            }
+          ).to_return(status: 200, body: {}.to_json, headers: {})
+        user.update(address: 'updated address')
+      end
+
+      it do
+        expect(user.address).to eq('updated address')
+      end
+
+      it do
+        expect(user.fullname).not_to eq('some other name')
+      end
+    end
+
+    context 'when not calling stripe to update info' do
+      before do
+        user.update(clothing_size: 'updated clothing_size')
+      end
+
+      it do
+        expect(user.address).not_to eq('updated address')
+      end
+
+      it do
+        expect(user.clothing_size).to eq('updated clothing_size')
+      end
+    end
   end
 end
