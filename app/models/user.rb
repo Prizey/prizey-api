@@ -48,8 +48,8 @@ class User < ApplicationRecord
   end
 
   def update_stripe_info
-    return if address_changed? || city_changed? || zipcode_changed? ||
-              state_province_region_changed?
+    return unless address_changed? || city_changed? || zipcode_changed? ||
+                  state_province_region_changed?
     Stripe::Customer.update(
       stripe_customer_id,
       address: { line1: address,
