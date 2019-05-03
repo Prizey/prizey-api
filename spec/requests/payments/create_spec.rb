@@ -41,11 +41,11 @@ describe 'POST /payments', type: :request do
       context 'when pack_1 is selected' do
         before do
           pack_1
-          stub_new_credit_card('abc123')
+          stub_new_credit_card('card_abc123')
           success_stripe_request('10.0', '10')
           post '/payments', params: {
             purchase_option_id: PurchaseOption.find_by(name: 'pack_1').id.to_s,
-            credit_card_token: 'abc123'
+            credit_card_token: 'card_abc123'
           }.to_json
         end
 
@@ -56,11 +56,11 @@ describe 'POST /payments', type: :request do
       context 'when pack_2 is selected' do
         before do
           pack_2
-          stub_new_credit_card('abc123')
+          stub_new_credit_card('card_abc123')
           success_stripe_request('25.0', '25')
           post '/payments', params: {
             purchase_option_id: PurchaseOption.find_by(name: 'pack_2').id.to_s,
-            credit_card_token: 'abc123'
+            credit_card_token: 'card_abc123'
           }.to_json
         end
 
@@ -71,11 +71,11 @@ describe 'POST /payments', type: :request do
       context 'when pack_3 is selected' do
         before do
           pack_3
-          stub_new_credit_card('abc123')
+          stub_new_credit_card('card_abc123')
           success_stripe_request('50.0', '50')
           post '/payments', params: {
             purchase_option_id: PurchaseOption.find_by(name: 'pack_3').id.to_s,
-            credit_card_token: 'abc123'
+            credit_card_token: 'card_abc123'
           }.to_json
         end
 
@@ -88,10 +88,11 @@ describe 'POST /payments', type: :request do
     context 'with an already created card' do
       before do
         pack_3
+        stub_new_credit_card('card_abc123')
         success_stripe_request('50.0', '50')
         post '/payments', params: {
           purchase_option_id: PurchaseOption.find_by(name: 'pack_3').id.to_s,
-          credit_card_source: 'abc123'
+          credit_card_source: 'card_abc123'
         }.to_json
       end
 
@@ -168,13 +169,13 @@ describe 'POST /payments', type: :request do
   def stub_new_credit_card(token)
     stub_request(:post, 'https://api.stripe.com/v1/customers/us_123/sources').with(
       body: { 'source' => token }
-    ).to_return(status: 200, body: { id: 'abc123' }.to_json, headers: {})
+    ).to_return(status: 200, body: { id: token }.to_json, headers: {})
   end
 
   def stripe_success_body(amount, tickets)
     { 'amount' => amount,
       'currency' => 'usd',
-      'source' => 'abc123',
+      'source' => 'card_abc123',
       'customer' => 'us_123',
       'description' => "#{tickets} Tickets for User current.user@email.com" }
   end
