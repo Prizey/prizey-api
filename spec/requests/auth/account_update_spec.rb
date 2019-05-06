@@ -6,8 +6,40 @@ describe 'PUT /auth', type: :request do
   include_context 'with current_user'
 
   let(:params) { {} }
+  let(:stubs) do
+    stub_stripe_customer
 
-  before { put '/auth', params: params.to_json }
+    stub_request(:post, 'https://api.stripe.com/v1/customers/us_123').with(
+      body: {
+        'address' => {
+          'line1' => 'Some Address',
+          'city' => 'Some City',
+          'country' => 'USA',
+          'postal_code' => 'Some Zipcode',
+          'state' => 'Some State'
+        },
+        'name' => 'John Connor'
+      }
+    ).to_return(status: 200, body: {}.to_json, headers: {})
+
+    stub_request(:post, 'https://api.stripe.com/v1/customers/us_123').with(
+      body: {
+        'address' => {
+          'line1' => 'foo bar',
+          'city' => 'foobar',
+          'country' => 'USA',
+          'postal_code' => 'foobar',
+          'state' => 'foobar'
+        },
+        'name' => 'JohnConnor'
+      }
+    ).to_return(status: 200, body: {}.to_json, headers: {})
+  end
+
+  before do
+    stubs
+    put '/auth', params: params.to_json
+  end
 
   context 'without params' do
     it { expect(response).to have_http_status(:unprocessable_entity) }

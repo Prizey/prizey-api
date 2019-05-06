@@ -6,6 +6,7 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
 
   after_create :create_stripe_customer
+  after_save :update_stripe_info
 
   has_many :ticket_transactions, dependent: :restrict_with_exception
 
@@ -45,4 +46,26 @@ class User < ApplicationRecord
     customer = Stripe::Customer.create(email: email)
     update(stripe_customer_id: customer['id'])
   end
+
+  # rubocop:disable Style/BracesAroundHashParameters, Metrics/MethodLength
+  def update_stripe_info
+    return unless saved_change_to_fullname? || saved_change_to_address? ||
+                  saved_change_to_city? || saved_change_to_zipcode? ||
+                  saved_change_to_state_province_region?
+
+    Stripe::Customer.update(
+      stripe_customer_id,
+      {
+        name: fullname,
+        address: {
+          line1: address,
+          city: city,
+          country: 'USA',
+          postal_code: zipcode,
+          state: state_province_region
+        }
+      }
+    )
+  end
+  # rubocop:enable Style/BracesAroundHashParameters, Metrics/MethodLength
 end

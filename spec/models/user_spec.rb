@@ -3,10 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe '#as_json' do
-    before { stub_stripe_customer('user_1@example.com') }
+  let(:user) { create(:user, email: 'user_1@example.com') }
 
-    let(:user) { create(:user, email: 'user_1@example.com') }
+  before { stub_stripe_customer('user_1@example.com') }
+
+  describe '#as_json' do
     let(:tickets) { create_list(:ticket_transaction, 2, user: user) }
     let(:json) do
       {
@@ -31,17 +32,11 @@ RSpec.describe User, type: :model do
   end
 
   describe '#tickets' do
-    before { stub_stripe_customer('user_1@example.com') }
-
     context 'when there is not ticket_transactions' do
-      let(:user) { create(:user, email: 'user_1@example.com') }
-
       it { expect(user.tickets).to eq(0) }
     end
 
     context 'when amount is positive' do
-      let(:user) { create(:user, email: 'user_1@example.com') }
-
       before do
         create_list(:ticket_transaction, 2, user: user, amount: 10)
       end
@@ -50,13 +45,54 @@ RSpec.describe User, type: :model do
     end
 
     context 'when amount is negative' do
-      let(:user) { create(:user, email: 'user_1@example.com') }
-
       before do
         create_list(:ticket_transaction, 2, user: user, amount: -10)
       end
 
       it { expect(user.tickets).to eq(-20) }
+    end
+  end
+
+  describe '#update_stripe_info' do
+    context 'when calling stripe to update info' do
+      before do
+        stub_request(:post, 'https://api.stripe.com/v1/customers/us_123')
+          .with(
+            body: {
+              'address' => {
+                'line1' => 'updated address',
+                'city' => 'foobar',
+                'country' => 'USA',
+                'postal_code' => 'foobar',
+                'state' => 'foobar'
+              },
+              'name' => 'foo bar'
+            }
+          ).to_return(status: 200, body: {}.to_json, headers: {})
+        user.update(address: 'updated address')
+      end
+
+      it do
+        expect(user.address).to eq('updated address')
+      end
+
+      it do
+        expect(user.fullname).not_to eq('some other name')
+      end
+    end
+
+    context 'when not calling stripe to update info' do
+      before do
+        user.update(clothing_size: 'updated clothing_size')
+      end
+
+      it do
+        expect(user.address).not_to eq('updated address')
+      end
+
+      it do
+        expect(user.clothing_size).to eq('updated clothing_size')
+      end
     end
   end
 end
