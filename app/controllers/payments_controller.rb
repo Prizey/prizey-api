@@ -29,7 +29,7 @@ class PaymentsController < ApplicationController
 
   def stripe_payment(options)
     Stripe::Charge.create(
-      amount: options.price,
+      amount: (options.price * 100).to_i,
       currency: 'usd',
       customer: current_user.stripe_customer_id,
       source: card_token,

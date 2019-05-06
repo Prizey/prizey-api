@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe 'POST /payments', type: :request do
   let(:stripe_error_body) do
-    { 'amount' => '10.0',
+    { 'amount' => '1000',
       'currency' => 'usd',
       'source' => 'some_invalid_token',
       'customer' => current_user.stripe_customer_id,
@@ -42,7 +42,7 @@ describe 'POST /payments', type: :request do
         before do
           pack_1
           stub_new_credit_card('card_abc123')
-          success_stripe_request('10.0', '10')
+          success_stripe_request('1000', '10')
           post '/payments', params: {
             purchase_option_id: PurchaseOption.find_by(name: 'pack_1').id.to_s,
             credit_card_token: 'card_abc123'
@@ -57,7 +57,7 @@ describe 'POST /payments', type: :request do
         before do
           pack_2
           stub_new_credit_card('card_abc123')
-          success_stripe_request('25.0', '25')
+          success_stripe_request('2500', '25')
           post '/payments', params: {
             purchase_option_id: PurchaseOption.find_by(name: 'pack_2').id.to_s,
             credit_card_token: 'card_abc123'
@@ -72,7 +72,7 @@ describe 'POST /payments', type: :request do
         before do
           pack_3
           stub_new_credit_card('card_abc123')
-          success_stripe_request('50.0', '50')
+          success_stripe_request('5000', '50')
           post '/payments', params: {
             purchase_option_id: PurchaseOption.find_by(name: 'pack_3').id.to_s,
             credit_card_token: 'card_abc123'
@@ -89,7 +89,7 @@ describe 'POST /payments', type: :request do
       before do
         pack_3
         stub_new_credit_card('card_abc123')
-        success_stripe_request('50.0', '50')
+        success_stripe_request('5000', '50')
         post '/payments', params: {
           purchase_option_id: PurchaseOption.find_by(name: 'pack_3').id.to_s,
           credit_card_source: 'card_abc123'
@@ -125,7 +125,7 @@ describe 'POST /payments', type: :request do
 
       before do
         pack_1
-        success_stripe_request('10.0', '10')
+        success_stripe_request('1000', '10')
         current_user.blocked = true
         post '/payments', params: {
           purchase_option_id: PurchaseOption.find_by(name: 'pack_1').id.to_s,
@@ -143,7 +143,7 @@ describe 'POST /payments', type: :request do
     context 'with correct params' do
       before do
         pack_1
-        success_stripe_request('10.0', '10')
+        success_stripe_request('1000', '10')
         post '/payments', params: {
           purchase_option_id: PurchaseOption.find_by(name: 'pack_1').id.to_s,
           credit_card_token: 'abc'
