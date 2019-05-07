@@ -120,9 +120,19 @@ RSpec.describe 'GET /products/:identifier', type: :request do
 
   describe 'when user is logged out' do
     context 'when requesting easy products' do
-      before do
-        get '/products/easy'
-      end
+      before { get '/products/easy' }
+
+      it { expect(response).to have_http_status(:unauthorized) }
+    end
+
+    context 'when requesting medium products' do
+      before { get '/products/medium' }
+
+      it { expect(response).to have_http_status(:unauthorized) }
+    end
+
+    context 'when requesting hard products' do
+      before { get '/products/hard' }
 
       it { expect(response).to have_http_status(:unauthorized) }
     end
