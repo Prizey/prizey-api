@@ -12,6 +12,18 @@
     "admin_graphql_api_id": "gid://shopify/Collection/123"
   },
   {
+    "id": 321,
+    "handle": "homepage",
+    "title": "Homepage",
+    "updated_at": "2019-04-11T13:33:51-04:00",
+    "body_html": "",
+    "published_at": "2019-04-10T18:41:36-04:00",
+    "sort_order": "best-selling",
+    "template_suffix": "",
+    "published_scope": "web",
+    "admin_graphql_api_id": "gid://shopify/Collection/321"
+  },
+  {
     "id": 456,
     "handle": "medium",
     "title": "Medium",
