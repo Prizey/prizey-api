@@ -73,6 +73,6 @@ describe 'GET /game_setting/:id', type: :request do
       get '/game_setting'
     end
 
-    it { expect(response).to have_http_status(:unauthorized) }
+    it { expect(response).to have_http_status(:ok) }
   end
 end
