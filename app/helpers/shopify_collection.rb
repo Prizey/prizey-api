@@ -18,10 +18,13 @@ class ShopifyCollection
 
   def self.serialize_products(products)
     JSON.parse(products.to_json).map do |product|
-      { id: product['variants'][0]['id'],
+      variant = product['variants'][0]
+      next if variant['inventory_quantity'].zero?
+
+      { id: variant['id'],
         title: product['title'],
         image: product['image']['src'],
-        price: product['variants'][0]['price'].to_f }
-    end
+        price: variant['price'].to_f }
+    end.compact
   end
 end
