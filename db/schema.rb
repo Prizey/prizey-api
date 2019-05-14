@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_02_180338) do
+ActiveRecord::Schema.define(version: 2019_05_13_233200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2019_05_02_180338) do
     t.integer "medium_ticket_amount", default: 2, null: false
     t.integer "hard_ticket_amount", default: 3, null: false
     t.boolean "game_blocked"
+    t.text "fairness_text"
   end
 
   create_table "purchase_options", force: :cascade do |t|

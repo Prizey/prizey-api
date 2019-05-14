@@ -10,5 +10,6 @@ FactoryBot.define do
     medium_ticket_amount 2
     hard_ticket_amount 3
     game_blocked false
+    fairness_text 'fairness text'
   end
 end
