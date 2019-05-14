@@ -27,10 +27,10 @@ class ApplicationController < ActionController::API
 
   def check_user_block_status
     json = {
-      id: 'unauthorized',
+      id: 'forbidden',
       message: 'Your account is currently blocked, please, contact support.'
     }
-    render json: json, status: :unauthorized if current_user&.blocked?
+    render json: json, status: :forbidden if current_user&.blocked?
   end
 
   def check_game_status

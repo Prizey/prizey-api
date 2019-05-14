@@ -32,7 +32,7 @@ describe 'GET /ticket_transactions', type: :request do
     context 'with blocked user' do
       let(:msg_error) do
         {
-          id: 'unauthorized',
+          id: 'forbidden',
           message: 'Your account is currently blocked, please, contact support.'
         }.to_json
       end
@@ -42,7 +42,7 @@ describe 'GET /ticket_transactions', type: :request do
         get '/ticket_transactions'
       end
 
-      it { expect(response).to have_http_status(:unauthorized) }
+      it { expect(response).to have_http_status(:forbidden) }
       it { expect(response.has_header?('access-token')).to eq(false) }
       it { expect(response.body).to eq(msg_error) }
     end
