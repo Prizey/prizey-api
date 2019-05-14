@@ -1,4 +1,57 @@
 
+## <a name="resource-card">cards</a>
+
+Stability: `prototype`
+
+cards are made to Stripe transparent checkout API
+
+### Attributes
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **brand** | *string* | credit card brand | `"example"` |
+| **id** | *string* | identifier for the credit card on stripe | `"example"` |
+| **last4** | *string* | credit card last 4 digits | `"example"` |
+
+### <a name="link-GET-card-/cards">cards List</a>
+
+List a new card
+
+```
+GET /cards
+```
+
+#### Optional Parameters
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **brand** | *string* | credit card brand | `"example"` |
+| **id** | *string* | identifier for the credit card on stripe | `"example"` |
+| **last4** | *string* | credit card last 4 digits | `"example"` |
+
+
+#### Curl Example
+
+```bash
+$ curl -n https://api.prizey.app/cards
+ -G \
+  -d id=example \
+  -d last4=example \
+  -d brand=example
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+null
+```
+
+
 ## <a name="resource-error">Error</a>
 
 Stability: `prototype`
@@ -54,6 +107,7 @@ The game setting is a set of information for the game configuration
 | ------- | ------- | ------- | ------- |
 | **easy_carousel_speed** | *integer* | the easy carousel speed parameter of the game setting | `42` |
 | **easy_ticket_amount** | *integer* | the number of tickets for the easy play setting | `42` |
+| **fairness_text** | *string* | fairness text | `"example"` |
 | **hard_carousel_speed** | *integer* | the hard carousel speed parameter of the game setting | `42` |
 | **hard_ticket_amount** | *integer* | the number of tickets for the hard play setting | `42` |
 | **id** | *integer* | unique game setting identifier | `42` |

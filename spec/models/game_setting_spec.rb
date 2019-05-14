@@ -23,7 +23,8 @@ RSpec.describe GameSetting, type: :model do
         hard_carousel_speed: 3,
         easy_ticket_amount: 1,
         medium_ticket_amount: 2,
-        hard_ticket_amount: 3
+        hard_ticket_amount: 3,
+        fairness_text: 'fairness text'
       }
     end
 

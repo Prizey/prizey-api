@@ -32,6 +32,9 @@ definitions:
   hard_ticket_amount:
     description: the number of tickets for the hard play setting
     type: integer
+  fairness_text:
+    description: fairness text 
+    type: string
   identity:
     anyOf:
     - $ref: "/schemata/game_setting#/definitions/id"
@@ -67,6 +70,8 @@ properties:
     $ref: "/schemata/game_setting#/definitions/medium_ticket_amount"
   hard_ticket_amount:
     $ref: "/schemata/game_setting#/definitions/hard_ticket_amount"
+  fairness_text:
+    $ref: "/schemata/game_setting#/definitions/fairness_text"
 additionalProperties: false
 required:
 - id

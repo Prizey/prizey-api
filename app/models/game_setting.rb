@@ -5,6 +5,7 @@ class GameSetting < ApplicationRecord
     :hard_carousel_speed, :easy_ticket_amount, :medium_ticket_amount,
     :hard_ticket_amount, presence: true
 
+  # rubocop:disable Metrics/MethodLength
   def as_json(_options = {})
     {
       id: id,
@@ -14,7 +15,9 @@ class GameSetting < ApplicationRecord
       hard_carousel_speed: hard_carousel_speed,
       easy_ticket_amount: easy_ticket_amount,
       medium_ticket_amount: medium_ticket_amount,
-      hard_ticket_amount: hard_ticket_amount
+      hard_ticket_amount: hard_ticket_amount,
+      fairness_text: fairness_text
     }
   end
+  # rubocop:enable Metrics/MethodLength
 end

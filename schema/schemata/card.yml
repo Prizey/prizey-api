@@ -40,10 +40,10 @@ links:
     - object
   targetSchema:
     anyOf:
-    - type: array
+      - type: array
         items:
           "$ref": "/schemata/card"
-    - "$ref": "/schemata/error"
+      - "$ref": "/schemata/error"
 properties:
   id:
     $ref: "/schemata/card#/definitions/id"
