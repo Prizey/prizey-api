@@ -931,68 +931,6 @@
         }
       },
       "links": [
-        {
-          "title": "Update",
-          "description": "Update existing user.",
-          "href": "/auth",
-          "method": "PUT",
-          "rel": "self",
-          "schema": {
-            "additionalProperties": false,
-            "properties": {
-              "fullname": {
-                "$ref": "#/definitions/user/definitions/fullname"
-              },
-              "address": {
-                "$ref": "#/definitions/user/definitions/address"
-              },
-              "city": {
-                "$ref": "#/definitions/user/definitions/city"
-              },
-              "state_province_region": {
-                "$ref": "#/definitions/user/definitions/state_province_region"
-              },
-              "zipcode": {
-                "$ref": "#/definitions/user/definitions/zipcode"
-              },
-              "clothing_size": {
-                "$ref": "#/definitions/user/definitions/clothing_size"
-              },
-              "shoe_size": {
-                "$ref": "#/definitions/user/definitions/shoe_size"
-              },
-              "blocked": {
-                "$ref": "#/definitions/user/definitions/blocked"
-              }
-            },
-            "type": [
-              "object"
-            ]
-          },
-          "targetSchema": {
-            "anyOf": [
-              {
-                "type": [
-                  "object"
-                ],
-                "properties": {
-                  "status": {
-                    "description": "response status",
-                    "type": [
-                      "string"
-                    ]
-                  },
-                  "data": {
-                    "$ref": "#/definitions/user"
-                  }
-                }
-              },
-              {
-                "$ref": "#/definitions/error"
-              }
-            ]
-          }
-        }
       ],
       "properties": {
         "id": {
@@ -1029,13 +967,6 @@
           "$ref": "#/definitions/user/definitions/tickets"
         }
       },
-      "required": [
-        "email",
-        "fullname",
-        "zipcode",
-        "clothing_size",
-        "shoe_size"
-      ],
       "additionalProperties": false
     }
   },

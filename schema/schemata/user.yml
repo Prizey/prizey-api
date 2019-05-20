@@ -63,45 +63,7 @@ definitions:
   identity:
     anyOf:
     - "$ref": "/schemata/user#/definitions/id"
-links:
-- title: Update
-  description: Update existing user.
-  href: "/auth"
-  method: PUT
-  rel: self
-  schema:
-    additionalProperties: false
-    properties:
-      fullname:
-        "$ref": "/schemata/user#/definitions/fullname"
-      address:
-        "$ref": "/schemata/user#/definitions/address"
-      city:
-        "$ref": "/schemata/user#/definitions/city"
-      state_province_region:
-        "$ref": "/schemata/user#/definitions/state_province_region"
-      zipcode:
-        "$ref": "/schemata/user#/definitions/zipcode"
-      clothing_size:
-        "$ref": "/schemata/user#/definitions/clothing_size"
-      shoe_size:
-        "$ref": "/schemata/user#/definitions/shoe_size"
-      blocked:
-        "$ref": "/schemata/user#/definitions/blocked"
-    type:
-    - object
-  targetSchema:
-    anyOf:
-    - type:
-      - object
-      properties:
-        status:
-          description: response status
-          type:
-          - string
-        data:
-          "$ref": "/schemata/user"
-    - "$ref": "/schemata/error"
+links: []
 properties:
   id:
     "$ref": "/schemata/user#/definitions/id"
@@ -125,11 +87,5 @@ properties:
     "$ref": "/schemata/user#/definitions/blocked"
   tickets:
     "$ref": "/schemata/user#/definitions/tickets"
-required:
-- email
-- fullname
-- zipcode
-- clothing_size
-- shoe_size
 additionalProperties: false
 id: schemata/user
