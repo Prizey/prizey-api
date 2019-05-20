@@ -379,6 +379,7 @@
         "purchase_option_id": {
           "description": "identifier for the purchase option recorded on database",
           "type": [
+            "integer",
             "string"
           ]
         },

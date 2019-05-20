@@ -9,6 +9,7 @@ definitions:
   purchase_option_id:
     description: identifier for the purchase option recorded on database
     type:
+    - integer
     - string
   credit_card_token:
     description: credit card payment token from Stripe.js

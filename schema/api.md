@@ -206,7 +206,7 @@ Payments are made to Stripe transparent checkout API
 | ------- | ------- | ------- | ------- |
 | **credit_card_source** | *string* | credit card from user's card list | `"example"` |
 | **credit_card_token** | *string* | credit card payment token from Stripe.js | `"example"` |
-| **purchase_option_id** | *string* | identifier for the purchase option recorded on database | `"example"` |
+| **purchase_option_id** | *integer* | identifier for the purchase option recorded on database | `42` |
 
 ### <a name="link-POST-payment-/payments">payments Create</a>
 
@@ -222,7 +222,7 @@ POST /payments
 | ------- | ------- | ------- | ------- |
 | **credit_card_source** | *string* | credit card from user's card list | `"example"` |
 | **credit_card_token** | *string* | credit card payment token from Stripe.js | `"example"` |
-| **purchase_option_id** | *string* | identifier for the purchase option recorded on database | `"example"` |
+| **purchase_option_id** | *integer* | identifier for the purchase option recorded on database | `42` |
 
 
 #### Curl Example
@@ -230,7 +230,7 @@ POST /payments
 ```bash
 $ curl -n -X POST https://api.prizey.app/payments \
   -d '{
-  "purchase_option_id": "example",
+  "purchase_option_id": 42,
   "credit_card_token": "example",
   "credit_card_source": "example"
 }' \
