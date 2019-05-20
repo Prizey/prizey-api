@@ -24,14 +24,17 @@ RSpec.describe TicketTransaction, type: :model do
     it { expect(ticket_transaction.as_json).to eq(json) }
   end
 
-  describe '#update_user_balance' do
+  describe 'Update triggers on database' do
     let(:user) { create(:user, email: 'foo@bar.com') }
 
-    before { stub_stripe_customer('foo@bar.com') }
+    before do
+      stub_stripe_customer('foo@bar.com')
+      TicketTransaction.create(user: user, amount: 10)
+      user.reload
+    end
 
     it do
-      expect { TicketTransaction.create(user: user, amount: 10) }
-        .to change(user, :balance).by(10)
+      expect(user.balance).to eq(10)
     end
   end
 end

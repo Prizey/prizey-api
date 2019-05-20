@@ -5,8 +5,6 @@ class TicketTransaction < ApplicationRecord
 
   validates :amount, presence: true
 
-  after_create :update_user_balance
-
   def as_json(_options = {})
     {
       id: id,
@@ -14,11 +12,5 @@ class TicketTransaction < ApplicationRecord
       amount: amount,
       created_at: created_at
     }
-  end
-
-  private
-
-  def update_user_balance
-    user.update(balance: user.tickets)
   end
 end
