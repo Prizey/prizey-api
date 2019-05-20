@@ -35,6 +35,9 @@ definitions:
   fairness_text:
     description: fairness text 
     type: string
+  terms_of_service:
+    description: terms of service 
+    type: string
   identity:
     anyOf:
     - $ref: "/schemata/game_setting#/definitions/id"
@@ -72,6 +75,8 @@ properties:
     $ref: "/schemata/game_setting#/definitions/hard_ticket_amount"
   fairness_text:
     $ref: "/schemata/game_setting#/definitions/fairness_text"
+  terms_of_service:
+    $ref: "/schemata/game_setting#/definitions/terms_of_service"
 additionalProperties: false
 required:
 - id

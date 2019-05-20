@@ -215,6 +215,12 @@
             "string"
           ]
         },
+        "terms_of_service": {
+          "description": "terms of service",
+          "type": [
+            "string"
+          ]
+        },
         "identity": {
           "anyOf": [
             {
@@ -277,6 +283,9 @@
         },
         "fairness_text": {
           "$ref": "#/definitions/game_setting/definitions/fairness_text"
+        },
+        "terms_of_service": {
+          "$ref": "#/definitions/game_setting/definitions/terms_of_service"
         }
       },
       "additionalProperties": false,
