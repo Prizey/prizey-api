@@ -16,7 +16,8 @@ class GameSetting < ApplicationRecord
       easy_ticket_amount: easy_ticket_amount,
       medium_ticket_amount: medium_ticket_amount,
       hard_ticket_amount: hard_ticket_amount,
-      fairness_text: fairness_text
+      fairness_text: fairness_text,
+      terms_of_service: terms_of_service
     }
   end
   # rubocop:enable Metrics/MethodLength
