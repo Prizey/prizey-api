@@ -36,7 +36,7 @@ CREATE FUNCTION public.update_after_create_tickets() RETURNS trigger
           SELECT SUM(amount) FROM ticket_transactions
         )
         WHERE users.id = NEW.user_id;
-      
+
         RETURN NEW;
       END;
       $$;
@@ -55,7 +55,7 @@ CREATE FUNCTION public.update_after_delete_tickets() RETURNS trigger
           SELECT SUM(amount) FROM ticket_transactions
         )
         WHERE users.id = OLD.user_id;
-      
+
         RETURN OLD;
       END;
       $$;

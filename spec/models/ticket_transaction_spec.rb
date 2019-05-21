@@ -26,15 +26,54 @@ RSpec.describe TicketTransaction, type: :model do
 
   describe 'Update triggers on database' do
     let(:user) { create(:user, email: 'foo@bar.com') }
+    let(:ticket) { TicketTransaction.create(user: user, amount: 100) }
 
-    before do
-      stub_stripe_customer('foo@bar.com')
-      TicketTransaction.create(user: user, amount: 10)
-      user.reload
+    context 'when creating a new TicketTransaction' do
+      before do
+        stub_stripe_customer('foo@bar.com')
+        ticket
+      end
+
+      it do
+        user.reload
+        expect(user.balance).to eq(100)
+      end
     end
 
-    it do
-      expect(user.balance).to eq(10)
+    context 'when updating a new TicketTransaction' do
+      before do
+        stub_stripe_customer('foo@bar.com')
+        ticket
+      end
+
+      it do
+        user.reload
+        expect(user.balance).to eq(100)
+      end
+
+      it do
+        ticket.update(amount: 50)
+        user.reload
+        expect(user.balance).to eq(50)
+      end
+    end
+
+    context 'when destroying a new TicketTransaction' do
+      before do
+        stub_stripe_customer('foo@bar.com')
+        ticket
+      end
+
+      it do
+        user.reload
+        expect(user.balance).to eq(100)
+      end
+
+      it do
+        ticket.destroy
+        user.reload
+        expect(user.balance).to eq(nil)
+      end
     end
   end
 end
