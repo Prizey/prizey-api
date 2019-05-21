@@ -3,49 +3,38 @@
 class AddTriggersForTicketTransactions < ActiveRecord::Migration[5.2]
   def up
     execute create_update_function
-    execute create_delete_function
     execute create_trigger
   end
 
   def down
-    execute 'DROP TRIGGER IF EXISTS creating_tickets ON ticket_transactions'
-    execute 'DROP TRIGGER IF EXISTS deleting_tickets ON ticket_transactions'
-    execute 'DROP FUNCTION IF EXISTS update_after_create_tickets'
-    execute 'DROP FUNCTION IF EXISTS update_after_delete_tickets'
+    execute 'DROP TRIGGER IF EXISTS update_user_balance ON ticket_transactions'
+    execute 'DROP FUNCTION IF EXISTS updating_ticket_transactions'
   end
 
   private
 
   def create_update_function
     <<-SQL
-      CREATE OR REPLACE FUNCTION update_after_create_tickets() RETURNS trigger AS
+      CREATE OR REPLACE FUNCTION updating_ticket_transactions() RETURNS trigger AS
       $BODY$
       BEGIN
-        UPDATE users
-        SET balance = (
-          SELECT SUM(amount) FROM ticket_transactions
-        )
-        WHERE users.id = NEW.user_id;
+        IF (TG_OP = 'DELETE') THEN
+          UPDATE users
+          SET balance = (
+            SELECT SUM(amount) FROM ticket_transactions
+            WHERE user_id = OLD.user_id
+          )
+          WHERE id = OLD.user_id;
+        ELSIF (TG_OP = 'UPDATE' OR TG_OP = 'INSERT') THEN
+          UPDATE users
+          SET balance = (
+            SELECT SUM(amount) FROM ticket_transactions
+            WHERE user_id = NEW.user_id
+          )
+          WHERE id = NEW.user_id;
+        END IF;
 
-        RETURN NEW;
-      END;
-      $BODY$
-      language plpgsql;
-    SQL
-  end
-
-  def create_delete_function
-    <<-SQL
-      CREATE OR REPLACE FUNCTION update_after_delete_tickets() RETURNS trigger AS
-      $BODY$
-      BEGIN
-        UPDATE users
-        SET balance = (
-          SELECT SUM(amount) FROM ticket_transactions
-        )
-        WHERE users.id = OLD.user_id;
-
-        RETURN OLD;
+        RETURN NULL;
       END;
       $BODY$
       language plpgsql;
@@ -54,10 +43,8 @@ class AddTriggersForTicketTransactions < ActiveRecord::Migration[5.2]
 
   def create_trigger
     <<-SQL
-      CREATE TRIGGER creating_tickets AFTER INSERT OR UPDATE
-        ON ticket_transactions FOR EACH ROW EXECUTE PROCEDURE update_after_create_tickets();
-      CREATE TRIGGER deleting_tickets AFTER DELETE
-        ON ticket_transactions FOR EACH ROW EXECUTE PROCEDURE update_after_delete_tickets();
+      CREATE TRIGGER update_user_balance AFTER INSERT OR UPDATE OR DELETE
+        ON ticket_transactions FOR EACH ROW EXECUTE PROCEDURE updating_ticket_transactions();
     SQL
   end
 end

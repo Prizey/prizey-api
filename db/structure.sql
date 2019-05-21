@@ -24,39 +24,30 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
 --
--- Name: update_after_create_tickets(); Type: FUNCTION; Schema: public; Owner: -
+-- Name: updating_ticket_transactions(); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION public.update_after_create_tickets() RETURNS trigger
+CREATE FUNCTION public.updating_ticket_transactions() RETURNS trigger
     LANGUAGE plpgsql
     AS $$
       BEGIN
-        UPDATE users
-        SET balance = (
-          SELECT SUM(amount) FROM ticket_transactions
-        )
-        WHERE users.id = NEW.user_id;
+        IF (TG_OP = 'DELETE') THEN
+          UPDATE users
+          SET balance = (
+            SELECT SUM(amount) FROM ticket_transactions
+            WHERE user_id = OLD.user_id
+          )
+          WHERE id = OLD.user_id;
+        ELSIF (TG_OP = 'UPDATE' OR TG_OP = 'INSERT') THEN
+          UPDATE users
+          SET balance = (
+            SELECT SUM(amount) FROM ticket_transactions
+            WHERE user_id = NEW.user_id
+          )
+          WHERE id = NEW.user_id;
+        END IF;
 
-        RETURN NEW;
-      END;
-      $$;
-
-
---
--- Name: update_after_delete_tickets(); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.update_after_delete_tickets() RETURNS trigger
-    LANGUAGE plpgsql
-    AS $$
-      BEGIN
-        UPDATE users
-        SET balance = (
-          SELECT SUM(amount) FROM ticket_transactions
-        )
-        WHERE users.id = OLD.user_id;
-
-        RETURN OLD;
+        RETURN NULL;
       END;
       $$;
 
@@ -361,17 +352,10 @@ CREATE UNIQUE INDEX index_users_on_uid_and_provider ON public.users USING btree 
 
 
 --
--- Name: ticket_transactions creating_tickets; Type: TRIGGER; Schema: public; Owner: -
+-- Name: ticket_transactions update_user_balance; Type: TRIGGER; Schema: public; Owner: -
 --
 
-CREATE TRIGGER creating_tickets AFTER INSERT OR UPDATE ON public.ticket_transactions FOR EACH ROW EXECUTE PROCEDURE public.update_after_create_tickets();
-
-
---
--- Name: ticket_transactions deleting_tickets; Type: TRIGGER; Schema: public; Owner: -
---
-
-CREATE TRIGGER deleting_tickets AFTER DELETE ON public.ticket_transactions FOR EACH ROW EXECUTE PROCEDURE public.update_after_delete_tickets();
+CREATE TRIGGER update_user_balance AFTER INSERT OR DELETE OR UPDATE ON public.ticket_transactions FOR EACH ROW EXECUTE PROCEDURE public.updating_ticket_transactions();
 
 
 --

@@ -26,12 +26,16 @@ RSpec.describe TicketTransaction, type: :model do
 
   describe 'Update triggers on database' do
     let(:user) { create(:user, email: 'foo@bar.com') }
+    let(:user_2) { create(:user, email: 'foo_2@bar.com') }
     let(:ticket) { TicketTransaction.create(user: user, amount: 100) }
+    let(:ticket_2) { TicketTransaction.create(user: user_2, amount: 100) }
 
     context 'when creating a new TicketTransaction' do
       before do
         stub_stripe_customer('foo@bar.com')
+        stub_stripe_customer('foo_2@bar.com')
         ticket
+        ticket_2
       end
 
       it do
@@ -43,7 +47,9 @@ RSpec.describe TicketTransaction, type: :model do
     context 'when updating a new TicketTransaction' do
       before do
         stub_stripe_customer('foo@bar.com')
+        stub_stripe_customer('foo_2@bar.com')
         ticket
+        ticket_2
       end
 
       it do
@@ -61,7 +67,9 @@ RSpec.describe TicketTransaction, type: :model do
     context 'when destroying a new TicketTransaction' do
       before do
         stub_stripe_customer('foo@bar.com')
+        stub_stripe_customer('foo_2@bar.com')
         ticket
+        ticket_2
       end
 
       it do
