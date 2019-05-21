@@ -21,5 +21,6 @@ module Prizey
   class Application < Rails::Application
     config.load_defaults 5.2
     config.api_only = true
+    config.active_record.schema_format = :sql
   end
 end
