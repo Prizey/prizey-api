@@ -25,7 +25,8 @@ RSpec.describe GameSetting, type: :model do
         medium_ticket_amount: 2,
         hard_ticket_amount: 3,
         fairness_text: 'fairness text',
-        terms_of_service: 'terms of service'
+        terms_of_service: 'terms of service',
+        privacy_policy: 'privacy policy'
       }
     end
 
