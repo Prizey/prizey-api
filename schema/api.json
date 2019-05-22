@@ -221,6 +221,12 @@
             "string"
           ]
         },
+        "privacy_policy": {
+          "description": "privacy policy",
+          "type": [
+            "string"
+          ]
+        },
         "identity": {
           "anyOf": [
             {
@@ -286,6 +292,9 @@
         },
         "terms_of_service": {
           "$ref": "#/definitions/game_setting/definitions/terms_of_service"
+        },
+        "privacy_policy": {
+          "$ref": "#/definitions/game_setting/definitions/privacy_policy"
         }
       },
       "additionalProperties": false,

@@ -12,5 +12,6 @@ FactoryBot.define do
     game_blocked false
     fairness_text 'fairness text'
     terms_of_service 'terms of service'
+    privacy_policy 'privacy policy'
   end
 end
