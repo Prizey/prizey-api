@@ -63,6 +63,6 @@ RSpec.describe 'GET /purchase_options', type: :request do
       get '/purchase_options'
     end
 
-    it { expect(response).to have_http_status(:unauthorized) }
+    it { expect(response).to have_http_status(:ok) }
   end
 end
