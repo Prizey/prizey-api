@@ -110,6 +110,7 @@ The game setting is a set of information for the game configuration
 | **fairness_text** | *string* | fairness text | `"example"` |
 | **hard_carousel_speed** | *integer* | the hard carousel speed parameter of the game setting | `42` |
 | **hard_ticket_amount** | *integer* | the number of tickets for the hard play setting | `42` |
+| **homepage_cta** | *string* | homepage call to action text | `"example"` |
 | **id** | *integer* | unique game setting identifier | `42` |
 | **medium_carousel_speed** | *integer* | the medium carousel speed parameter of the game setting | `42` |
 | **medium_ticket_amount** | *integer* | the number of tickets for the medium play setting | `42` |

@@ -41,6 +41,9 @@ definitions:
   privacy_policy:
     description: privacy policy
     type: string
+  homepage_cta:
+    description: homepage call to action text
+    type: string
   identity:
     anyOf:
       - $ref: "/schemata/game_setting#/definitions/id"
@@ -82,6 +85,8 @@ properties:
     $ref: "/schemata/game_setting#/definitions/terms_of_service"
   privacy_policy:
     $ref: "/schemata/game_setting#/definitions/privacy_policy"
+  homepage_cta:
+    $ref: "/schemata/game_setting#/definitions/homepage_cta"
 additionalProperties: false
 required:
   - id
@@ -92,4 +97,5 @@ required:
   - easy_ticket_amount
   - medium_ticket_amount
   - hard_ticket_amount
+  - homepage_cta
 id: schemata/game_setting
