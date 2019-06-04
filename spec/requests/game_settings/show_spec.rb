@@ -29,7 +29,8 @@ describe 'GET /game_setting/:id', type: :request do
           hard_ticket_amount: 3,
           fairness_text: 'fairness text',
           terms_of_service: 'terms of service',
-          privacy_policy: 'privacy policy'
+          privacy_policy: 'privacy policy',
+          homepage_cta: 'Play now for $3!'
         }.to_json
       end
 

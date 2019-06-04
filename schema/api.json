@@ -227,6 +227,12 @@
             "string"
           ]
         },
+        "homepage_cta": {
+          "description": "homepage call to action text",
+          "type": [
+            "string"
+          ]
+        },
         "identity": {
           "anyOf": [
             {
@@ -295,6 +301,9 @@
         },
         "privacy_policy": {
           "$ref": "#/definitions/game_setting/definitions/privacy_policy"
+        },
+        "homepage_cta": {
+          "$ref": "#/definitions/game_setting/definitions/homepage_cta"
         }
       },
       "additionalProperties": false,
@@ -306,7 +315,8 @@
         "hard_carousel_speed",
         "easy_ticket_amount",
         "medium_ticket_amount",
-        "hard_ticket_amount"
+        "hard_ticket_amount",
+        "homepage_cta"
       ]
     },
     "order": {
