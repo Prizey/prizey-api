@@ -87,7 +87,8 @@ CREATE TABLE public.game_settings (
     fairness_text text,
     terms_of_service text,
     privacy_policy text,
-    homepage_cta character varying DEFAULT 'Play now for $3!'::character varying
+    homepage_cta character varying DEFAULT 'Play now for $3!'::character varying,
+    starting_balance integer DEFAULT 0
 );
 
 
@@ -389,6 +390,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190520191909'),
 ('20190520205603'),
 ('20190522163114'),
-('20190603213718');
+('20190603213718'),
+('20190604184246');
 
 
