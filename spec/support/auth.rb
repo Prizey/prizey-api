@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 RSpec.shared_context 'with current_user' do
+  let!(:game_setting) do
+    create(:game_setting)
+  end
+
   let!(:current_user) do
     stub_stripe_customer
     create(:user,
@@ -99,7 +103,5 @@ module JsonRequests
 end
 
 RSpec.configure do |config|
-  %i[model request].each do |type|
-    config.include JsonRequests, type: type
-  end
+  config.include JsonRequests
 end

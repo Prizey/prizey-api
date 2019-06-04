@@ -8,7 +8,7 @@ describe 'GET /ticket_transactions', type: :request do
 
     context 'with ticket_transactions' do
       let(:ticket_transactions) do
-        create_list(:ticket_transaction, 5, user: current_user)
+        create_list(:ticket_transaction, 4, user: current_user)
       end
 
       before do
@@ -17,11 +17,13 @@ describe 'GET /ticket_transactions', type: :request do
       end
 
       it { expect(response).to have_http_status(:ok) }
+      # Will be 5 because of the initial "starting balance" transaction
       it { expect(JSON.parse(response.body).count).to eq(5) }
     end
 
     context 'without ticket_transactions' do
       before do
+        current_user.ticket_transactions.destroy_all
         get '/ticket_transactions'
       end
 

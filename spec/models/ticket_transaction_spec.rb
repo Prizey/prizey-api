@@ -14,12 +14,14 @@ RSpec.describe TicketTransaction, type: :model do
       {
         id: ticket_transaction.id,
         user: user.as_json,
-        amount: ticket_transaction.amount,
-        created_at: ticket_transaction.created_at
+        amount: ticket_transaction.amount
       }
     end
 
-    before { stub_stripe_customer('user_1@example.com') }
+    before do
+      create(:game_setting)
+      stub_stripe_customer('user_1@example.com')
+    end
 
     it { expect(ticket_transaction.as_json).to eq(json) }
   end
@@ -32,6 +34,7 @@ RSpec.describe TicketTransaction, type: :model do
 
     context 'when creating a new TicketTransaction' do
       before do
+        create(:game_setting)
         stub_stripe_customer('foo@bar.com')
         stub_stripe_customer('foo_2@bar.com')
         ticket
@@ -46,6 +49,7 @@ RSpec.describe TicketTransaction, type: :model do
 
     context 'when updating a new TicketTransaction' do
       before do
+        create(:game_setting)
         stub_stripe_customer('foo@bar.com')
         stub_stripe_customer('foo_2@bar.com')
         ticket
@@ -66,6 +70,7 @@ RSpec.describe TicketTransaction, type: :model do
 
     context 'when destroying a new TicketTransaction' do
       before do
+        create(:game_setting)
         stub_stripe_customer('foo@bar.com')
         stub_stripe_customer('foo_2@bar.com')
         ticket
@@ -80,7 +85,7 @@ RSpec.describe TicketTransaction, type: :model do
       it do
         ticket.destroy
         user.reload
-        expect(user.balance).to eq(nil)
+        expect(user.balance).to eq(0)
       end
     end
   end

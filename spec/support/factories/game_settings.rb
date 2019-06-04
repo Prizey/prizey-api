@@ -13,5 +13,6 @@ FactoryBot.define do
     fairness_text 'fairness text'
     terms_of_service 'terms of service'
     privacy_policy 'privacy policy'
+    starting_balance 0
   end
 end

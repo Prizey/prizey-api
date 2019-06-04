@@ -9,8 +9,7 @@ class TicketTransaction < ApplicationRecord
     {
       id: id,
       user: user.as_json,
-      amount: amount,
-      created_at: created_at
+      amount: amount
     }
   end
 end
