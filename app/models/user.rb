@@ -5,7 +5,7 @@ class User < ApplicationRecord
     :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
 
-  after_create :create_stripe_customer
+  after_create :create_stripe_customer, :add_starting_balance
   after_save :update_stripe_info
 
   has_many :ticket_transactions, dependent: :restrict_with_exception
@@ -68,4 +68,8 @@ class User < ApplicationRecord
     )
   end
   # rubocop:enable Style/BracesAroundHashParameters, Metrics/MethodLength
+
+  def add_starting_balance
+    AddStartingBalance.execute(id)
+  end
 end

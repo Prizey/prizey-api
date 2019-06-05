@@ -5,7 +5,10 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   let(:user) { create(:user, email: 'user_1@example.com') }
 
-  before { stub_stripe_customer('user_1@example.com') }
+  before do
+    create(:game_setting)
+    stub_stripe_customer('user_1@example.com')
+  end
 
   describe '#as_json' do
     let(:tickets) { create_list(:ticket_transaction, 2, user: user) }
