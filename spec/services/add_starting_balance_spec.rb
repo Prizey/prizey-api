@@ -35,7 +35,7 @@ describe AddStartingBalance, type: :service do
 
     it do
       expect(described_class.execute(user.id)).to eq(
-        success: true, payload: TicketTransaction.last.as_json
+        success: true, payload: TicketTransaction.last
       )
     end
   end

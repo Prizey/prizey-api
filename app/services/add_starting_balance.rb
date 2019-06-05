@@ -13,7 +13,7 @@ class AddStartingBalance
   def execute
     ticket_transaction = TicketTransaction.new(user: @user, amount: @amount)
     if ticket_transaction.save
-      { success: true, payload: ticket_transaction.as_json }
+      { success: true, payload: ticket_transaction }
     else
       { success: false, errors: ticket_transaction.errors.full_messages }
     end
