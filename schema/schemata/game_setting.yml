@@ -32,18 +32,6 @@ definitions:
   hard_ticket_amount:
     description: the number of tickets for the hard play setting
     type: integer
-  fairness_text:
-    description: fairness text
-    type: string
-  terms_of_service:
-    description: terms of service
-    type: string
-  privacy_policy:
-    description: privacy policy
-    type: string
-  homepage_cta:
-    description: homepage call to action text
-    type: string
   identity:
     anyOf:
       - $ref: "/schemata/game_setting#/definitions/id"
@@ -79,14 +67,6 @@ properties:
     $ref: "/schemata/game_setting#/definitions/medium_ticket_amount"
   hard_ticket_amount:
     $ref: "/schemata/game_setting#/definitions/hard_ticket_amount"
-  fairness_text:
-    $ref: "/schemata/game_setting#/definitions/fairness_text"
-  terms_of_service:
-    $ref: "/schemata/game_setting#/definitions/terms_of_service"
-  privacy_policy:
-    $ref: "/schemata/game_setting#/definitions/privacy_policy"
-  homepage_cta:
-    $ref: "/schemata/game_setting#/definitions/homepage_cta"
 additionalProperties: false
 required:
   - id
@@ -97,5 +77,4 @@ required:
   - easy_ticket_amount
   - medium_ticket_amount
   - hard_ticket_amount
-  - homepage_cta
 id: schemata/game_setting

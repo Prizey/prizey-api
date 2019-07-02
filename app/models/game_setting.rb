@@ -3,9 +3,7 @@
 class GameSetting < ApplicationRecord
   validates :price_multiplier, :easy_carousel_speed, :medium_carousel_speed,
     :hard_carousel_speed, :easy_ticket_amount, :medium_ticket_amount,
-    :hard_ticket_amount, :homepage_cta, presence: true
-
-  # rubocop:disable Metrics/MethodLength
+    :hard_ticket_amount, presence: true
   def as_json(_options = {})
     {
       id: id,
@@ -15,12 +13,7 @@ class GameSetting < ApplicationRecord
       hard_carousel_speed: hard_carousel_speed,
       easy_ticket_amount: easy_ticket_amount,
       medium_ticket_amount: medium_ticket_amount,
-      hard_ticket_amount: hard_ticket_amount,
-      fairness_text: fairness_text,
-      terms_of_service: terms_of_service,
-      privacy_policy: privacy_policy,
-      homepage_cta: homepage_cta
+      hard_ticket_amount: hard_ticket_amount
     }
   end
-  # rubocop:enable Metrics/MethodLength
 end
