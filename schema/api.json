@@ -4,6 +4,104 @@
     "object"
   ],
   "definitions": {
+    "admin_text": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "Rentrebel - Admin Texts",
+      "description": "An admin text is a text for an admin area",
+      "stability": "prototype",
+      "type": [
+        "object"
+      ],
+      "definitions": {
+        "id": {
+          "description": "unique identifier of the Admin Text",
+          "readOnly": true,
+          "type": [
+            "integer"
+          ]
+        },
+        "tag": {
+          "description": "the tag that references the admin text",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "text": {
+          "description": "the content of admin text",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "tag_with_text": {
+          "description": "key-value pair with the tag and the corresponding text",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "tag": {
+              "$ref": "#/definitions/admin_text/definitions/tag"
+            },
+            "text": {
+              "$ref": "#/definitions/admin_text/definitions/text"
+            }
+          }
+        },
+        "identity": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/admin_text/definitions/id"
+            }
+          ]
+        }
+      },
+      "links": [
+        {
+          "description": "Show the admin texts for the tags.",
+          "href": "/admin_texts",
+          "method": "GET",
+          "rel": "self",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "tags": {
+                "type": [
+                  "array"
+                ],
+                "items": {
+                  "$ref": "#/definitions/admin_text/definitions/tag"
+                }
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "targetSchema": {
+            "anyOf": [
+              {
+                "type": [
+                  "array"
+                ],
+                "items": {
+                  "$ref": "#/definitions/admin_text/definitions/tag_with_text"
+                }
+              },
+              {
+                "$ref": "#/definitions/error"
+              }
+            ]
+          },
+          "title": "List"
+        }
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/admin_text/definitions/id"
+        }
+      }
+    },
     "card": {
       "$schema": "http://json-schema.org/draft-04/hyper-schema",
       "title": "Prizey - cards",
@@ -1000,6 +1098,9 @@
     }
   },
   "properties": {
+    "admin_text": {
+      "$ref": "#/definitions/admin_text"
+    },
     "card": {
       "$ref": "#/definitions/card"
     },

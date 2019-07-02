@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   }
 
   resource :game_setting
+  resources :admin_texts, only: %i[index]
 
   resource :products, only: [] do
     get '/:identifier', to: 'products#index'

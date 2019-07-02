@@ -57,6 +57,38 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: admin_texts; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.admin_texts (
+    id bigint NOT NULL,
+    field character varying NOT NULL,
+    text text NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: admin_texts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.admin_texts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: admin_texts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.admin_texts_id_seq OWNED BY public.admin_texts.id;
+
+
+--
 -- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -244,6 +276,13 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
+-- Name: admin_texts id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.admin_texts ALTER COLUMN id SET DEFAULT nextval('public.admin_texts_id_seq'::regclass);
+
+
+--
 -- Name: game_settings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -269,6 +308,14 @@ ALTER TABLE ONLY public.ticket_transactions ALTER COLUMN id SET DEFAULT nextval(
 --
 
 ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- Name: admin_texts admin_texts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.admin_texts
+    ADD CONSTRAINT admin_texts_pkey PRIMARY KEY (id);
 
 
 --
@@ -391,6 +438,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190520205603'),
 ('20190522163114'),
 ('20190603213718'),
-('20190604184246');
+('20190604184246'),
+('20190702181545');
 
 
