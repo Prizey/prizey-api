@@ -4,6 +4,104 @@
     "object"
   ],
   "definitions": {
+    "admin_text": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "Rentrebel - Admin Texts",
+      "description": "An admin text is a text for an admin area",
+      "stability": "prototype",
+      "type": [
+        "object"
+      ],
+      "definitions": {
+        "id": {
+          "description": "unique identifier of the Admin Text",
+          "readOnly": true,
+          "type": [
+            "integer"
+          ]
+        },
+        "tag": {
+          "description": "the tag that references the admin text",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "text": {
+          "description": "the content of admin text",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "tag_with_text": {
+          "description": "key-value pair with the tag and the corresponding text",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "tag": {
+              "$ref": "#/definitions/admin_text/definitions/tag"
+            },
+            "text": {
+              "$ref": "#/definitions/admin_text/definitions/text"
+            }
+          }
+        },
+        "identity": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/admin_text/definitions/id"
+            }
+          ]
+        }
+      },
+      "links": [
+        {
+          "description": "Show the admin texts for the tags.",
+          "href": "/admin_texts",
+          "method": "GET",
+          "rel": "self",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "tags": {
+                "type": [
+                  "array"
+                ],
+                "items": {
+                  "$ref": "#/definitions/admin_text/definitions/tag"
+                }
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "targetSchema": {
+            "anyOf": [
+              {
+                "type": [
+                  "array"
+                ],
+                "items": {
+                  "$ref": "#/definitions/admin_text/definitions/tag_with_text"
+                }
+              },
+              {
+                "$ref": "#/definitions/error"
+              }
+            ]
+          },
+          "title": "List"
+        }
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/admin_text/definitions/id"
+        }
+      }
+    },
     "card": {
       "$schema": "http://json-schema.org/draft-04/hyper-schema",
       "title": "Prizey - cards",
@@ -209,30 +307,6 @@
             "integer"
           ]
         },
-        "fairness_text": {
-          "description": "fairness text",
-          "type": [
-            "string"
-          ]
-        },
-        "terms_of_service": {
-          "description": "terms of service",
-          "type": [
-            "string"
-          ]
-        },
-        "privacy_policy": {
-          "description": "privacy policy",
-          "type": [
-            "string"
-          ]
-        },
-        "homepage_cta": {
-          "description": "homepage call to action text",
-          "type": [
-            "string"
-          ]
-        },
         "identity": {
           "anyOf": [
             {
@@ -292,18 +366,6 @@
         },
         "hard_ticket_amount": {
           "$ref": "#/definitions/game_setting/definitions/hard_ticket_amount"
-        },
-        "fairness_text": {
-          "$ref": "#/definitions/game_setting/definitions/fairness_text"
-        },
-        "terms_of_service": {
-          "$ref": "#/definitions/game_setting/definitions/terms_of_service"
-        },
-        "privacy_policy": {
-          "$ref": "#/definitions/game_setting/definitions/privacy_policy"
-        },
-        "homepage_cta": {
-          "$ref": "#/definitions/game_setting/definitions/homepage_cta"
         }
       },
       "additionalProperties": false,
@@ -315,8 +377,7 @@
         "hard_carousel_speed",
         "easy_ticket_amount",
         "medium_ticket_amount",
-        "hard_ticket_amount",
-        "homepage_cta"
+        "hard_ticket_amount"
       ]
     },
     "order": {
@@ -1000,6 +1061,9 @@
     }
   },
   "properties": {
+    "admin_text": {
+      "$ref": "#/definitions/admin_text"
+    },
     "card": {
       "$ref": "#/definitions/card"
     },

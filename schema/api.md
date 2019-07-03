@@ -1,4 +1,51 @@
 
+## <a name="resource-admin_text">Admin Texts</a>
+
+Stability: `prototype`
+
+An admin text is a text for an admin area
+
+### Attributes
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **id** | *integer* | unique identifier of the Admin Text | `42` |
+
+### <a name="link-GET-admin_text-/admin_texts">Admin Texts List</a>
+
+Show the admin texts for the tags.
+
+```
+GET /admin_texts
+```
+
+#### Optional Parameters
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **tags** | *array* |  | `[null]` |
+
+
+#### Curl Example
+
+```bash
+$ curl -n https://api.prizey.app/admin_texts
+ -G \
+  -d tags[]=
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+null
+```
+
+
 ## <a name="resource-card">cards</a>
 
 Stability: `prototype`
@@ -107,16 +154,12 @@ The game setting is a set of information for the game configuration
 | ------- | ------- | ------- | ------- |
 | **easy_carousel_speed** | *integer* | the easy carousel speed parameter of the game setting | `42` |
 | **easy_ticket_amount** | *integer* | the number of tickets for the easy play setting | `42` |
-| **fairness_text** | *string* | fairness text | `"example"` |
 | **hard_carousel_speed** | *integer* | the hard carousel speed parameter of the game setting | `42` |
 | **hard_ticket_amount** | *integer* | the number of tickets for the hard play setting | `42` |
-| **homepage_cta** | *string* | homepage call to action text | `"example"` |
 | **id** | *integer* | unique game setting identifier | `42` |
 | **medium_carousel_speed** | *integer* | the medium carousel speed parameter of the game setting | `42` |
 | **medium_ticket_amount** | *integer* | the number of tickets for the medium play setting | `42` |
 | **price_multiplier** | *number* | the number that multiplies the price velocity of the game setting | `42.0` |
-| **privacy_policy** | *string* | privacy policy | `"example"` |
-| **terms_of_service** | *string* | terms of service | `"example"` |
 
 ### <a name="link-GET-game_setting-/game_setting">Game Setting Info</a>
 

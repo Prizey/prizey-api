@@ -10,9 +10,6 @@ FactoryBot.define do
     medium_ticket_amount 2
     hard_ticket_amount 3
     game_blocked false
-    fairness_text 'fairness text'
-    terms_of_service 'terms of service'
-    privacy_policy 'privacy policy'
     starting_balance 0
   end
 end
