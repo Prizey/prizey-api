@@ -116,7 +116,9 @@ CREATE TABLE public.game_settings (
     medium_ticket_amount integer DEFAULT 2 NOT NULL,
     hard_ticket_amount integer DEFAULT 3 NOT NULL,
     game_blocked boolean,
-    starting_balance integer DEFAULT 0
+    starting_balance integer DEFAULT 0,
+    vast_tag character varying,
+    ad_diamonds_reward integer
 );
 
 
@@ -436,6 +438,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190603213718'),
 ('20190604184246'),
 ('20190702181545'),
-('20190702184539');
+('20190702184539'),
+('20190704192550');
 
 

@@ -307,6 +307,18 @@
             "integer"
           ]
         },
+        "ad_diamonds_reward": {
+          "description": "the number of tickets received after watch Ads",
+          "type": [
+            "integer"
+          ]
+        },
+        "vast_tag": {
+          "description": "VAST Tag used on Ad Player",
+          "type": [
+            "string"
+          ]
+        },
         "identity": {
           "anyOf": [
             {
@@ -366,6 +378,12 @@
         },
         "hard_ticket_amount": {
           "$ref": "#/definitions/game_setting/definitions/hard_ticket_amount"
+        },
+        "ad_diamonds_reward": {
+          "$ref": "#/definitions/game_setting/definitions/ad_diamonds_reward"
+        },
+        "vast_tag": {
+          "$ref": "#/definitions/game_setting/definitions/vast_tag"
         }
       },
       "additionalProperties": false,
@@ -377,7 +395,9 @@
         "hard_carousel_speed",
         "easy_ticket_amount",
         "medium_ticket_amount",
-        "hard_ticket_amount"
+        "hard_ticket_amount",
+        "ad_diamonds_reward",
+        "vast_tag"
       ]
     },
     "order": {

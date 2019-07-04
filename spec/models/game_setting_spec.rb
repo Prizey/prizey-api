@@ -10,6 +10,8 @@ RSpec.describe GameSetting, type: :model do
   it { is_expected.to validate_presence_of :easy_ticket_amount }
   it { is_expected.to validate_presence_of :medium_ticket_amount }
   it { is_expected.to validate_presence_of :hard_ticket_amount }
+  it { is_expected.to validate_presence_of :ad_diamonds_reward }
+  it { is_expected.to validate_presence_of :vast_tag }
 
   describe '#as_json' do
     let(:game_setting) { create(:game_setting) }
@@ -23,7 +25,9 @@ RSpec.describe GameSetting, type: :model do
         hard_carousel_speed: 3,
         easy_ticket_amount: 1,
         medium_ticket_amount: 2,
-        hard_ticket_amount: 3
+        hard_ticket_amount: 3,
+        ad_diamonds_reward: 3,
+        vast_tag: 'abc123'
       }
     end
 
