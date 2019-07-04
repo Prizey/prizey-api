@@ -32,6 +32,12 @@ definitions:
   hard_ticket_amount:
     description: the number of tickets for the hard play setting
     type: integer
+  ad_diamonds_reward:
+    description: the number of tickets received after watch Ads
+    type: integer
+  vast_tag:
+    description: VAST Tag used on Ad Player
+    type: string
   identity:
     anyOf:
       - $ref: "/schemata/game_setting#/definitions/id"
@@ -67,6 +73,10 @@ properties:
     $ref: "/schemata/game_setting#/definitions/medium_ticket_amount"
   hard_ticket_amount:
     $ref: "/schemata/game_setting#/definitions/hard_ticket_amount"
+  ad_diamonds_reward:
+    $ref: "/schemata/game_setting#/definitions/ad_diamonds_reward"
+  vast_tag:
+    $ref: "/schemata/game_setting#/definitions/vast_tag"
 additionalProperties: false
 required:
   - id
@@ -77,4 +87,6 @@ required:
   - easy_ticket_amount
   - medium_ticket_amount
   - hard_ticket_amount
+  - ad_diamonds_reward
+  - vast_tag
 id: schemata/game_setting

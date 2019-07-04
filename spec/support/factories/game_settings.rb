@@ -11,5 +11,7 @@ FactoryBot.define do
     hard_ticket_amount 3
     game_blocked false
     starting_balance 0
+    ad_diamonds_reward 3
+    vast_tag 'abc123'
   end
 end
