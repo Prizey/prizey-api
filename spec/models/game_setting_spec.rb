@@ -11,7 +11,6 @@ RSpec.describe GameSetting, type: :model do
   it { is_expected.to validate_presence_of :medium_ticket_amount }
   it { is_expected.to validate_presence_of :hard_ticket_amount }
   it { is_expected.to validate_presence_of :ad_diamonds_reward }
-  it { is_expected.to validate_presence_of :vast_tag }
 
   describe '#as_json' do
     let(:game_setting) { create(:game_setting) }
