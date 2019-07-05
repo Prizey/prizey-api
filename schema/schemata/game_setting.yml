@@ -37,7 +37,9 @@ definitions:
     type: integer
   vast_tag:
     description: VAST Tag used on Ad Player
-    type: string
+    type:
+      - "null"
+      - string
   identity:
     anyOf:
       - $ref: "/schemata/game_setting#/definitions/id"

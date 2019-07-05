@@ -316,6 +316,7 @@
         "vast_tag": {
           "description": "VAST Tag used on Ad Player",
           "type": [
+            "null",
             "string"
           ]
         },
