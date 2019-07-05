@@ -14,8 +14,7 @@ RSpec.describe 'GET /purchase_options', type: :request do
       let(:results) do
         JSON.parse([
           pack_1.as_json,
-          pack_2.as_json,
-          pack_3.as_json
+          pack_2.as_json
         ].to_json)
       end
 
@@ -27,6 +26,7 @@ RSpec.describe 'GET /purchase_options', type: :request do
       end
 
       it { expect(response).to have_http_status(:ok) }
+      it { expect(JSON.parse(response.body).length).to eq(2) }
       it { expect(JSON.parse(response.body)).to eq(results) }
     end
 
