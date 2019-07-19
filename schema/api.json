@@ -313,6 +313,12 @@
             "integer"
           ]
         },
+        "video_ads_for_reward": {
+          "description": "the number of video ads to watch to receive the reward",
+          "type": [
+            "integer"
+          ]
+        },
         "vast_tag": {
           "description": "VAST Tag used on Ad Player",
           "type": [
@@ -385,6 +391,9 @@
         },
         "vast_tag": {
           "$ref": "#/definitions/game_setting/definitions/vast_tag"
+        },
+        "video_ads_for_reward": {
+          "$ref": "#/definitions/game_setting/definitions/video_ads_for_reward"
         }
       },
       "additionalProperties": false,
@@ -398,7 +407,8 @@
         "medium_ticket_amount",
         "hard_ticket_amount",
         "ad_diamonds_reward",
-        "vast_tag"
+        "vast_tag",
+        "video_ads_for_reward"
       ]
     },
     "order": {
