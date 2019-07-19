@@ -162,6 +162,7 @@ The game setting is a set of information for the game configuration
 | **medium_ticket_amount** | *integer* | the number of tickets for the medium play setting | `42` |
 | **price_multiplier** | *number* | the number that multiplies the price velocity of the game setting | `42.0` |
 | **vast_tag** | *nullable string* | VAST Tag used on Ad Player | `null` |
+| **video_ads_for_reward** | *integer* | the number of video ads to watch to receive the reward | `42` |
 
 ### <a name="link-GET-game_setting-/game_setting">Game Setting Info</a>
 

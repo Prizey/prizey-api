@@ -5,23 +5,8 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
-SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
-
---
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
 
 --
 -- Name: updating_ticket_transactions(); Type: FUNCTION; Schema: public; Owner: -
@@ -118,7 +103,8 @@ CREATE TABLE public.game_settings (
     game_blocked boolean,
     starting_balance integer DEFAULT 0,
     vast_tag character varying,
-    ad_diamonds_reward integer
+    ad_diamonds_reward integer,
+    video_ads_for_reward integer DEFAULT 1
 );
 
 
@@ -439,6 +425,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190604184246'),
 ('20190702181545'),
 ('20190702184539'),
-('20190704192550');
+('20190704192550'),
+('20190719175515');
 
 

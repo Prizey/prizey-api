@@ -35,6 +35,9 @@ definitions:
   ad_diamonds_reward:
     description: the number of tickets received after watch Ads
     type: integer
+  video_ads_for_reward:
+    description: the number of video ads to watch to receive the reward
+    type: integer
   vast_tag:
     description: VAST Tag used on Ad Player
     type:
@@ -79,6 +82,8 @@ properties:
     $ref: "/schemata/game_setting#/definitions/ad_diamonds_reward"
   vast_tag:
     $ref: "/schemata/game_setting#/definitions/vast_tag"
+  video_ads_for_reward:
+    $ref: "/schemata/game_setting#/definitions/video_ads_for_reward"
 additionalProperties: false
 required:
   - id
@@ -91,4 +96,5 @@ required:
   - hard_ticket_amount
   - ad_diamonds_reward
   - vast_tag
+  - video_ads_for_reward
 id: schemata/game_setting
