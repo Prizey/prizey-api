@@ -178,7 +178,8 @@ CREATE TABLE public.ticket_transactions (
     user_id bigint NOT NULL,
     amount integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    source character varying
 );
 
 
@@ -426,6 +427,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190702181545'),
 ('20190702184539'),
 ('20190704192550'),
-('20190719175515');
+('20190719175515'),
+('20190807192250');
 
 

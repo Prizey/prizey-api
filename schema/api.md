@@ -485,6 +485,7 @@ POST /ticket_transactions
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **amount** | *integer* | the amount of tickets | `42` |
+| **source** | *nullable string* | the source that fired the transaction | `null` |
 
 
 #### Curl Example
@@ -492,7 +493,8 @@ POST /ticket_transactions
 ```bash
 $ curl -n -X POST https://api.prizey.app/ticket_transactions \
   -d '{
-  "amount": 42
+  "amount": 42,
+  "source": "example"
 }' \
   -H "Content-Type: application/json"
 ```
