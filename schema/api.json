@@ -864,6 +864,13 @@
             "integer"
           ]
         },
+        "source": {
+          "description": "the source that fired the transaction",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
         "created_at": {
           "description": "when the ticket transaction was created",
           "format": "date-time",
@@ -917,10 +924,13 @@
           "method": "POST",
           "rel": "create",
           "schema": {
-            "strictProperties": true,
+            "additionalProperties": false,
             "properties": {
               "amount": {
                 "$ref": "#/definitions/ticket_transaction/definitions/amount"
+              },
+              "source": {
+                "$ref": "#/definitions/ticket_transaction/definitions/source"
               }
             },
             "type": [
