@@ -40,7 +40,7 @@ class PaymentsController < ApplicationController
 
   def add_tickets_to_user(options)
     current_user.ticket_transactions.create(
-      amount: options.ticket_amount
+      amount: options.ticket_amount, source: 'purchase'
     )
   end
 

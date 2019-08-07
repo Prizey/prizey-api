@@ -11,7 +11,10 @@ class AddStartingBalance
   end
 
   def execute
-    ticket_transaction = TicketTransaction.new(user: @user, amount: @amount)
+    ticket_transaction = TicketTransaction.new(
+      user: @user, amount: @amount, source: 'initial-balance'
+    )
+
     if ticket_transaction.save
       { success: true, payload: ticket_transaction }
     else
