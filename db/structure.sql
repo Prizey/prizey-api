@@ -5,6 +5,7 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
+SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
@@ -104,7 +105,8 @@ CREATE TABLE public.game_settings (
     starting_balance integer DEFAULT 0,
     vast_tag character varying,
     ad_diamonds_reward integer,
-    video_ads_for_reward integer DEFAULT 1
+    video_ads_for_reward integer DEFAULT 1,
+    sell_it_back_amount integer DEFAULT 3
 );
 
 
@@ -428,6 +430,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190702184539'),
 ('20190704192550'),
 ('20190719175515'),
-('20190807192250');
+('20190807192250'),
+('20190812175830');
 
 

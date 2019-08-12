@@ -27,7 +27,8 @@ RSpec.describe GameSetting, type: :model do
         hard_ticket_amount: 3,
         ad_diamonds_reward: 3,
         vast_tag: 'abc123',
-        video_ads_for_reward: 1
+        video_ads_for_reward: 1,
+        sell_it_back_amount: 3
       }
     end
 
