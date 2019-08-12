@@ -326,6 +326,12 @@
             "string"
           ]
         },
+        "sell_it_back_amount": {
+          "description": "the amount set to sell it back",
+          "type": [
+            "integer"
+          ]
+        },
         "identity": {
           "anyOf": [
             {
@@ -394,6 +400,9 @@
         },
         "video_ads_for_reward": {
           "$ref": "#/definitions/game_setting/definitions/video_ads_for_reward"
+        },
+        "sell_it_back_amount": {
+          "$ref": "#/definitions/game_setting/definitions/sell_it_back_amount"
         }
       },
       "additionalProperties": false,

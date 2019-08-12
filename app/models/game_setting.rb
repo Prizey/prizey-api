@@ -18,7 +18,8 @@ class GameSetting < ApplicationRecord
       hard_ticket_amount: hard_ticket_amount,
       ad_diamonds_reward: ad_diamonds_reward,
       vast_tag: vast_tag,
-      video_ads_for_reward: video_ads_for_reward
+      video_ads_for_reward: video_ads_for_reward,
+      sell_it_back_amount: sell_it_back_amount
     }
   end
   # rubocop:enable Metrics/MethodLength
