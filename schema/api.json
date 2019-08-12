@@ -417,7 +417,8 @@
         "hard_ticket_amount",
         "ad_diamonds_reward",
         "vast_tag",
-        "video_ads_for_reward"
+        "video_ads_for_reward",
+        "sell_it_back_amount"
       ]
     },
     "order": {
