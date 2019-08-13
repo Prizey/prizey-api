@@ -27,4 +27,15 @@ class ShopifyCollection
         price: variant['price'].to_f }
     end.compact
   end
+
+  def self.sort_products_by_tags(collection_identifier, products)
+    JSON.parse(products.to_json).sort_by do |product|
+      collection_tag = (
+        product['tags'].select { |tag| tag.start_with? collection_identifier }
+      ).first if product['tags'].kind_of?(Array)
+
+      order = (collection_tag.split(':')[1] if collection_tag).to_i
+      order > 0 ? order : 1_000_000
+    end
+  end
 end
