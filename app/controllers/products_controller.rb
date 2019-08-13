@@ -6,8 +6,10 @@ class ProductsController < ApplicationController
   def index
     collection = ShopifyCollection.find_by(:handle, params[:identifier])
     products = ShopifyCollection.products(collection['id'])
-    serialized = ShopifyCollection.serialize_products(products)
-    sorted = serialized.sort_by! { |product| product[:price] }
-    render json: sorted, status: :ok
+    sorted = ShopifyCollection.sort_products_by_tags(
+      params[:identifier], products
+    )
+    serialized = ShopifyCollection.serialize_products(sorted)
+    render json: serialized, status: :ok
   end
 end

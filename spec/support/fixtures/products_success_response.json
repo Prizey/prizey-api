@@ -10,7 +10,7 @@
     "updated_at": "2019-04-09T17:17:21-04:00",
     "published_at": "2019-04-07T14:48:41-04:00",
     "template_suffix": null,
-    "tags": "",
+    "tags": ["easy:3", "medium:3", "hard:3", "home:3"],
     "published_scope": "web",
     "admin_graphql_api_id": "gid://shopify/Product/123",
     "variants": [
@@ -172,7 +172,7 @@
     "updated_at": "2019-04-09T17:17:21-04:00",
     "published_at": "2019-04-07T14:48:41-04:00",
     "template_suffix": null,
-    "tags": "",
+    "tags": ["easy:1", "medium:1", "hard:1", "home:1"],
     "published_scope": "web",
     "admin_graphql_api_id": "gid://shopify/Product/789",
     "variants": [
@@ -253,7 +253,7 @@
     "updated_at": "2019-04-09T17:17:21-04:00",
     "published_at": "2019-04-07T14:48:41-04:00",
     "template_suffix": null,
-    "tags": "",
+    "tags": ["easy:2", "medium:2", "hard:2", "home:2"],
     "published_scope": "web",
     "admin_graphql_api_id": "gid://shopify/Product/987",
     "variants": [
