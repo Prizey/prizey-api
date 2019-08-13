@@ -36,7 +36,7 @@ class ShopifyCollection
         ).first
       end
 
-      order = (collection_tag.split(':')[1] if collection_tag).to_i
+      order = collection_tag&.split(':')&.last.to_i
       order.positive? ? order : 1_000_000
     end
   end
