@@ -30,12 +30,14 @@ class ShopifyCollection
 
   def self.sort_products_by_tags(collection_identifier, products)
     JSON.parse(products.to_json).sort_by do |product|
-      collection_tag = (
-        product['tags'].select { |tag| tag.start_with? collection_identifier }
-      ).first if product['tags'].kind_of?(Array)
+      if product['tags'].is_a?(Array)
+        collection_tag = (
+          product['tags'].select { |tag| tag.start_with? collection_identifier }
+        ).first
+      end
 
       order = (collection_tag.split(':')[1] if collection_tag).to_i
-      order > 0 ? order : 1_000_000
+      order.positive? ? order : 1_000_000
     end
   end
 end
