@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class TicketTransactionsController < ApplicationController
-  before_action :check_user_balance, only: :create
-
   def index
     render json: current_user.ticket_transactions
   end
@@ -10,14 +8,24 @@ class TicketTransactionsController < ApplicationController
   def create
     return render status: :forbidden if repeat_reward?
 
-    ticket = current_user.ticket_transactions.create(
-      amount: params[:amount], source: params[:source]
-    )
-
-    render json: ticket.as_json, status: :created
+    ticket = current_user.with_lock do
+      raise ActiveRecord::Rollback if invalid_transaction?
+      create_transaction
+    end
+    if ticket.present?
+      render json: ticket.as_json, status: :created
+    else
+      render_error
+    end
   end
 
   private
+
+  def create_transaction
+    current_user.ticket_transactions.create(
+      amount: params[:amount], source: params[:source]
+    )
+  end
 
   def repeat_reward?
     return false if params[:source] != 'reward'
@@ -27,9 +35,8 @@ class TicketTransactionsController < ApplicationController
     last_transaction[:source] == 'reward' && elapsed_time < 30
   end
 
-  def check_user_balance
-    return true if params[:amount].to_i.positive?
-    render_error if (current_user.tickets + params[:amount].to_i).negative?
+  def invalid_transaction?
+    (current_user.tickets + params[:amount].to_i).negative?
   end
 
   def render_error
