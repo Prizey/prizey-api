@@ -13,6 +13,38 @@ describe 'POST /ticket_transactions', type: :request do
       it { expect(JSON.parse(response.body)['amount']).to eq(10) }
     end
 
+    context 'when type is reward and less than 30s have passed' do
+      let(:params) { { amount: 12, source: 'reward' }.to_json }
+
+      before do
+        Timecop.freeze(Time.zone.now)
+        post '/ticket_transactions', params: params
+        post '/ticket_transactions', params: params
+      end
+
+      after { Timecop.return }
+
+      it { expect(response).to have_http_status(:forbidden) }
+      it { expect(TicketTransaction.where(amount: 12).count).to eq(1) }
+    end
+
+    context 'when type is reward and more than 30s have passed' do
+      let(:params) { { amount: 12, source: 'reward' }.to_json }
+
+      before do
+        now = Time.zone.now
+        Timecop.freeze(Time.zone.now)
+        post '/ticket_transactions', params: params
+        Timecop.travel(now + 31)
+        post '/ticket_transactions', params: params
+      end
+
+      after { Timecop.return }
+
+      it { expect(response).to have_http_status(:created) }
+      it { expect(TicketTransaction.where(amount: 12).count).to eq(2) }
+    end
+
     context 'with incorrect params' do
       before { post '/ticket_transactions', params: { foo: 'bar' }.to_json }
 
