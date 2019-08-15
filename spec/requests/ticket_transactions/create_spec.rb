@@ -123,4 +123,43 @@ describe 'POST /ticket_transactions', type: :request do
       it { expect(response).to have_http_status(:bad_request) }
     end
   end
+
+  describe 'when source is sell' do
+    include_context 'with current_user'
+    let(:params) { { source: 'sell', amount: -1 }.to_json }
+
+    context 'when the user last transaction was play' do
+      before do
+        now = Time.zone.now
+        Timecop.freeze(Time.zone.now)
+
+        current_user.ticket_transactions.create(amount: 3, source: 'play')
+
+        Timecop.travel(now + 31)
+
+        post '/ticket_transactions', params: params
+      end
+
+      after { Timecop.return }
+
+      it { expect(response).to have_http_status(:created) }
+    end
+
+    context 'when the user last transaction was sell' do
+      before do
+        now = Time.zone.now
+        Timecop.freeze(Time.zone.now)
+
+        current_user.ticket_transactions.create(amount: 3, source: 'sell')
+
+        Timecop.travel(now + 31)
+
+        post '/ticket_transactions', params: params
+      end
+
+      after { Timecop.return }
+
+      it { expect(response).to have_http_status(:forbidden) }
+    end
+  end
 end

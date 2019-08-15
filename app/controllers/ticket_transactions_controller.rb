@@ -6,7 +6,7 @@ class TicketTransactionsController < ApplicationController
   end
 
   def create
-    return render status: :forbidden if repeat_reward?
+    return render status: :forbidden if repeat_reward? | invalid_sell?
 
     ticket = current_user.with_lock do
       raise ActiveRecord::Rollback if invalid_transaction?
@@ -33,6 +33,11 @@ class TicketTransactionsController < ApplicationController
     last_transaction = TicketTransaction.last
     elapsed_time = Time.zone.now.to_i - last_transaction.created_at.to_i
     last_transaction[:source] == 'reward' && elapsed_time < 30
+  end
+
+  def invalid_sell?
+    return false if params[:source] != 'sell'
+    current_user.ticket_transactions.last.source != 'play'
   end
 
   def invalid_transaction?
