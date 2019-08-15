@@ -10,7 +10,7 @@ class TicketTransactionsController < ApplicationController
 
     ticket = current_user.with_lock do
       raise ActiveRecord::Rollback if invalid_transaction?
-      create_transaction
+      create_transaction(amount)
     end
     if ticket.present?
       render json: ticket.as_json, status: :created
@@ -21,10 +21,22 @@ class TicketTransactionsController < ApplicationController
 
   private
 
-  def create_transaction
+  def create_transaction(value)
     current_user.ticket_transactions.create(
-      amount: params[:amount], source: params[:source]
+      amount: value, source: params[:source]
     )
+  end
+
+  def amount
+    gs = GameSetting.first
+    return gs.sell_it_back_amount if params[:source] == 'sell'
+    return gs.ad_diamonds_reward if params[:source] == 'reward'
+    return play_amount(gs) if params[:source] == 'play'
+    0
+  end
+
+  def play_amount(game_setting)
+    -1 * game_setting["#{params[:difficulty]}_ticket_amount"]
   end
 
   def repeat_reward?
@@ -43,7 +55,7 @@ class TicketTransactionsController < ApplicationController
   end
 
   def invalid_transaction?
-    (current_user.tickets + params[:amount].to_i).negative?
+    (current_user.tickets + amount.to_i).negative?
   end
 
   def render_error
