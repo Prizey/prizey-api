@@ -868,6 +868,13 @@
             ]
           }
         },
+        "difficulty": {
+          "description": "difficulty of the game",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
         "amount": {
           "description": "the amount of tickets",
           "type": [
@@ -877,8 +884,7 @@
         "source": {
           "description": "the source that fired the transaction",
           "type": [
-            "string",
-            "null"
+            "string"
           ]
         },
         "created_at": {
@@ -936,8 +942,8 @@
           "schema": {
             "additionalProperties": false,
             "properties": {
-              "amount": {
-                "$ref": "#/definitions/ticket_transaction/definitions/amount"
+              "difficulty": {
+                "$ref": "#/definitions/ticket_transaction/definitions/difficulty"
               },
               "source": {
                 "$ref": "#/definitions/ticket_transaction/definitions/source"
