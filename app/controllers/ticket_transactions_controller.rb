@@ -30,7 +30,7 @@ class TicketTransactionsController < ApplicationController
   def repeat_reward?
     return false if params[:source] != 'reward'
 
-    last_transaction = TicketTransaction.last
+    last_transaction = current_user.ticket_transactions.last
     elapsed_time = Time.zone.now.to_i - last_transaction.created_at.to_i
     last_transaction[:source] == 'reward' && elapsed_time < 30
   end
