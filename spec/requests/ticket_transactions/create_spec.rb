@@ -210,4 +210,16 @@ describe 'POST /ticket_transactions', type: :request do
       it { expect(response).to have_http_status(:forbidden) }
     end
   end
+
+  describe 'when it is a non-expected source' do
+    include_context 'with current_user'
+
+    before do
+      game_setting
+      post '/ticket_transactions', params: { source: 'foo' }.to_json
+    end
+
+    it { expect(response).to have_http_status(:created) }
+    it { expect(JSON.parse(response.body)['amount']).to eq(0) }
+  end
 end
