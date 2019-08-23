@@ -154,12 +154,9 @@ The game setting is a set of information for the game configuration
 | ------- | ------- | ------- | ------- |
 | **ad_diamonds_reward** | *integer* | the number of tickets received after watch Ads | `42` |
 | **easy_carousel_speed** | *integer* | the easy carousel speed parameter of the game setting | `42` |
-| **easy_ticket_amount** | *integer* | the number of tickets for the easy play setting | `42` |
 | **hard_carousel_speed** | *integer* | the hard carousel speed parameter of the game setting | `42` |
-| **hard_ticket_amount** | *integer* | the number of tickets for the hard play setting | `42` |
 | **id** | *integer* | unique game setting identifier | `42` |
 | **medium_carousel_speed** | *integer* | the medium carousel speed parameter of the game setting | `42` |
-| **medium_ticket_amount** | *integer* | the number of tickets for the medium play setting | `42` |
 | **price_multiplier** | *number* | the number that multiplies the price velocity of the game setting | `42.0` |
 | **sell_it_back_amount** | *integer* | the amount set to sell it back | `42` |
 | **vast_tag** | *nullable string* | VAST Tag used on Ad Player | `null` |

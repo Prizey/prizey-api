@@ -112,9 +112,6 @@ CREATE TABLE public.game_settings (
     hard_carousel_speed integer DEFAULT 3 NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    easy_ticket_amount integer DEFAULT 1 NOT NULL,
-    medium_ticket_amount integer DEFAULT 2 NOT NULL,
-    hard_ticket_amount integer DEFAULT 3 NOT NULL,
     game_blocked boolean,
     starting_balance integer DEFAULT 0,
     vast_tag character varying,
@@ -447,6 +444,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190719175515'),
 ('20190807192250'),
 ('20190812175830'),
-('20190823144510');
+('20190823144510'),
+('20190823183525');
 
 

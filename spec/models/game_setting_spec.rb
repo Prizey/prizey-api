@@ -7,9 +7,6 @@ RSpec.describe GameSetting, type: :model do
   it { is_expected.to validate_presence_of :easy_carousel_speed }
   it { is_expected.to validate_presence_of :medium_carousel_speed }
   it { is_expected.to validate_presence_of :hard_carousel_speed }
-  it { is_expected.to validate_presence_of :easy_ticket_amount }
-  it { is_expected.to validate_presence_of :medium_ticket_amount }
-  it { is_expected.to validate_presence_of :hard_ticket_amount }
   it { is_expected.to validate_presence_of :ad_diamonds_reward }
 
   describe '#as_json' do
@@ -22,9 +19,6 @@ RSpec.describe GameSetting, type: :model do
         easy_carousel_speed: 1,
         medium_carousel_speed: 2,
         hard_carousel_speed: 3,
-        easy_ticket_amount: 1,
-        medium_ticket_amount: 2,
-        hard_ticket_amount: 3,
         ad_diamonds_reward: 3,
         vast_tag: 'abc123',
         video_ads_for_reward: 1,
