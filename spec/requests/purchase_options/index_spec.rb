@@ -50,8 +50,8 @@ RSpec.describe 'GET /purchase_options', type: :request do
       it { expect(response).to have_http_status(:ok) }
       it { expect(JSON.parse(response.body).length).to eq(3) }
       it do
-        expect(JSON.parse(response.body).pluck('price'))
-          .to eq([10.0, 10.0, 10.0])
+        expect(JSON.parse(response.body).pluck('ticket_amount'))
+          .to eq([10, 10, 10])
       end
     end
 
