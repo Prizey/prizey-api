@@ -9,9 +9,6 @@ describe 'POST /ticket_transactions', type: :request do
       easy_carousel_speed: 250,
       medium_carousel_speed: 180,
       hard_carousel_speed: 100,
-      easy_ticket_amount: 1,
-      medium_ticket_amount: 5,
-      hard_ticket_amount: 10,
       game_blocked: false,
       starting_balance: 4,
       vast_tag: 'https://syndication.exdynsrv.com/splash.php?idzone=3459509',
@@ -20,28 +17,38 @@ describe 'POST /ticket_transactions', type: :request do
       sell_it_back_amount: 1
     )
   end
+  let(:pack_1) { create(:purchase_option, :pack_1) }
+  let(:pack_2) { create(:purchase_option, :pack_2) }
+  let(:pack_3) { create(:purchase_option, :pack_3) }
+
+  let(:setup) do
+    game_setting
+    create(:purchase_option, :pack_1)
+    create(:purchase_option, :pack_2)
+    create(:purchase_option, :pack_3)
+  end
 
   describe 'when user is logged in and does have enough tickets' do
     include_context 'with current_user'
 
     context 'with correct params' do
       before do
-        game_setting
-        current_user.ticket_transactions.create(source: 'reward', amount: 1)
+        setup
+        current_user.ticket_transactions.create(source: 'reward', amount: 10)
         post '/ticket_transactions', params: {
           source: 'play', difficulty: 'easy'
         }.to_json
       end
 
       it { expect(response).to have_http_status(:created) }
-      it { expect(JSON.parse(response.body)['amount']).to eq(-1) }
+      it { expect(JSON.parse(response.body)['amount']).to eq(-10) }
     end
 
     context 'when type is reward and less than 30s have passed' do
       let(:params) { { source: 'reward' }.to_json }
 
       before do
-        game_setting
+        setup
         Timecop.freeze(Time.zone.now)
         post '/ticket_transactions', params: params
         post '/ticket_transactions', params: params
@@ -57,7 +64,7 @@ describe 'POST /ticket_transactions', type: :request do
       let(:params) { { source: 'reward' }.to_json }
 
       before do
-        game_setting
+        setup
         now = Time.zone.now
         Timecop.freeze(Time.zone.now)
         post '/ticket_transactions', params: params
@@ -89,7 +96,7 @@ describe 'POST /ticket_transactions', type: :request do
       end
 
       before do
-        game_setting
+        setup
         current_user.blocked = true
         post '/ticket_transactions', params: { source: 'sell' }.to_json
       end
@@ -105,7 +112,7 @@ describe 'POST /ticket_transactions', type: :request do
 
     context 'with correct params' do
       before do
-        game_setting
+        setup
         current_user.ticket_transactions.create!(
           source: 'reward',
           amount: -1 * current_user.tickets
@@ -125,7 +132,7 @@ describe 'POST /ticket_transactions', type: :request do
 
     context 'with incorrect params' do
       before do
-        game_setting
+        setup
         post '/ticket_transactions', params: { foo: 'bar' }.to_json
       end
 
@@ -141,7 +148,7 @@ describe 'POST /ticket_transactions', type: :request do
       end
 
       before do
-        game_setting
+        setup
         current_user.blocked = true
         post '/ticket_transactions', params: { source: 'reward' }.to_json
       end
@@ -155,7 +162,7 @@ describe 'POST /ticket_transactions', type: :request do
   describe 'when user is logged out' do
     context 'with correct params' do
       before do
-        game_setting
+        setup
         post '/ticket_transactions', params: { source: 'reward' }.to_json
       end
 
@@ -175,7 +182,7 @@ describe 'POST /ticket_transactions', type: :request do
 
     context 'when the user last transaction was play' do
       before do
-        game_setting
+        setup
         current_user.ticket_transactions.create(source: 'reward', amount: 10)
         now = Time.zone.now
         Timecop.freeze(Time.zone.now)
@@ -194,7 +201,7 @@ describe 'POST /ticket_transactions', type: :request do
 
     context 'when the user last transaction was sell' do
       before do
-        game_setting
+        setup
         now = Time.zone.now
         Timecop.freeze(Time.zone.now)
 
@@ -215,7 +222,7 @@ describe 'POST /ticket_transactions', type: :request do
     include_context 'with current_user'
 
     before do
-      game_setting
+      setup
       post '/ticket_transactions', params: { source: 'foo' }.to_json
     end
 

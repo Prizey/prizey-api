@@ -31,12 +31,18 @@ class TicketTransactionsController < ApplicationController
     gs = GameSetting.first
     return gs.sell_it_back_amount if params[:source] == 'sell'
     return gs.ad_diamonds_reward if params[:source] == 'reward'
-    return play_amount(gs) if params[:source] == 'play'
+    return play_amount if params[:source] == 'play'
     0
   end
 
-  def play_amount(game_setting)
-    -1 * game_setting["#{params[:difficulty]}_ticket_amount"]
+  def play_amount
+    options = PurchaseOption.order(sorting: :asc, ticket_amount: :asc).limit(3)
+    difficulty = {
+      easy: 0,
+      medium: 1,
+      hard: 2
+    }
+    -1 * options[difficulty[params[:difficulty].to_sym]].ticket_amount
   end
 
   def repeat_reward?
