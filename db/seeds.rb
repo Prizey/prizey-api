@@ -28,6 +28,26 @@ AdminText.create!(
     {
       field: 'paywall_reward_cta',
       text: 'GET UNLIMITED FREE DIAMONDS 🤑'
+    },
+    {
+      field: 'difficulty_title',
+      text: 'Pick a difficulty'
+    },
+    {
+      field: 'difficulty_bottom_text',
+      text: 'The harder difficulty, the better the prizes.'
+    },
+    {
+      field: 'difficulty_first_level_label',
+      text: 'EASY'
+    },
+    {
+      field: 'difficulty_second_level_label',
+      text: 'MEDIUM'
+    },
+    {
+      field: 'difficulty_third_level_label',
+      text: 'HARD'
     }
   ]
 )
