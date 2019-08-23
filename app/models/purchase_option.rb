@@ -7,7 +7,7 @@ class PurchaseOption < ApplicationRecord
     {
       id: id,
       name: name,
-      price: price,
+      price: price.to_i,
       ticket_amount: ticket_amount
     }
   end

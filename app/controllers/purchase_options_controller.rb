@@ -4,6 +4,7 @@ class PurchaseOptionsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    render json: PurchaseOption.limit(2).order(price: :asc), status: :ok
+    options = PurchaseOption.order(sorting: :asc, ticket_amount: :asc).limit(3)
+    render json: options, status: :ok
   end
 end
