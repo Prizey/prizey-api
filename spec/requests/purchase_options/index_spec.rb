@@ -16,12 +16,12 @@ RSpec.describe 'GET /purchase_options', type: :request do
         JSON.parse([
           pack_3.as_json,
           pack_4.as_json,
-          pack_2.as_json,
+          pack_2.as_json
         ].to_json)
       end
 
       before do
-        2.times { create(:purchase_option, :pack_1) }
+        create_list(:purchase_option, 2, :pack_1)
         pack_1
         pack_2.update(sorting: -1)
         pack_3.update(sorting: -3)
@@ -40,7 +40,7 @@ RSpec.describe 'GET /purchase_options', type: :request do
       let(:pack_3) { create(:purchase_option, :pack_3) }
 
       before do
-        2.times { create(:purchase_option, :pack_1) }
+        create_list(:purchase_option, 2, :pack_1)
         pack_1
         pack_2
         pack_3
@@ -49,8 +49,8 @@ RSpec.describe 'GET /purchase_options', type: :request do
 
       it { expect(response).to have_http_status(:ok) }
       it { expect(JSON.parse(response.body).length).to eq(3) }
-      it do 
-        expect(JSON.parse(response.body).pluck 'price')
+      it do
+        expect(JSON.parse(response.body).pluck('price'))
           .to eq([10.0, 10.0, 10.0])
       end
     end
