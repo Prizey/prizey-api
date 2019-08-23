@@ -14,20 +14,25 @@ RSpec.describe 'GET /purchase_options', type: :request do
       let(:results) do
         JSON.parse([
           pack_1.as_json,
-          pack_2.as_json
+          pack_1.as_json,
+          pack_1.as_json,
         ].to_json)
       end
 
       before do
-        3.times { pack_1 }
+        2.times { create(:purchase_option, :pack_1) }
+        pack_1
         pack_2
         pack_3
         get '/purchase_options'
       end
 
       it { expect(response).to have_http_status(:ok) }
-      it { expect(JSON.parse(response.body).length).to eq(2) }
-      it { expect(JSON.parse(response.body)).to eq(results) }
+      it { expect(JSON.parse(response.body).length).to eq(3) }
+      it do 
+        expect(JSON.parse(response.body).pluck 'price')
+          .to eq([10.0, 10.0, 10.0])
+      end
     end
 
     context 'without purchase options' do
