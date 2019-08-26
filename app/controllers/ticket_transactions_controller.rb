@@ -36,7 +36,7 @@ class TicketTransactionsController < ApplicationController
   end
 
   def play_amount
-    ticket = PurchaseOption.find(params[:difficulty]).ticket_amount
+    ticket = PurchaseOption.find(params[:pack]).ticket_amount
     -1 * ticket
   end
 

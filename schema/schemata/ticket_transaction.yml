@@ -18,8 +18,8 @@ definitions:
     targetSchema:
       anyOf:
         - "$ref": "/schemata/user"
-  difficulty:
-    description: difficulty of the game
+  pack:
+    description: the corresponding pack (purchase option) of the game
     type:
       - integer
       - "null"
@@ -64,8 +64,8 @@ links:
     schema:
       additionalProperties: false
       properties:
-        difficulty:
-          "$ref": "/schemata/ticket_transaction#/definitions/difficulty"
+        pack:
+          "$ref": "/schemata/ticket_transaction#/definitions/pack"
         source:
           "$ref": "/schemata/ticket_transaction#/definitions/source"
       type:

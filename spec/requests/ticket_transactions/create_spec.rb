@@ -36,7 +36,7 @@ describe 'POST /ticket_transactions', type: :request do
         setup
         current_user.ticket_transactions.create(source: 'reward', amount: 10)
         post '/ticket_transactions', params: {
-          source: 'play', difficulty: pack_1.id
+          source: 'play', pack: pack_1.id
         }.to_json
       end
 
@@ -118,7 +118,7 @@ describe 'POST /ticket_transactions', type: :request do
           amount: -1 * current_user.tickets
         )
         post '/ticket_transactions',
-          params: { source: 'play', difficulty: pack_3.id }.to_json
+          params: { source: 'play', pack: pack_3.id }.to_json
       end
 
       it { expect(response).to have_http_status(:unprocessable_entity) }
