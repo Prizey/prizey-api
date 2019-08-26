@@ -36,13 +36,8 @@ class TicketTransactionsController < ApplicationController
   end
 
   def play_amount
-    options = PurchaseOption.order(sorting: :asc, ticket_amount: :asc).limit(3)
-    difficulty = {
-      easy: 0,
-      medium: 1,
-      hard: 2
-    }
-    -1 * options[difficulty[params[:difficulty].to_sym]].ticket_amount
+    ticket = PurchaseOption.find(params[:pack]).ticket_amount
+    -1 * ticket
   end
 
   def repeat_reward?
