@@ -482,7 +482,7 @@ POST /ticket_transactions
 
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
-| **difficulty** | *nullable string* | difficulty of the game | `null` |
+| **difficulty** | *nullable integer* | difficulty of the game | `null` |
 | **source** | *string* | the source that fired the transaction | `"example"` |
 
 
@@ -491,7 +491,7 @@ POST /ticket_transactions
 ```bash
 $ curl -n -X POST https://api.prizey.app/ticket_transactions \
   -d '{
-  "difficulty": "example",
+  "difficulty": 42,
   "source": "example"
 }' \
   -H "Content-Type: application/json"

@@ -21,7 +21,7 @@ definitions:
   difficulty:
     description: difficulty of the game
     type:
-      - string
+      - integer
       - "null"
   amount:
     description: the amount of tickets

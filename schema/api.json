@@ -841,7 +841,7 @@
         "difficulty": {
           "description": "difficulty of the game",
           "type": [
-            "string",
+            "integer",
             "null"
           ]
         },
