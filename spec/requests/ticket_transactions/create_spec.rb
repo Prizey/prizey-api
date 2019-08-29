@@ -14,7 +14,8 @@ describe 'POST /ticket_transactions', type: :request do
       vast_tag: 'https://syndication.exdynsrv.com/splash.php?idzone=3459509',
       ad_diamonds_reward: 5,
       video_ads_for_reward: 2,
-      sell_it_back_amount: 1
+      sell_it_back_amount: 1,
+      home_carousel_speed: 1
     )
   end
   let(:pack_1) { create(:purchase_option, :pack_1) }

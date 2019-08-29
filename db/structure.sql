@@ -10,20 +10,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
---
 -- Name: updating_ticket_transactions(); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -117,7 +103,8 @@ CREATE TABLE public.game_settings (
     vast_tag character varying,
     ad_diamonds_reward integer,
     video_ads_for_reward integer DEFAULT 1,
-    sell_it_back_amount integer DEFAULT 3
+    sell_it_back_amount integer DEFAULT 3,
+    home_carousel_speed integer DEFAULT 1
 );
 
 
@@ -445,6 +432,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190807192250'),
 ('20190812175830'),
 ('20190823144510'),
-('20190823183525');
+('20190823183525'),
+('20190829192155');
 
 

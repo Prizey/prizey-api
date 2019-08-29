@@ -22,7 +22,8 @@ RSpec.describe GameSetting, type: :model do
         ad_diamonds_reward: 3,
         vast_tag: 'abc123',
         video_ads_for_reward: 1,
-        sell_it_back_amount: 3
+        sell_it_back_amount: 3,
+        home_carousel_speed: 1
       }
     end
 

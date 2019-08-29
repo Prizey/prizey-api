@@ -51,4 +51,18 @@ AdminText.create!(
     }
   ]
 )
+
+GameSetting.create!(
+  price_multiplier: 0.0,
+  easy_carousel_speed: 250,
+  medium_carousel_speed: 180,
+  hard_carousel_speed: 100,
+  game_blocked: false,
+  starting_balance: 4,
+  vast_tag: 'https://syndication.exdynsrv.com/splash.php?idzone=3459509',
+  ad_diamonds_reward: 5,
+  video_ads_for_reward: 2,
+  sell_it_back_amount: 1,
+  home_carousel_speed: 1
+)
 # rubocop:enable Metrics/LineLength
