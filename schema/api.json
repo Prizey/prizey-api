@@ -314,6 +314,12 @@
             "integer"
           ]
         },
+        "home_carousel_speed": {
+          "description": "the carousel speed of the home",
+          "type": [
+            "integer"
+          ]
+        },
         "identity": {
           "anyOf": [
             {
@@ -376,6 +382,9 @@
         },
         "sell_it_back_amount": {
           "$ref": "#/definitions/game_setting/definitions/sell_it_back_amount"
+        },
+        "home_carousel_speed": {
+          "$ref": "#/definitions/game_setting/definitions/home_carousel_speed"
         }
       },
       "additionalProperties": false,
@@ -388,7 +397,8 @@
         "ad_diamonds_reward",
         "vast_tag",
         "video_ads_for_reward",
-        "sell_it_back_amount"
+        "sell_it_back_amount",
+        "home_carousel_speed"
       ]
     },
     "order": {

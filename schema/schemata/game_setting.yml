@@ -37,6 +37,9 @@ definitions:
   sell_it_back_amount:
     description: the amount set to sell it back
     type: integer
+  home_carousel_speed:
+    description: the carousel speed of the home
+    type: integer
   identity:
     anyOf:
       - $ref: "/schemata/game_setting#/definitions/id"
@@ -74,6 +77,8 @@ properties:
     $ref: "/schemata/game_setting#/definitions/video_ads_for_reward"
   sell_it_back_amount:
     $ref: "/schemata/game_setting#/definitions/sell_it_back_amount"
+  home_carousel_speed:
+    $ref: "/schemata/game_setting#/definitions/home_carousel_speed"
 additionalProperties: false
 required:
   - id
@@ -85,4 +90,5 @@ required:
   - vast_tag
   - video_ads_for_reward
   - sell_it_back_amount
+  - home_carousel_speed
 id: schemata/game_setting
