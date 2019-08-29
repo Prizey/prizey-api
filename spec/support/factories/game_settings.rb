@@ -10,5 +10,6 @@ FactoryBot.define do
     starting_balance 0
     ad_diamonds_reward 3
     vast_tag 'abc123'
+    home_carousel_speed 1
   end
 end
