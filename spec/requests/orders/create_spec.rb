@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe 'POST /orders', type: :request do
   before do
-    stub_request(:post, 'https://prizeyapp.myshopify.com/admin/api/2019-04/orders.json')
+    stub_request(:post, 'https://prizeyapp.myshopify.com/admin/api/2020-01/orders.json')
       .with(
         body: {
           order: {
@@ -36,7 +36,7 @@ describe 'POST /orders', type: :request do
         }.to_json
       ).to_return(status: 200, body: { confirmed: true }.to_json, headers: {})
 
-    stub_request(:post, 'https://prizeyapp.myshopify.com/admin/api/2019-04/orders.json')
+    stub_request(:post, 'https://prizeyapp.myshopify.com/admin/api/2020-01/orders.json')
       .with(
         body: {
           order: {
