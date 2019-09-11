@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'GET /products/:identifier', type: :request do
-  let(:api_url) { 'https://prizeyapp.myshopify.com/admin/api/2019-04' }
+  let(:api_url) { 'https://prizeyapp.myshopify.com/admin/api/2020-01' }
 
   let(:collections) do
     File.read('spec/support/fixtures/collections_success_response.json')
