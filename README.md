@@ -1,8 +1,5 @@
 # Prizey API
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/2c4bf28d85a3dab722ed/maintainability)](https://codeclimate.com/repos/5cacf7104719e67715007ce3/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/2c4bf28d85a3dab722ed/test_coverage)](https://codeclimate.com/repos/5cacf7104719e67715007ce3/test_coverage)
-
 ## Installing
 
 #### Standalone
