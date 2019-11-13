@@ -128,6 +128,37 @@ ALTER SEQUENCE public.game_settings_id_seq OWNED BY public.game_settings.id;
 
 
 --
+-- Name: ips_blockeds; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.ips_blockeds (
+    id bigint NOT NULL,
+    user_ip character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: ips_blockeds_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.ips_blockeds_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: ips_blockeds_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.ips_blockeds_id_seq OWNED BY public.ips_blockeds.id;
+
+
+--
 -- Name: purchase_options; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -276,6 +307,13 @@ ALTER TABLE ONLY public.game_settings ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: ips_blockeds id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ips_blockeds ALTER COLUMN id SET DEFAULT nextval('public.ips_blockeds_id_seq'::regclass);
+
+
+--
 -- Name: purchase_options id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -318,6 +356,14 @@ ALTER TABLE ONLY public.ar_internal_metadata
 
 ALTER TABLE ONLY public.game_settings
     ADD CONSTRAINT game_settings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ips_blockeds ips_blockeds_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ips_blockeds
+    ADD CONSTRAINT ips_blockeds_pkey PRIMARY KEY (id);
 
 
 --
@@ -433,6 +479,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190812175830'),
 ('20190823144510'),
 ('20190823183525'),
-('20190829192155');
+('20190829192155'),
+('20191112004845');
 
 
