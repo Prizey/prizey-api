@@ -142,6 +142,55 @@ HTTP/1.1 200 OK
 ```
 
 
+## <a name="resource-freegame_ips">freegame ips</a>
+
+Stability: `prototype`
+
+A free game ips is where user IP blocking is controlled
+
+### Attributes
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **ip_blocked** | *boolean* | whether ip is blocked or not | `true` |
+
+### <a name="link-POST-freegame_ips-/freegame_ips">freegame ips Create</a>
+
+Create free game ip
+
+```
+POST /freegame_ips
+```
+
+#### Optional Parameters
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **ip** | *string* | user ip | `"example"` |
+
+
+#### Curl Example
+
+```bash
+$ curl -n -X POST https://api.prizey.app/freegame_ips \
+  -d '{
+  "ip": "example"
+}' \
+  -H "Content-Type: application/json"
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+null
+```
+
+
 ## <a name="resource-game_setting">Game Setting</a>
 
 Stability: `prototype`

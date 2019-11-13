@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'GET /products/:identifier', type: :request do
-  let(:api_url) { 'https://prizeyapp.myshopify.com/admin/api/2020-01' }
+  let(:api_url) { 'https://prizeyapp.myshopify.com/admin/api/2019-07' }
 
   let(:collections) do
     File.read('spec/support/fixtures/collections_success_response.json')
@@ -35,6 +35,15 @@ RSpec.describe 'GET /products/:identifier', type: :request do
         'price' => 8.0
       }
     ]
+  end
+
+  let(:headers) do
+    {
+      'Accept' => 'application/json',
+      'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+      'User-Agent' => 'ShopifyAPI/8.0.0 ActiveResource/5.1.0 Ruby/2.5.5',
+      'X-Shopify-Access-Token' => '3f2dbf6bc950ceeee022270dd04e0b39'
+    }
   end
 
   describe 'when user is logged in' do
@@ -75,7 +84,7 @@ RSpec.describe 'GET /products/:identifier', type: :request do
 
       before do
         stub_request(:get, api_url + '/custom_collections.json')
-          .to_return(status: 200, body: collections, headers: {})
+          .to_return(status: 200, body: collections, headers: headers)
 
         allow(ShopifyAPI::CustomCollection).to receive(:all)
           .and_return([collection])
@@ -93,7 +102,7 @@ RSpec.describe 'GET /products/:identifier', type: :request do
     context 'with identifier not found' do
       before do
         stub_request(:get, api_url + '/custom_collections.json')
-          .to_return(status: 200, body: '[]', headers: {})
+          .to_return(status: 200, body: '[]', headers: headers)
         get '/products/not_found'
       end
 
@@ -128,7 +137,7 @@ RSpec.describe 'GET /products/:identifier', type: :request do
 
       before do
         stub_request(:get, api_url + '/custom_collections.json')
-          .to_return(status: 200, body: collections, headers: {})
+          .to_return(status: 200, body: collections, headers: headers)
 
         allow(ShopifyAPI::CustomCollection).to receive(:all)
           .and_return([collection])
@@ -156,7 +165,7 @@ RSpec.describe 'GET /products/:identifier', type: :request do
 
       before do
         stub_request(:get, api_url + '/custom_collections.json')
-          .to_return(status: 200, body: collections, headers: {})
+          .to_return(status: 200, body: collections, headers: headers)
 
         allow(ShopifyAPI::CustomCollection).to receive(:all)
           .and_return([collection])
@@ -174,6 +183,7 @@ RSpec.describe 'GET /products/:identifier', type: :request do
     context 'with identifier not found' do
       before do
         stub_request(:get, api_url + '/custom_collections.json')
+          .with(headers: headers)
           .to_return(status: 200, body: '[]', headers: {})
         get '/products/not_found'
       end

@@ -249,6 +249,72 @@
         }
       }
     },
+    "freegame_ips": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "Prizey - freegame ips",
+      "description": "A free game ips is where user IP blocking is controlled",
+      "stability": "prototype",
+      "type": [
+        "object"
+      ],
+      "definitions": {
+        "ip_blocked": {
+          "description": "whether ip is blocked or not",
+          "readOnly": true,
+          "type": [
+            "boolean"
+          ]
+        },
+        "ip": {
+          "description": "user ip",
+          "type": [
+            "string"
+          ]
+        },
+        "identity": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/freegame_ips/definitions/ip_blocked"
+            }
+          ]
+        }
+      },
+      "links": [
+        {
+          "title": "Create",
+          "description": "Create free game ip",
+          "href": "/freegame_ips",
+          "method": "POST",
+          "rel": "instances",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "ip": {
+                "$ref": "#/definitions/freegame_ips/definitions/ip"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "targetSchema": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/freegame_ips"
+              },
+              {
+                "$ref": "#/definitions/error"
+              }
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "ip_blocked": {
+          "$ref": "#/definitions/freegame_ips/definitions/ip_blocked"
+        }
+      }
+    },
     "game_setting": {
       "$schema": "http://json-schema.org/draft-04/hyper-schema",
       "title": "Prizey - Game Setting",
@@ -1106,6 +1172,9 @@
     },
     "error": {
       "$ref": "#/definitions/error"
+    },
+    "freegame_ips": {
+      "$ref": "#/definitions/freegame_ips"
     },
     "game_setting": {
       "$ref": "#/definitions/game_setting"

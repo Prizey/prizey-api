@@ -22,4 +22,5 @@ Rails.application.routes.draw do
   resource :cards, only: [] do
     get '/', to: 'cards#index'
   end
+  resources :freegame_ips, only: %i[create]
 end
