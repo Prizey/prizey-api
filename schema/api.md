@@ -162,19 +162,12 @@ Create free game ip
 POST /freegame_ips
 ```
 
-#### Optional Parameters
-
-| Name | Type | Description | Example |
-| ------- | ------- | ------- | ------- |
-| **ip** | *string* | user ip | `"example"` |
-
 
 #### Curl Example
 
 ```bash
 $ curl -n -X POST https://api.prizey.app/freegame_ips \
   -d '{
-  "ip": "example"
 }' \
   -H "Content-Type: application/json"
 ```
