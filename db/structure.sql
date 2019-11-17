@@ -87,6 +87,37 @@ CREATE TABLE public.ar_internal_metadata (
 
 
 --
+-- Name: blacklists; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.blacklists (
+    id bigint NOT NULL,
+    ip_address character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: blacklists_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.blacklists_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: blacklists_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.blacklists_id_seq OWNED BY public.blacklists.id;
+
+
+--
 -- Name: game_settings; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -125,37 +156,6 @@ CREATE SEQUENCE public.game_settings_id_seq
 --
 
 ALTER SEQUENCE public.game_settings_id_seq OWNED BY public.game_settings.id;
-
-
---
--- Name: ips_blockeds; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.ips_blockeds (
-    id bigint NOT NULL,
-    user_ip character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: ips_blockeds_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.ips_blockeds_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: ips_blockeds_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.ips_blockeds_id_seq OWNED BY public.ips_blockeds.id;
 
 
 --
@@ -300,17 +300,17 @@ ALTER TABLE ONLY public.admin_texts ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
+-- Name: blacklists id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.blacklists ALTER COLUMN id SET DEFAULT nextval('public.blacklists_id_seq'::regclass);
+
+
+--
 -- Name: game_settings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.game_settings ALTER COLUMN id SET DEFAULT nextval('public.game_settings_id_seq'::regclass);
-
-
---
--- Name: ips_blockeds id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.ips_blockeds ALTER COLUMN id SET DEFAULT nextval('public.ips_blockeds_id_seq'::regclass);
 
 
 --
@@ -351,19 +351,19 @@ ALTER TABLE ONLY public.ar_internal_metadata
 
 
 --
+-- Name: blacklists blacklists_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.blacklists
+    ADD CONSTRAINT blacklists_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: game_settings game_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.game_settings
     ADD CONSTRAINT game_settings_pkey PRIMARY KEY (id);
-
-
---
--- Name: ips_blockeds ips_blockeds_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.ips_blockeds
-    ADD CONSTRAINT ips_blockeds_pkey PRIMARY KEY (id);
 
 
 --
@@ -480,6 +480,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190823144510'),
 ('20190823183525'),
 ('20190829192155'),
-('20191112004845');
+('20191112004845'),
+('20191116215241'),
+('20191117020942');
 
 
