@@ -10,6 +10,6 @@ class FreegameIpsController < ApplicationController
   private
 
   def ip_blocked
-    IpBlocked.execute(ip: params[:ip])[:payload]
+    VerifyIpAddress.execute(ip_address: request.remote_ip)[:payload]
   end
 end

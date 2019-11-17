@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-class IpBlocked
+class VerifyIpAddress
   def self.execute(*args, &block)
     new(*args, &block).execute
   end
 
   def initialize(**keywords)
-    @ip = keywords[:ip]
+    @ip_address = keywords[:ip_address]
   end
 
   def execute
@@ -17,16 +17,16 @@ class IpBlocked
   private
 
   def delete_expired_ips
-    IpsBlocked.where("created_at <= '#{10.minutes.ago}'").delete_all
+    Blacklist.where("created_at <= '#{10.minutes.ago}'").delete_all
   end
 
   def find_or_create_ip_blocked
-    blocked = IpsBlocked.find_by(user_ip: @ip)
+    blocked = Blacklist.find_by(ip_address: @ip_address)
     create_ip_blocked if blocked.blank?
     blocked.present?
   end
 
   def create_ip_blocked
-    IpsBlocked.create!(user_ip: @ip)
+    Blacklist.create!(ip_address: @ip_address)
   end
 end

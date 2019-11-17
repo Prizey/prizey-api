@@ -265,12 +265,6 @@
             "boolean"
           ]
         },
-        "ip": {
-          "description": "user ip",
-          "type": [
-            "string"
-          ]
-        },
         "identity": {
           "anyOf": [
             {
@@ -289,9 +283,6 @@
           "schema": {
             "additionalProperties": false,
             "properties": {
-              "ip": {
-                "$ref": "#/definitions/freegame_ips/definitions/ip"
-              }
             },
             "type": [
               "object"

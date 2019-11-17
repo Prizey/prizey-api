@@ -10,9 +10,6 @@ definitions:
     description: whether ip is blocked or not
     readOnly: true
     type: boolean
-  ip:
-    description: user ip
-    type: string
   identity:
     anyOf:
     - "$ref": "/schemata/freegame_ips#/definitions/ip_blocked"
@@ -24,9 +21,7 @@ links:
   rel: instances
   schema:
     additionalProperties: false
-    properties:
-      ip:
-        "$ref": "/schemata/freegame_ips#/definitions/ip"
+    properties: {}
     type:
     - object
   targetSchema:

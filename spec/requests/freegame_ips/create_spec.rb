@@ -3,11 +3,9 @@
 require 'rails_helper'
 
 describe 'POST /freegame_ips', type: :request do
-  let(:params) { { ip: '127.0.0.1' }.to_json }
-
   context 'with correct params' do
     before do
-      post '/freegame_ips', params: params
+      post '/freegame_ips'
     end
 
     it { expect(response).to have_http_status(:created) }
