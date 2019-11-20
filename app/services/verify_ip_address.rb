@@ -23,7 +23,7 @@ class VerifyIpAddress
   def find_or_create_ip_blocked
     blocked = Blacklist.find_by(ip_address: @ip_address)
     create_ip_blocked if blocked.blank?
-    blocked.present?
+    blocked.present? && blocked.created_at < 5.seconds.ago
   end
 
   def create_ip_blocked
