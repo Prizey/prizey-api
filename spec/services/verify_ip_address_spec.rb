@@ -5,7 +5,7 @@ require 'rails_helper'
 describe VerifyIpAddress, type: :service do
   context 'when ip was not created more than 10 minutes' do
     before do
-      Blacklist.create!(ip_address: '127.0.0.1')
+      Blacklist.create!(ip_address: '127.0.0.1', created_at: 10.seconds.ago)
     end
 
     it do
