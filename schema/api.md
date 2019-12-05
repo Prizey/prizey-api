@@ -153,6 +153,7 @@ A free game ips is where user IP blocking is controlled
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **ip_blocked** | *boolean* | whether ip is blocked or not | `true` |
+| **page_valid** | *boolean* | whether page is valid or not | `true` |
 
 ### <a name="link-POST-freegame_ips-/freegame_ips">freegame ips Create</a>
 
@@ -162,12 +163,19 @@ Create free game ip
 POST /freegame_ips
 ```
 
+#### Optional Parameters
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **page** | *string* | page sent by the front to be evaluated if it is valid or not | `"example"` |
+
 
 #### Curl Example
 
 ```bash
 $ curl -n -X POST https://api.prizey.app/freegame_ips \
   -d '{
+  "page": "example"
 }' \
   -H "Content-Type: application/json"
 ```

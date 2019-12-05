@@ -10,6 +10,13 @@ definitions:
     description: whether ip is blocked or not
     readOnly: true
     type: boolean
+  page_valid:
+    description: whether page is valid or not
+    readOnly: true
+    type: boolean
+  page:
+    description: page sent by the front to be evaluated if it is valid or not
+    type: string
   identity:
     anyOf:
     - "$ref": "/schemata/freegame_ips#/definitions/ip_blocked"
@@ -21,7 +28,9 @@ links:
   rel: instances
   schema:
     additionalProperties: false
-    properties: {}
+    properties:
+      page:
+        "$ref": "/schemata/freegame_ips#/definitions/page"
     type:
     - object
   targetSchema:
@@ -31,4 +40,6 @@ links:
 properties:
   ip_blocked:
     $ref: "/schemata/freegame_ips#/definitions/ip_blocked"
+  page_valid:
+    $ref: "/schemata/freegame_ips#/definitions/page_valid"
 id: schemata/freegame_ips

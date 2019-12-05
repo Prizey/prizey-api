@@ -265,6 +265,19 @@
             "boolean"
           ]
         },
+        "page_valid": {
+          "description": "whether page is valid or not",
+          "readOnly": true,
+          "type": [
+            "boolean"
+          ]
+        },
+        "page": {
+          "description": "page sent by the front to be evaluated if it is valid or not",
+          "type": [
+            "string"
+          ]
+        },
         "identity": {
           "anyOf": [
             {
@@ -283,6 +296,9 @@
           "schema": {
             "additionalProperties": false,
             "properties": {
+              "page": {
+                "$ref": "#/definitions/freegame_ips/definitions/page"
+              }
             },
             "type": [
               "object"
@@ -303,6 +319,9 @@
       "properties": {
         "ip_blocked": {
           "$ref": "#/definitions/freegame_ips/definitions/ip_blocked"
+        },
+        "page_valid": {
+          "$ref": "#/definitions/freegame_ips/definitions/page_valid"
         }
       }
     },
