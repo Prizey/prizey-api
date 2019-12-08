@@ -48,6 +48,10 @@ AdminText.create!(
     {
       field: 'difficulty_third_level_label',
       text: 'HARD'
+    },
+    {
+      field: 'valid_free_game_pages',
+      text: 'page1, page2, page3'
     }
   ]
 )

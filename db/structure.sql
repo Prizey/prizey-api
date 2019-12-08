@@ -94,7 +94,8 @@ CREATE TABLE public.blacklists (
     id bigint NOT NULL,
     ip_address character varying,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    page character varying
 );
 
 
@@ -482,6 +483,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190829192155'),
 ('20191112004845'),
 ('20191116215241'),
-('20191117020942');
+('20191117020942'),
+('20191208131322');
 
 
