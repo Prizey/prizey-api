@@ -2,17 +2,17 @@
 
 require 'rails_helper'
 
-describe 'POST /freegame_ips', type: :request do
+describe 'POST /freegame', type: :request do
   context 'with correct params' do
     before do
-      post '/freegame_ips'
+      post '/freegame'
     end
 
     it { expect(response).to have_http_status(:created) }
   end
 
   context 'with incorrect params' do
-    before { post '/freegame_ips', params: { foo: 'bar' }.to_json }
+    before { post '/freegame', params: { foo: 'bar' }.to_json }
 
     it { expect(response).to have_http_status(:bad_request) }
   end
@@ -28,14 +28,13 @@ describe 'POST /freegame_ips', type: :request do
 
     before do
       create_pages
-      post '/freegame_ips', params: params
+      post '/freegame', params: params
     end
 
     it { expect(response).to have_http_status(:created) }
     it {
       expect(JSON(response.body)).to eq(
         'ip_blocked' => false,
-        'page_valid' => false,
         'id' => 1
       )
     }
@@ -52,14 +51,13 @@ describe 'POST /freegame_ips', type: :request do
 
     before do
       create_pages
-      post '/freegame_ips', params: params
+      post '/freegame', params: params
     end
 
     it { expect(response).to have_http_status(:created) }
     it {
       expect(JSON(response.body)).to eq(
         'ip_blocked' => false,
-        'page_valid' => true,
         'id' => 1
       )
     }
@@ -75,14 +73,13 @@ describe 'POST /freegame_ips', type: :request do
 
     before do
       create_pages
-      post '/freegame_ips'
+      post '/freegame'
     end
 
     it { expect(response).to have_http_status(:created) }
     it {
       expect(JSON(response.body)).to eq(
         'ip_blocked' => false,
-        'page_valid' => true,
         'id' => 1
       )
     }

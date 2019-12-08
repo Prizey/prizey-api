@@ -142,7 +142,7 @@ HTTP/1.1 200 OK
 ```
 
 
-## <a name="resource-freegame_ips">freegame ips</a>
+## <a name="resource-freegame">freegame ips</a>
 
 Stability: `prototype`
 
@@ -153,14 +153,13 @@ A free game ips is where user IP blocking is controlled
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **ip_blocked** | *boolean* | whether ip is blocked or not | `true` |
-| **page_valid** | *boolean* | whether page is valid or not | `true` |
 
-### <a name="link-POST-freegame_ips-/freegame_ips">freegame ips Create</a>
+### <a name="link-POST-freegame-/freegame">freegame ips Create</a>
 
 Create free game ip
 
 ```
-POST /freegame_ips
+POST /freegame
 ```
 
 #### Optional Parameters
@@ -173,7 +172,7 @@ POST /freegame_ips
 #### Curl Example
 
 ```bash
-$ curl -n -X POST https://api.prizey.app/freegame_ips \
+$ curl -n -X POST https://api.prizey.app/freegame \
   -d '{
   "page": "example"
 }' \

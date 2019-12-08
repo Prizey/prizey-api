@@ -249,7 +249,7 @@
         }
       }
     },
-    "freegame_ips": {
+    "freegame": {
       "$schema": "http://json-schema.org/draft-04/hyper-schema",
       "title": "Prizey - freegame ips",
       "description": "A free game ips is where user IP blocking is controlled",
@@ -265,13 +265,6 @@
             "boolean"
           ]
         },
-        "page_valid": {
-          "description": "whether page is valid or not",
-          "readOnly": true,
-          "type": [
-            "boolean"
-          ]
-        },
         "page": {
           "description": "page sent by the front to be evaluated if it is valid or not",
           "type": [
@@ -281,7 +274,7 @@
         "identity": {
           "anyOf": [
             {
-              "$ref": "#/definitions/freegame_ips/definitions/ip_blocked"
+              "$ref": "#/definitions/freegame/definitions/ip_blocked"
             }
           ]
         }
@@ -290,14 +283,14 @@
         {
           "title": "Create",
           "description": "Create free game ip",
-          "href": "/freegame_ips",
+          "href": "/freegame",
           "method": "POST",
           "rel": "instances",
           "schema": {
             "additionalProperties": false,
             "properties": {
               "page": {
-                "$ref": "#/definitions/freegame_ips/definitions/page"
+                "$ref": "#/definitions/freegame/definitions/page"
               }
             },
             "type": [
@@ -307,7 +300,7 @@
           "targetSchema": {
             "anyOf": [
               {
-                "$ref": "#/definitions/freegame_ips"
+                "$ref": "#/definitions/freegame"
               },
               {
                 "$ref": "#/definitions/error"
@@ -318,10 +311,7 @@
       ],
       "properties": {
         "ip_blocked": {
-          "$ref": "#/definitions/freegame_ips/definitions/ip_blocked"
-        },
-        "page_valid": {
-          "$ref": "#/definitions/freegame_ips/definitions/page_valid"
+          "$ref": "#/definitions/freegame/definitions/ip_blocked"
         }
       }
     },
@@ -1183,8 +1173,8 @@
     "error": {
       "$ref": "#/definitions/error"
     },
-    "freegame_ips": {
-      "$ref": "#/definitions/freegame_ips"
+    "freegame": {
+      "$ref": "#/definitions/freegame"
     },
     "game_setting": {
       "$ref": "#/definitions/game_setting"
