@@ -22,7 +22,7 @@ class VerifyBlockedPage
   end
 
   def find_or_create_ip_blocked
-    return false unless page_valid?
+    return true unless page_valid?
 
     blocked = Blacklist.find_by(ip_address: @ip_address, page: @page)
     blocked = create_ip_blocked if blocked.blank?
