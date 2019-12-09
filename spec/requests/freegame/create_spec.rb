@@ -34,7 +34,7 @@ describe 'POST /freegame', type: :request do
     it { expect(response).to have_http_status(:created) }
     it {
       expect(JSON(response.body)).to eq(
-        'ip_blocked' => false,
+        'ip_blocked' => true,
         'id' => 1
       )
     }

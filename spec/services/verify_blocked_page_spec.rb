@@ -68,7 +68,7 @@ describe VerifyBlockedPage, type: :service do
 
     it do
       expect(described_class.execute(ip_address: '127.0.0.1', page: 'page10'))
-        .to eq(success: true, payload: false)
+        .to eq(success: true, payload: true)
     end
   end
 end

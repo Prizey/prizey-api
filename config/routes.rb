@@ -22,5 +22,8 @@ Rails.application.routes.draw do
   resource :cards, only: [] do
     get '/', to: 'cards#index'
   end
-  resources :freegame, only: %i[create]
+
+  resource '/freegame', to: 'freegame#create', only: %i[create] do
+    post '/:page', to: 'freegame#create'
+  end
 end
