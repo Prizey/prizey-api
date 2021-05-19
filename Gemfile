@@ -13,7 +13,7 @@ gem 'devise_token_auth', '~> 1.0.0'
 gem 'json_schema', '0.20.3' # DO NOT UPDATE THIS
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'prmd', '~> 0.13'
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 4.3'
 gem 'rack-cors', require: 'rack/cors'
 gem 'rails', '~> 5.2.2'
 gem 'rails-i18n', '~> 5.1.3'
